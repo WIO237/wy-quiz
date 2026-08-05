@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>全能刷题工具 · PWA</title>
-<!-- PWA manifest（内联） -->
 <link rel="manifest" id="manifest-link">
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -12,7 +11,6 @@
   .hidden { display: none !important; }
   .container { max-width: 800px; margin: 0 auto; padding: 16px; }
 
-  /* 配置卡片 */
   .config-card {
     background: white; padding: 20px; border-radius: 12px; margin-top: 30px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
@@ -23,8 +21,8 @@
   .config-card button {
     background: #0052d9; color: white; border: none; font-weight: bold;
   }
+  .config-card .info-text { font-size: 14px; color: #666; margin: 8px 0; }
 
-  /* 统计栏 */
   .stats { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 16px; }
   .stat-item {
     background: white; padding: 6px 14px; border-radius: 20px; font-size: 14px;
@@ -81,16 +79,19 @@
 </head>
 <body>
 <div class="container" id="app">
-  <!-- 配置界面 -->
+  <!-- 配置界面（用户名和仓库名已固定） -->
   <div id="configPanel" class="config-card">
     <h2>⚙️ 连接 GitHub 同步</h2>
-    <p style="margin:10px 0;color:#666;">题库与做题记录将保存在您的 GitHub 仓库中。</p>
-    <input type="text" id="ghOwner" placeholder="GitHub 用户名" autocomplete="username">
-    <input type="text" id="ghRepo" placeholder="仓库名（如 my-quiz）">
-    <input type="password" id="ghToken" placeholder="Personal Access Token">
+    <p class="info-text">题库与做题记录将保存在 <b>WIO237/wy-quiz</b> 仓库中。</p>
+    <!-- 用户名和仓库名固化在代码中，无需用户输入 -->
+    <input type="hidden" id="ghOwner" value="WIO237">
+    <input type="hidden" id="ghRepo" value="wy-quiz">
+    
+    <label style="font-weight: bold; display: block; margin-top: 10px;">Personal Access Token</label>
+    <input type="password" id="ghToken" placeholder="请输入您的 GitHub Token" autocomplete="off">
     <button id="connectBtn">连接并加载题库</button>
     <p style="font-size:12px;color:#999;margin-top:10px;">
-      Token 仅在您的浏览器本地保存，不会上传。如清空缓存需重新输入。
+      Token 仅在您的浏览器本地保存，不会上传。首次输入后自动记住。
     </p>
   </div>
 
@@ -110,7 +111,7 @@
       <select id="chapterSelect" style="padding:8px;border-radius:8px;border:1px solid #0052d9;"></select>
       <button id="exportWrongBtn">导出错题</button>
       <button id="clearRecordsBtn">清空记录</button>
-      <button id="resetConfigBtn" style="background:#fdecec;border-color:#d54941;color:#d54941;">重设 GitHub</button>
+      <button id="resetConfigBtn" style="background:#fdecec;border-color:#d54941;color:#d54941;">重设 Token</button>
     </div>
 
     <div class="card" id="questionCard">
@@ -140,49 +141,40 @@
 </div>
 
 <script>
-// ===================== 工具函数 =====================
 function showToast(msg) {
   const t = document.getElementById('toast');
   t.textContent = msg; t.classList.add('show');
   setTimeout(() => t.classList.remove('show'), 2000);
 }
-
 function $(id) { return document.getElementById(id); }
 
-// ===================== GitHub 操作 =====================
 const GITHUB_API = 'https://api.github.com';
 let ghOwner, ghRepo, ghToken;
 
 function loadConfig() {
-  ghOwner = localStorage.getItem('quiz_gh_owner') || '';
-  ghRepo = localStorage.getItem('quiz_gh_repo') || '';
+  // 用户名和仓库名从 HTML 隐藏域读取（已固定）
+  ghOwner = $('ghOwner').value;
+  ghRepo = $('ghRepo').value;
+  // Token 尝试从 localStorage 读取
   ghToken = localStorage.getItem('quiz_gh_token') || '';
-  if (ghOwner && ghRepo && ghToken) {
-    $('ghOwner').value = ghOwner;
-    $('ghRepo').value = ghRepo;
-    $('ghToken').value = ghToken;
-  }
+  $('ghToken').value = ghToken;
 }
 function saveConfig() {
-  localStorage.setItem('quiz_gh_owner', ghOwner);
-  localStorage.setItem('quiz_gh_repo', ghRepo);
   localStorage.setItem('quiz_gh_token', ghToken);
 }
 
-// 获取文件内容 { content, sha }
 async function getFileContent(path) {
   const url = `${GITHUB_API}/repos/${ghOwner}/${ghRepo}/contents/${path}`;
   const res = await fetch(url, {
     headers: { 'Authorization': `token ${ghToken}`, 'Accept': 'application/vnd.github.v3+json' }
   });
-  if (res.status === 404) return null; // 文件不存在
+  if (res.status === 404) return null;
   if (!res.ok) throw new Error(`获取文件失败: ${res.status}`);
   const data = await res.json();
   const content = atob(data.content.replace(/\n/g, ''));
   return { content, sha: data.sha };
 }
 
-// 保存/创建文件
 async function putFile(path, content, sha, message = 'Update by quiz tool') {
   const body = {
     message,
@@ -206,13 +198,13 @@ async function putFile(path, content, sha, message = 'Update by quiz tool') {
   return res.json();
 }
 
-// ===================== 题目解析器（移植自 Java） =====================
+// ===================== 题库解析 =====================
 class Question {
   constructor(originalIndex, chapter, title, options, answer, analysis) {
     this.originalIndex = originalIndex;
     this.chapter = chapter;
     this.title = title;
-    this.options = options; // {A: '...', B: '...'}
+    this.options = options;
     this.answer = answer;
     this.isMulti = answer.length > 1;
     this.analysis = analysis;
@@ -282,12 +274,11 @@ let allChapters = [];
 let selectedChapter = '全部题目';
 let currentQuestions = [];
 let currentIndex = 0;
-let mode = 'sequence'; // sequence, random, wrong
+let mode = 'sequence';
 let wrongSet = new Set();
 let totalAnswered = 0, totalCorrect = 0;
 
-// 模式隔离记录
-const modeAnswers = {};   // { [mode]: { originalIndex: 'answer' } }
+const modeAnswers = {};
 const modeSubmitted = {};
 let wrongModeAnswers = {};
 let wrongModeSubmitted = {};
@@ -296,7 +287,6 @@ const modeIndexMap = {};
 let lastSyncTime = null;
 let recordDirty = false;
 
-// ===================== UI 控制 =====================
 function updateStats() {
   $('statCorrect').textContent = `正确: ${totalCorrect}`;
   const acc = totalAnswered ? Math.round((totalCorrect / totalAnswered) * 100) : 0;
@@ -340,7 +330,6 @@ function refreshQuestionCard() {
     container.appendChild(optDiv);
   }
 
-  // 重置样式
   if (effSubmitted) {
     disableOptions();
     highlightCorrectAnswer(q, effAnswer);
@@ -392,11 +381,9 @@ function selectOption(key, isMulti) {
     else { effAnswer = (effAnswer + key).split('').sort().join(''); }
   } else {
     effAnswer = key;
-    // 清除所有选项样式
     document.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
   }
   setEffectiveAnswer(q, effAnswer);
-  // 重新高亮
   document.querySelectorAll('.option').forEach(o => {
     if (effAnswer.includes(o.dataset.key)) o.classList.add('selected');
     else if (!isMulti) o.classList.remove('selected');
@@ -582,7 +569,7 @@ function downloadFile(filename, text) {
   a.click();
 }
 
-// ===================== GitHub 同步 =====================
+// ===================== 同步逻辑 =====================
 function markDirty() {
   recordDirty = true;
 }
@@ -614,25 +601,23 @@ async function syncRecords() {
   }
 }
 
-// 每10分钟自动同步
 setInterval(() => { if (recordDirty) syncRecords(); }, 10 * 60 * 1000);
 
 // ===================== 启动与连接 =====================
 async function connectAndLoad() {
-  ghOwner = $('ghOwner').value.trim();
-  ghRepo = $('ghRepo').value.trim();
+  ghOwner = $('ghOwner').value;
+  ghRepo = $('ghRepo').value;
   ghToken = $('ghToken').value.trim();
-  if (!ghOwner || !ghRepo || !ghToken) { showToast('请完整填写'); return; }
-  saveConfig();
+  if (!ghToken) { showToast('请输入 Token'); return; }
+  saveConfig();  // 记住 Token
   try {
-    // 尝试获取题库文件
     let quizText = '';
     try {
       const res = await getFileContent('quiz_text.md');
       if (res) quizText = res.content;
     } catch (e) {}
     if (!quizText) {
-      showToast('仓库中未找到 quiz_text.md，请先上传题库文件。');
+      showToast('仓库中未找到 quiz_text.md，请先上传题库。');
       return;
     }
     const parsed = parseQuestions(quizText);
@@ -640,7 +625,6 @@ async function connectAndLoad() {
     allQuestions = parsed.questions;
     allChapters = parsed.chapters;
 
-    // 读取记录
     try {
       const rec = await getFileContent('record.json');
       if (rec) {
@@ -656,7 +640,6 @@ async function connectAndLoad() {
         selectedChapter = data.selectedChapter || '全部题目';
         currentIndex = data.currentIndex || 0;
         lastSyncTime = data.lastSyncTime ? new Date(data.lastSyncTime) : null;
-        // 恢复笔记
         if (data.notes) {
           data.notes.forEach(({idx, notes}) => {
             const q = allQuestions.find(q => q.originalIndex === idx);
@@ -672,7 +655,6 @@ async function connectAndLoad() {
       }
     } catch(e) { console.warn('加载记录失败', e); }
 
-    // 填充UI
     $('chapterSelect').innerHTML = allChapters.map(c => `<option ${c===selectedChapter?'selected':''}>${c}</option>`).join('');
     applyFilter();
     if (currentIndex >= currentQuestions.length) currentIndex = 0;
@@ -692,16 +674,16 @@ async function connectAndLoad() {
 $('connectBtn').onclick = connectAndLoad;
 
 $('resetConfigBtn').onclick = function() {
-  if (confirm('这将清除本地保存的 GitHub 配置，确定吗？')) {
-    ['quiz_gh_owner','quiz_gh_repo','quiz_gh_token'].forEach(k => localStorage.removeItem(k));
+  if (confirm('确定清除保存的 Token 吗？这将需要重新输入。')) {
+    localStorage.removeItem('quiz_gh_token');
     location.reload();
   }
 };
 
-// 页面启动
+// ===================== 页面初始化 =====================
 loadConfig();
-if (ghOwner && ghRepo && ghToken) {
-  // 自动尝试连接
+if (ghToken) {
+  // 如果已有 Token，尝试自动连接
   connectAndLoad().catch(() => {
     $('configPanel').classList.remove('hidden');
   });
@@ -726,28 +708,11 @@ const manifest = {
 const blob = new Blob([JSON.stringify(manifest)], {type: 'application/json'});
 $('manifest-link').href = URL.createObjectURL(blob);
 
-// Service Worker 注册（离线缓存页面）
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     navigator.serviceWorker.register('sw.js').catch(() => {});
   });
 }
 </script>
-
-<!--
-  可选：如需完全离线支持，请在仓库根目录再创建一个 sw.js 文件，内容如下：
-
-  const CACHE_NAME = 'quiz-tool-v1';
-  self.addEventListener('install', e => {
-    e.waitUntil(
-      caches.open(CACHE_NAME).then(cache => cache.addAll(['./','./index.html']))
-    );
-  });
-  self.addEventListener('fetch', e => {
-    e.respondWith(
-      caches.match(e.request).then(r => r || fetch(e.request))
-    );
-  });
--->
 </body>
 </html>
