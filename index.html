@@ -96,11 +96,10 @@
     <p style="font-size:12px;color:#999;margin-top:10px;">
       Token 仅在您的浏览器本地保存，不会上传。首次输入后自动记住。
     </p>
-    <!-- 调试信息显示区 -->
     <div id="debugBox" class="debug-box hidden"></div>
   </div>
 
-  <!-- 主界面（初始隐藏） -->
+  <!-- 主界面 -->
   <div id="mainPanel" class="hidden">
     <div class="stats">
       <div class="stat-item" id="statCorrect">正确: 0</div>
@@ -174,7 +173,13 @@ async function getFileContent(path) {
   if (res.status === 404) return null;
   if (!res.ok) throw new Error(`获取文件失败: ${res.status}`);
   const data = await res.json();
-  const content = atob(data.content.replace(/\n/g, ''));
+  // 正确解码 Base64 为 UTF-8 字符串
+  const binaryString = atob(data.content.replace(/\n/g, ''));
+  const bytes = new Uint8Array(binaryString.length);
+  for (let i = 0; i < binaryString.length; i++) {
+    bytes[i] = binaryString.charCodeAt(i);
+  }
+  const content = new TextDecoder('utf-8').decode(bytes);
   return { content, sha: data.sha };
 }
 
@@ -201,7 +206,7 @@ async function putFile(path, content, sha, message = 'Update by quiz tool') {
   return res.json();
 }
 
-// ===================== 题库解析 =====================
+// ===================== 题库解析（与 Java 版一致） =====================
 class Question {
   constructor(originalIndex, chapter, title, options, answer, analysis) {
     this.originalIndex = originalIndex;
@@ -217,7 +222,6 @@ class Question {
 }
 
 function parseQuestions(text) {
-  // 去除 markdown 标记和多余格式
   text = text.replace(/```[a-z]*\n?/g, '')
         .replace(/#{1,6}\s*/g, '')
         .replace(/\*\*(.*?)\*\*/g, '$1')
@@ -234,13 +238,11 @@ function parseQuestions(text) {
   for (let rawLine of lines) {
     let line = rawLine.trim();
     if (!line) continue;
-    // 章节标题（如“操作系统 约20道”或“第一章 绪论”）
     if (line.match(/^.+?[（(]约\d+道[）)]$/) || line.match(/^第[一二三四五六七八九十\d]+章\s*.+$/)) {
       currentChapter = line.replace(/[（(]约\d+道[）)]/, '').trim();
       chapterSet.add(currentChapter);
       continue;
     }
-    // 题号（如 1. 题目内容）
     if (line.match(/^\d+[.、．]\s*(.*)/)) {
       if (currentQ && currentQ.answer) questions.push(currentQ);
       const title = line.replace(/^\d+[.、．]\s*/, '');
@@ -249,21 +251,18 @@ function parseQuestions(text) {
       continue;
     }
     if (!currentQ) continue;
-    // 选项（A. xxx）
     if (line.match(/^[A-Ea-e][.、．\s]\s*(.*)/) && !isReadingAnalysis) {
       const key = line.charAt(0).toUpperCase();
       const val = line.substring(1).replace(/^[.、．\s]+/, '');
       currentQ.options[key] = val;
       continue;
     }
-    // 答案行
     if (line.match(/^(正确答案|答案)[：:]\s*([A-Ea-e,\s]+)/)) {
       const ansStr = line.replace(/^(正确答案|答案)[：:]\s*/, '').replace(/[^A-Ea-e]/g, '').toUpperCase();
       currentQ.answer = ansStr.split('').sort().join('');
       currentQ.isMulti = currentQ.answer.length > 1;
       continue;
     }
-    // 解析行
     if (line.match(/^解析[：:]\s*(.*)/)) {
       currentQ.analysis = line.replace(/^解析[：:]\s*/, '');
       isReadingAnalysis = true;
@@ -612,7 +611,7 @@ async function syncRecords() {
 
 setInterval(() => { if (recordDirty) syncRecords(); }, 10 * 60 * 1000);
 
-// ===================== 连接与加载（带调试） =====================
+// ===================== 连接与加载 =====================
 async function connectAndLoad() {
   ghOwner = $('ghOwner').value;
   ghRepo = $('ghRepo').value;
@@ -622,7 +621,6 @@ async function connectAndLoad() {
   const debugBox = $('debugBox');
   debugBox.classList.add('hidden');
   try {
-    // 获取题库文件
     let quizText = '';
     try {
       const res = await getFileContent('quiz_text.md');
@@ -639,10 +637,8 @@ async function connectAndLoad() {
       return;
     }
 
-    // 解析题库
     const parsed = parseQuestions(quizText);
     if (!parsed.questions.length) {
-      // 显示调试信息：原始内容的前500字符
       const preview = quizText.length > 500 ? quizText.substring(0, 500) + '...' : quizText;
       debugBox.innerHTML = `<strong>⚠ 未解析到题目，请检查题库格式。</strong><br><br>
         <strong>读取到的内容开头：</strong><br><pre>${escapeHtml(preview)}</pre>
@@ -652,7 +648,6 @@ async function connectAndLoad() {
       return;
     }
 
-    // 加载记录
     allQuestions = parsed.questions;
     allChapters = parsed.chapters;
 
