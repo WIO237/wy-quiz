@@ -323,6 +323,23 @@ E. 底基层顶面必须铺设防水土工织物
 
 E 选项中“必须”说法过于绝对，底基层顶面宜铺设沥青封层或防水土工织物。
 
+<table border="1" style="border-collapse: collapse; width: 100%; text-align: left; font-size: 14px; line-height: 1.6; vertical-align: middle;">
+    <tbody>
+        <tr>
+            <td style="padding: 12px; border: 1px solid #000; text-align: center; width: 20%;">面层</td>
+            <td style="padding: 12px; border: 1px solid #000;">强 度、 高 温 稳 定 性、 低 温 抗 裂 性、 抗 疲 劳、 抗 水 损 害 能 力、 抗 滑 能 力、 平 整 度</td>
+        </tr>
+        <tr>
+            <td style="padding: 12px; border: 1px solid #000; text-align: center;">基层</td>
+            <td style="padding: 12px; border: 1px solid #000;">强 度、 扩 散 荷 载、 水 稳 性</td>
+        </tr>
+        <tr>
+            <td style="padding: 12px; border: 1px solid #000; text-align: center;">垫层</td>
+            <td style="padding: 12px; border: 1px solid #000;">强 度、 扩 散 荷 载、 水 稳 性</td>
+        </tr>
+    </tbody>
+</table>
+
 
 15. 对垫层性能要求的主要指标包括（ ）。
 
