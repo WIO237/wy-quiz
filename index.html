@@ -1,748 +1,624 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>全能刷题工具 · PWA</title>
-<link rel="manifest" id="manifest-link">
-<style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Segoe UI', system-ui, sans-serif; background: #f5f7fa; color: #333; }
-  .hidden { display: none !important; }
-  .container { max-width: 800px; margin: 0 auto; padding: 16px; }
-
-  .config-card {
-    background: white; padding: 20px; border-radius: 12px; margin-top: 30px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  }
-  .config-card input, .config-card button {
-    width: 100%; padding: 12px; margin: 8px 0; font-size: 16px; border-radius: 8px; border: 1px solid #ddd;
-  }
-  .config-card button {
-    background: #0052d9; color: white; border: none; font-weight: bold;
-  }
-  .config-card .info-text { font-size: 14px; color: #666; margin: 8px 0; }
-  .debug-box {
-    margin-top: 12px; padding: 10px; background: #fff3cd; border: 1px solid #ffc107;
-    border-radius: 8px; font-size: 13px; white-space: pre-wrap; max-height: 200px; overflow: auto;
-  }
-
-  .stats { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 16px; }
-  .stat-item {
-    background: white; padding: 6px 14px; border-radius: 20px; font-size: 14px;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.05);
-  }
-  .progress { flex: 1; height: 12px; background: #e0e0e0; border-radius: 10px; overflow: hidden; }
-  .progress-bar { height: 100%; background: #0052d9; transition: width 0.3s; }
-
-  .toolbar { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
-  .toolbar button {
-    padding: 8px 14px; border-radius: 8px; border: 1px solid #0052d9; background: white; color: #0052d9;
-    font-size: 14px; cursor: pointer;
-  }
-  .toolbar button.active { background: #0052d9; color: white; }
-
-  .card {
-    background: white; padding: 20px; border-radius: 12px; margin-bottom: 16px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-  }
-  .q-header { display: flex; gap: 12px; align-items: center; margin-bottom: 12px; }
-  .q-type { padding: 4px 10px; border-radius: 6px; font-weight: bold; font-size: 14px; }
-  .q-title { font-size: 18px; line-height: 1.6; margin-bottom: 16px; }
-
-  .option {
-    border: 1px solid #e5e6eb; border-radius: 8px; padding: 12px; margin-bottom: 10px;
-    display: flex; align-items: center; gap: 10px; cursor: pointer; transition: 0.2s;
-  }
-  .option.selected { border-color: #0052d9; background: #e8f3ff; }
-  .option.correct { border-color: #2ba471; background: #e8f8f0; }
-  .option.wrong { border-color: #d54941; background: #fdecec; }
-  .option-key {
-    width: 28px; height: 28px; border-radius: 50%; background: #f5f7fa; display: flex;
-    align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0;
-  }
-  .option.selected .option-key { background: #0052d9; color: white; }
-  .option.correct .option-key { background: #2ba471; color: white; }
-  .option.wrong .option-key { background: #d54941; color: white; }
-
-  .btn-row { display: flex; gap: 12px; margin: 20px 0; flex-wrap: wrap; }
-  .btn { padding: 12px 24px; border-radius: 8px; border: none; font-size: 16px; cursor: pointer; }
-  .btn-primary { background: #0052d9; color: white; }
-  .btn-secondary { background: white; color: #0052d9; border: 1px solid #0052d9; }
-
-  .notes-panel { margin-top: 20px; border: 1px solid #e0e0e0; border-radius: 8px; padding: 12px; background: #fafafa; }
-  .toast { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: #333; color: white;
-           padding: 10px 24px; border-radius: 20px; z-index: 1000; opacity: 0; transition: 0.3s; }
-  .toast.show { opacity: 1; }
-
-  @media (max-width: 480px) {
-    .container { padding: 10px; }
-    .btn { padding: 10px 18px; font-size: 14px; }
-  }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>全能刷题工具</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#0052d9">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; background: #f5f7fa; display: flex; flex-direction: column; height: 100vh; overflow: hidden; }
+    #importPage, #quizPage { flex: 1; display: flex; flex-direction: column; overflow-y: auto; padding: 20px; }
+    #quizPage { padding: 10px; }
+    .hidden { display: none !important; }
+    #importPage textarea { flex: 1; min-height: 200px; margin: 10px 0; padding: 10px; border-radius: 8px; border: 1px solid #ccc; }
+    .btn-primary { background: #0052d9; color: white; border: none; padding: 10px; border-radius: 6px; font-size: 16px; cursor: pointer; }
+    .stats-row { display: flex; align-items: center; background: white; padding: 10px; border-radius: 8px; margin-bottom: 8px; }
+    .progress-bar { flex: 1; height: 10px; background: #e0e0e0; border-radius: 5px; margin-right: 10px; overflow: hidden; }
+    .progress-fill { height: 100%; background: #0052d9; width: 0%; }
+    .stat-item { font-size: 14px; margin: 0 5px; white-space: nowrap; }
+    .mode-row { display: flex; flex-wrap: wrap; align-items: center; background: white; padding: 8px; border-radius: 8px; margin-bottom: 8px; }
+    .mode-btn { padding: 6px 12px; margin: 2px; border: 1px solid #0052d9; background: white; color: #0052d9; border-radius: 20px; font-size: 14px; cursor: pointer; }
+    .mode-btn.active { background: #0052d9; color: white; }
+    .action-btn { padding: 6px 12px; margin: 2px; border: 1px solid #ccc; background: white; border-radius: 20px; font-size: 13px; cursor: pointer; }
+    .danger-btn { color: #d54941; border-color: #d54941; }
+    .jump-row { display: flex; align-items: center; background: white; padding: 8px; border-radius: 8px; margin-bottom: 8px; flex-wrap: wrap; }
+    .jump-row select, .jump-row input { padding: 6px; border-radius: 4px; border: 1px solid #ccc; margin: 2px; font-size: 14px; }
+    .jump-row button { padding: 6px 10px; margin: 2px; background: #0052d9; color: white; border: none; border-radius: 4px; }
+    .thumbnails { display: flex; flex-wrap: wrap; align-items: center; gap: 3px; margin: 2px 0; flex: 1; overflow-x: auto; }
+    .thumb-cell { width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: bold; border-radius: 3px; cursor: pointer; border: 1px solid #ccc; background: #eee; }
+    .thumb-cell.current { border: 2px solid #0052d9; }
+    .thumb-cell.correct { background: #b7eb8f; }
+    .thumb-cell.wrong { background: #ffa39e; }
+    .question-card { background: white; padding: 20px; border-radius: 12px; flex: 1; overflow-y: auto; }
+    .option-row { display: flex; align-items: center; padding: 12px; margin: 5px 0; border: 1px solid #e5e6eb; border-radius: 8px; cursor: pointer; }
+    .option-key { width: 24px; height: 24px; background: #f5f7fa; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; margin-right: 10px; }
+    .option-selected { border-color: #0052d9; background: #e8f3ff; }
+    .option-selected .option-key { background: #0052d9; color: white; }
+    .option-correct { border-color: #2ba471; background: #e8f8f0; }
+    .option-correct .option-key { background: #2ba471; color: white; }
+    .option-wrong { border-color: #d54941; background: #fdecec; }
+    .option-wrong .option-key { background: #d54941; color: white; }
+    .result-box { margin-top: 15px; padding: 10px; background: #fafafa; border-radius: 8px; }
+    .bottom-bar { display: flex; justify-content: center; gap: 10px; padding: 10px 0; }
+    .note-panel { background: #fafafa; border: 1px solid #e0e0e0; border-radius: 6px; padding: 10px; margin: 10px 0; }
+    textarea { width: 100%; padding: 8px; border-radius: 4px; border: 1px solid #ccc; }
+  </style>
 </head>
 <body>
-<div class="container" id="app">
-  <!-- 配置界面（用户名和仓库名已固定） -->
-  <div id="configPanel" class="config-card">
-    <h2>⚙️ 连接 GitHub 同步</h2>
-    <p class="info-text">题库与做题记录将保存在 <b>WIO237/wy-quiz</b> 仓库中。</p>
-    <input type="hidden" id="ghOwner" value="WIO237">
-    <input type="hidden" id="ghRepo" value="wy-quiz">
-    
-    <label style="font-weight: bold; display: block; margin-top: 10px;">Personal Access Token</label>
-    <input type="password" id="ghToken" placeholder="请输入您的 GitHub Token" autocomplete="off">
-    <button id="connectBtn">连接并加载题库</button>
-    <p style="font-size:12px;color:#999;margin-top:10px;">
-      Token 仅在您的浏览器本地保存，不会上传。首次输入后自动记住。
-    </p>
-    <div id="debugBox" class="debug-box hidden"></div>
+  <div id="importPage">
+    <h2 style="text-align:center; color:#0052d9;">全能刷题工具</h2>
+    <p style="text-align:center; color:#666;">粘贴题库或上传文件，开始刷题</p>
+    <textarea id="quizInput" placeholder="在此粘贴题库内容..."></textarea>
+    <input type="file" id="fileInput" accept=".md,.txt" style="display:none;">
+    <div style="display:flex; gap:10px; margin-top:10px;">
+      <button class="btn-primary" id="fileBtn" style="flex:1;">上传文件</button>
+      <button class="btn-primary" id="startBtn" style="flex:1;">开始刷题</button>
+    </div>
   </div>
 
-  <!-- 主界面 -->
-  <div id="mainPanel" class="hidden">
-    <div class="stats">
-      <div class="stat-item" id="statCorrect">正确: 0</div>
-      <div class="stat-item" id="statAccuracy">正确率: 0%</div>
-      <div class="stat-item" id="statProgress">0/0</div>
-      <div class="progress"><div class="progress-bar" id="progressBar" style="width:0%"></div></div>
+  <div id="quizPage" class="hidden">
+    <div class="stats-row">
+      <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+      <span class="stat-item" id="correctStat">正确:0</span>
+      <span class="stat-item" id="accuracyStat">正确率:0%</span>
+      <span class="stat-item" id="progressStat">0/0</span>
     </div>
 
-    <div class="toolbar">
-      <button id="seqBtn" class="active">顺序</button>
-      <button id="randBtn">随机</button>
-      <button id="wrongBtn">错题本</button>
-      <select id="chapterSelect" style="padding:8px;border-radius:8px;border:1px solid #0052d9;"></select>
-      <button id="exportWrongBtn">导出错题</button>
-      <button id="clearRecordsBtn">清空记录</button>
-      <button id="resetConfigBtn" style="background:#fdecec;border-color:#d54941;color:#d54941;">重设 Token</button>
+    <div class="mode-row">
+      <button class="mode-btn active" data-mode="sequence">顺序</button>
+      <button class="mode-btn" data-mode="random">随机</button>
+      <button class="mode-btn" data-mode="wrong">错题本</button>
+      <button class="action-btn" id="exportWrongBtn">导出错题</button>
+      <button class="action-btn" id="saveQuizBtn">保存题库</button>
+      <button class="action-btn" id="saveAsBtn">另存为</button>
+      <button class="action-btn" id="syncBtn">🔄 同步到GitHub</button>
+      <button class="action-btn" id="clearRecordBtn">清空做题记录</button>
+      <button class="action-btn danger-btn" id="clearCacheBtn">清除缓存</button>
     </div>
 
-    <div class="card" id="questionCard">
-      <div class="q-header">
-        <span class="q-type" id="qType">单选题</span>
-        <span id="qNumber">第 1 题</span>
-      </div>
-      <div class="q-title" id="qTitle"></div>
+    <div class="jump-row">
+      <select id="chapterSelect" style="width:120px;"></select>
+      <input type="number" id="jumpInput" placeholder="题号" style="width:60px;">
+      <button id="goBtn">Go</button>
+      <div class="thumbnails" id="thumbContainer"></div>
+      <button id="prevGroupBtn" class="action-btn">上一组</button>
+      <button id="nextGroupBtn" class="action-btn">下一组</button>
+    </div>
+
+    <div class="question-card" id="questionCard">
+      <div id="qType" style="display:inline-block; padding:4px 10px; border-radius:4px; font-weight:bold; margin-bottom:10px;">单选题</div>
+      <div id="qNumber" style="margin-bottom:10px;">第1题</div>
+      <div id="qTitle" style="font-size:16px; margin-bottom:15px;"></div>
       <div id="optionsContainer"></div>
-      <div id="resultBox" style="display:none; margin-top:16px; padding:12px; background:#f9fafb; border-radius:8px;"></div>
-      <div class="btn-row">
-        <button id="prevBtn" class="btn btn-secondary">← 上一题</button>
-        <button id="submitBtn" class="btn btn-primary">提交答案</button>
-        <button id="nextBtn" class="btn btn-primary" style="display:none;">下一题 →</button>
-        <button id="toggleNotesBtn" class="btn btn-secondary">笔记</button>
-      </div>
-      <div id="notesPanel" class="notes-panel hidden">
-        <b>历史笔记</b>
-        <div id="notesList" style="margin:8px 0;"></div>
-        <textarea id="noteInput" rows="2" placeholder="添加新笔记..." style="width:100%;padding:8px;border-radius:6px;"></textarea>
-        <button id="addNoteBtn" class="btn btn-primary" style="margin-top:6px; padding:8px 16px;">添加笔记</button>
-      </div>
+      <div id="resultContainer" class="result-box hidden"></div>
+    </div>
+
+    <div id="notePanel" class="note-panel hidden">
+      <div id="noteContent" style="max-height:120px; overflow-y:auto; margin-bottom:8px;"></div>
+      <textarea id="noteInput" placeholder="输入新解析内容（可粘贴HTML表格）..." rows="2"></textarea>
+      <button class="btn-primary" id="addAnalysisBtn" style="margin-top:5px;">添加解析</button>
+    </div>
+
+    <div class="bottom-bar">
+      <button class="action-btn" id="prevBtn">← 上一题</button>
+      <button class="btn-primary" id="submitBtn">提交答案</button>
+      <button class="btn-primary" id="nextBtn" style="display:none;">下一题 →</button>
+      <button class="action-btn" id="toggleNoteBtn">笔记</button>
     </div>
   </div>
 
-  <div id="toast" class="toast"></div>
-</div>
+  <script>
+    // ========== 全局状态 ==========
+    let allQuestions = [];
+    let currentMode = 'sequence';
+    let wrongSet = new Set();
+    let modeAnswers = {};
+    let modeSubmitted = {};
+    let wrongAnswers = {};
+    let wrongSubmitted = {};
+    let currentIndex = 0;
+    let totalAnswered = 0, totalCorrect = 0;
+    let chapters = ['全部题目'];
+    let selectedChapter = '全部题目';
+    let thumbPage = 0;
+    let thumbItemsPerPage = 20;
+    let notes = {};
+    let gistId = null;           // 存储Gist ID
+    let githubToken = '';
 
-<script>
-function showToast(msg) {
-  const t = document.getElementById('toast');
-  t.textContent = msg; t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 2000);
-}
-function $(id) { return document.getElementById(id); }
+    // ========== 题库解析 ==========
+    function parseQuestions(text) {
+      text = text.replace(/```[a-z]*\n?/g, '').replace(/#{1,6}\s*/g, '')
+                 .replace(/\*\*(.*?)\*\*/g, '$1').replace(/\*(.*?)\*/g, '$1')
+                 .replace(/\r\n/g, '\n').replace(/\r/g, '\n');
+      const lines = text.split('\n');
+      const questions = [];
+      let currentQ = null;
+      let globalId = 0;
+      let isReadingAnalysis = false;
+      let currentChapter = '默认章节';
+      const chapterSet = new Set(['全部题目', currentChapter]);
 
-const GITHUB_API = 'https://api.github.com';
-let ghOwner, ghRepo, ghToken;
-
-function loadConfig() {
-  ghOwner = $('ghOwner').value;
-  ghRepo = $('ghRepo').value;
-  ghToken = localStorage.getItem('quiz_gh_token') || '';
-  $('ghToken').value = ghToken;
-}
-function saveConfig() {
-  localStorage.setItem('quiz_gh_token', ghToken);
-}
-
-async function getFileContent(path) {
-  const url = `${GITHUB_API}/repos/${ghOwner}/${ghRepo}/contents/${path}`;
-  const res = await fetch(url, {
-    headers: { 'Authorization': `token ${ghToken}`, 'Accept': 'application/vnd.github.v3+json' }
-  });
-  if (res.status === 404) return null;
-  if (!res.ok) throw new Error(`获取文件失败: ${res.status}`);
-  const data = await res.json();
-  // 正确解码 Base64 为 UTF-8 字符串
-  const binaryString = atob(data.content.replace(/\n/g, ''));
-  const bytes = new Uint8Array(binaryString.length);
-  for (let i = 0; i < binaryString.length; i++) {
-    bytes[i] = binaryString.charCodeAt(i);
-  }
-  const content = new TextDecoder('utf-8').decode(bytes);
-  return { content, sha: data.sha };
-}
-
-async function putFile(path, content, sha, message = 'Update by quiz tool') {
-  const body = {
-    message,
-    content: btoa(unescape(encodeURIComponent(content))),
-    ...(sha ? { sha } : {})
-  };
-  const url = `${GITHUB_API}/repos/${ghOwner}/${ghRepo}/contents/${path}`;
-  const res = await fetch(url, {
-    method: 'PUT',
-    headers: {
-      'Authorization': `token ${ghToken}`,
-      'Content-Type': 'application/json',
-      'Accept': 'application/vnd.github.v3+json'
-    },
-    body: JSON.stringify(body)
-  });
-  if (!res.ok) {
-    const err = await res.json();
-    throw new Error(err.message || '保存失败');
-  }
-  return res.json();
-}
-
-// ===================== 题库解析（与 Java 版一致） =====================
-class Question {
-  constructor(originalIndex, chapter, title, options, answer, analysis) {
-    this.originalIndex = originalIndex;
-    this.chapter = chapter;
-    this.title = title;
-    this.options = options;
-    this.answer = answer;
-    this.isMulti = answer.length > 1;
-    this.analysis = analysis;
-    this.notes = [];
-    this.wrongCorrectCount = 0;
-  }
-}
-
-function parseQuestions(text) {
-  text = text.replace(/```[a-z]*\n?/g, '')
-        .replace(/#{1,6}\s*/g, '')
-        .replace(/\*\*(.*?)\*\*/g, '$1')
-        .replace(/\*(.*?)\*/g, '$1')
-        .replace(/\r\n/g, '\n').replace(/\r/g, '\n');
-  const lines = text.split('\n');
-  const questions = [];
-  let currentQ = null;
-  let globalId = 0;
-  let isReadingAnalysis = false;
-  let currentChapter = '默认章节';
-  const chapterSet = new Set(['全部题目', currentChapter]);
-
-  for (let rawLine of lines) {
-    let line = rawLine.trim();
-    if (!line) continue;
-    if (line.match(/^.+?[（(]约\d+道[）)]$/) || line.match(/^第[一二三四五六七八九十\d]+章\s*.+$/)) {
-      currentChapter = line.replace(/[（(]约\d+道[）)]/, '').trim();
-      chapterSet.add(currentChapter);
-      continue;
-    }
-    if (line.match(/^\d+[.、．]\s*(.*)/)) {
+      for (let rawLine of lines) {
+        const line = rawLine.trim();
+        if (!line) continue;
+        if (/^.+?[（(]约\d+道[）)]$/.test(line) || /^第[一二三四五六七八九十\d]+章\s*.+$/.test(line)) {
+          currentChapter = line.replace(/[（(]约\d+道[）)]/, '').trim();
+          chapterSet.add(currentChapter);
+          continue;
+        }
+        if (/^\d+[.、．]\s*(.*)/.test(line)) {
+          if (currentQ && currentQ.answer) questions.push(currentQ);
+          const title = line.replace(/^\d+[.、．]\s*/, '');
+          currentQ = { originalIndex: globalId++, chapter: currentChapter, title, options: {}, answer: '', isMulti: false, analysis: '' };
+          isReadingAnalysis = false;
+          continue;
+        }
+        if (!currentQ) continue;
+        if (/^[A-Ea-e][.、．\s]\s*(.*)/.test(line) && !isReadingAnalysis) {
+          const key = line[0].toUpperCase();
+          const val = line.substring(1).replace(/^[.、．\s]+/, '');
+          currentQ.options[key] = val;
+          continue;
+        }
+        if (/^(正确答案|答案)[：:]\s*([A-Ea-e,\s]+)/.test(line)) {
+          const ansStr = line.replace(/^(正确答案|答案)[：:]\s*/, '').replace(/[^A-Ea-e]/g, '').toUpperCase();
+          currentQ.answer = ansStr.split('').sort().join('');
+          currentQ.isMulti = currentQ.answer.length > 1;
+          continue;
+        }
+        if (/^解析[：:]\s*(.*)/.test(line)) {
+          currentQ.analysis = line.replace(/^解析[：:]\s*/, '');
+          isReadingAnalysis = true;
+          continue;
+        }
+        if (isReadingAnalysis && currentQ) currentQ.analysis += '\n' + line;
+      }
       if (currentQ && currentQ.answer) questions.push(currentQ);
-      const title = line.replace(/^\d+[.、．]\s*/, '');
-      currentQ = new Question(globalId++, currentChapter, title, {}, '', '');
-      isReadingAnalysis = false;
-      continue;
+      return questions;
     }
-    if (!currentQ) continue;
-    if (line.match(/^[A-Ea-e][.、．\s]\s*(.*)/) && !isReadingAnalysis) {
-      const key = line.charAt(0).toUpperCase();
-      const val = line.substring(1).replace(/^[.、．\s]+/, '');
-      currentQ.options[key] = val;
-      continue;
+
+    // ========== 本地持久化 + 同步GitHub ==========
+    function saveState() {
+      const state = {
+        modeAnswers, modeSubmitted, wrongAnswers, wrongSubmitted,
+        wrongSet: Array.from(wrongSet), totalAnswered, totalCorrect,
+        notes, currentMode, selectedChapter, currentIndex
+      };
+      localStorage.setItem('quizState', JSON.stringify(state));
     }
-    if (line.match(/^(正确答案|答案)[：:]\s*([A-Ea-e,\s]+)/)) {
-      const ansStr = line.replace(/^(正确答案|答案)[：:]\s*/, '').replace(/[^A-Ea-e]/g, '').toUpperCase();
-      currentQ.answer = ansStr.split('').sort().join('');
-      currentQ.isMulti = currentQ.answer.length > 1;
-      continue;
+
+    function loadState() {
+      const saved = localStorage.getItem('quizState');
+      if (!saved) return false;
+      try {
+        const state = JSON.parse(saved);
+        modeAnswers = state.modeAnswers || {};
+        modeSubmitted = state.modeSubmitted || {};
+        wrongAnswers = state.wrongAnswers || {};
+        wrongSubmitted = state.wrongSubmitted || {};
+        wrongSet = new Set(state.wrongSet || []);
+        totalAnswered = state.totalAnswered || 0;
+        totalCorrect = state.totalCorrect || 0;
+        notes = state.notes || {};
+        currentMode = state.currentMode || 'sequence';
+        selectedChapter = state.selectedChapter || '全部题目';
+        currentIndex = state.currentIndex || 0;
+        return true;
+      } catch (e) { return false; }
     }
-    if (line.match(/^解析[：:]\s*(.*)/)) {
-      currentQ.analysis = line.replace(/^解析[：:]\s*/, '');
-      isReadingAnalysis = true;
-      continue;
+
+    function clearAllData() {
+      localStorage.removeItem('quizState');
+      localStorage.removeItem('githubToken');
+      localStorage.removeItem('gistId');
+      allQuestions = [];
+      wrongSet.clear();
+      modeAnswers = {}; modeSubmitted = {};
+      wrongAnswers = {}; wrongSubmitted = {};
+      totalAnswered = totalCorrect = 0;
+      notes = {};
+      gistId = null;
+      githubToken = '';
     }
-    if (isReadingAnalysis && currentQ) {
-      currentQ.analysis += '\n' + line;
-    }
-  }
-  if (currentQ && currentQ.answer) questions.push(currentQ);
-  return { questions, chapters: [...chapterSet] };
-}
 
-// ===================== 应用状态 =====================
-let allQuestions = [];
-let allChapters = [];
-let selectedChapter = '全部题目';
-let currentQuestions = [];
-let currentIndex = 0;
-let mode = 'sequence';
-let wrongSet = new Set();
-let totalAnswered = 0, totalCorrect = 0;
+    // ========== GitHub Gist 同步 ==========
+    async function syncToGist() {
+      if (!githubToken) {
+        githubToken = prompt('请输入你的 GitHub 个人访问令牌 (需要 gist 权限):\n如果没有，请点击下方按钮生成→ https://github.com/settings/tokens/new?scopes=gist') || '';
+        if (!githubToken) return;
+        localStorage.setItem('githubToken', githubToken);
+      }
+      const data = {
+        modeAnswers, modeSubmitted, wrongAnswers, wrongSubmitted,
+        wrongSet: Array.from(wrongSet), totalAnswered, totalCorrect,
+        notes, currentMode, selectedChapter, currentIndex
+      };
+      const content = JSON.stringify(data);
+      const headers = {
+        'Authorization': `token ${githubToken}`,
+        'Content-Type': 'application/json'
+      };
 
-const modeAnswers = {};
-const modeSubmitted = {};
-let wrongModeAnswers = {};
-let wrongModeSubmitted = {};
-const modeIndexMap = {};
-
-let lastSyncTime = null;
-let recordDirty = false;
-
-function updateStats() {
-  $('statCorrect').textContent = `正确: ${totalCorrect}`;
-  const acc = totalAnswered ? Math.round((totalCorrect / totalAnswered) * 100) : 0;
-  $('statAccuracy').textContent = `正确率: ${acc}%`;
-  $('statProgress').textContent = `${totalAnswered}/${allQuestions.length}`;
-  const pct = currentQuestions.length ? ((currentIndex + 1) / currentQuestions.length) * 100 : 0;
-  $('progressBar').style.width = pct + '%';
-}
-
-function refreshQuestionCard() {
-  if (!currentQuestions.length) {
-    $('qTitle').textContent = '当前章节/模式下暂无题目';
-    $('optionsContainer').innerHTML = '';
-    $('resultBox').style.display = 'none';
-    $('submitBtn').style.display = 'inline-block';
-    $('nextBtn').style.display = 'none';
-    updateStats();
-    return;
-  }
-  if (currentIndex < 0) currentIndex = 0;
-  if (currentIndex >= currentQuestions.length) currentIndex = currentQuestions.length - 1;
-
-  const q = currentQuestions[currentIndex];
-  const effAnswer = getEffectiveAnswer(q);
-  const effSubmitted = isEffectiveSubmitted(q);
-
-  $('qType').textContent = q.isMulti ? '多选题' : '单选题';
-  $('qType').style.background = q.isMulti ? '#fff7e6' : '#e8f3ff';
-  $('qType').style.color = q.isMulti ? '#d46b08' : '#0052d9';
-  $('qNumber').textContent = `第 ${currentIndex+1} 题 / 共 ${currentQuestions.length} 题 (全局:${q.originalIndex+1})`;
-  $('qTitle').textContent = q.title;
-
-  const container = $('optionsContainer');
-  container.innerHTML = '';
-  for (let key of Object.keys(q.options)) {
-    const optDiv = document.createElement('div');
-    optDiv.className = 'option';
-    optDiv.dataset.key = key;
-    optDiv.innerHTML = `<span class="option-key">${key}</span><span>${q.options[key]}</span>`;
-    optDiv.onclick = () => selectOption(key, q.isMulti);
-    container.appendChild(optDiv);
-  }
-
-  if (effSubmitted) {
-    disableOptions();
-    highlightCorrectAnswer(q, effAnswer);
-    showResult(q, effAnswer);
-    $('submitBtn').style.display = 'none';
-    $('nextBtn').style.display = 'inline-block';
-  } else {
-    $('resultBox').style.display = 'none';
-    $('submitBtn').style.display = 'inline-block';
-    $('nextBtn').style.display = 'none';
-    for (let opt of container.children) {
-      if (effAnswer.includes(opt.dataset.key)) opt.classList.add('selected');
-    }
-  }
-
-  if (!$('notesPanel').classList.contains('hidden')) renderNotes(q);
-  updateStats();
-}
-
-function getEffectiveAnswer(q) {
-  if (mode === 'wrong') return wrongModeAnswers[q.originalIndex] || '';
-  return (modeAnswers[mode] && modeAnswers[mode][q.originalIndex]) || '';
-}
-function isEffectiveSubmitted(q) {
-  if (mode === 'wrong') return !!wrongModeSubmitted[q.originalIndex];
-  return !!(modeSubmitted[mode] && modeSubmitted[mode][q.originalIndex]);
-}
-function setEffectiveAnswer(q, ans) {
-  if (mode === 'wrong') wrongModeAnswers[q.originalIndex] = ans;
-  else {
-    if (!modeAnswers[mode]) modeAnswers[mode] = {};
-    modeAnswers[mode][q.originalIndex] = ans;
-  }
-}
-function setEffectiveSubmitted(q, val) {
-  if (mode === 'wrong') wrongModeSubmitted[q.originalIndex] = val;
-  else {
-    if (!modeSubmitted[mode]) modeSubmitted[mode] = {};
-    modeSubmitted[mode][q.originalIndex] = val;
-  }
-}
-
-function selectOption(key, isMulti) {
-  const q = currentQuestions[currentIndex];
-  if (isEffectiveSubmitted(q)) return;
-  let effAnswer = getEffectiveAnswer(q);
-  if (isMulti) {
-    if (effAnswer.includes(key)) effAnswer = effAnswer.replace(key, '');
-    else { effAnswer = (effAnswer + key).split('').sort().join(''); }
-  } else {
-    effAnswer = key;
-    document.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
-  }
-  setEffectiveAnswer(q, effAnswer);
-  document.querySelectorAll('.option').forEach(o => {
-    if (effAnswer.includes(o.dataset.key)) o.classList.add('selected');
-    else if (!isMulti) o.classList.remove('selected');
-  });
-}
-
-function submitAnswer() {
-  const q = currentQuestions[currentIndex];
-  const effAnswer = getEffectiveAnswer(q);
-  if (!effAnswer) { showToast('请先选择答案'); return; }
-  if (mode === 'wrong') {
-    wrongModeSubmitted[q.originalIndex] = true;
-    if (effAnswer === q.answer) {
-      q.wrongCorrectCount++;
-      if (q.wrongCorrectCount >= 10) {
-        wrongSet.delete(q.originalIndex);
-        applyFilter();
-        if (!currentQuestions.length) {
-          switchMode('sequence');
-          return;
+      try {
+        if (gistId) {
+          // 更新已有Gist
+          const res = await fetch(`https://api.github.com/gists/${gistId}`, {
+            method: 'PATCH',
+            headers,
+            body: JSON.stringify({ files: { 'quiz-state.json': { content } } })
+          });
+          if (res.ok) alert('同步成功！');
+          else throw new Error('更新失败');
+        } else {
+          // 创建新Gist
+          const res = await fetch('https://api.github.com/gists', {
+            method: 'POST',
+            headers,
+            body: JSON.stringify({
+              description: '全能刷题工具数据备份',
+              public: false,
+              files: { 'quiz-state.json': { content } }
+            })
+          });
+          if (res.ok) {
+            const json = await res.json();
+            gistId = json.id;
+            localStorage.setItem('gistId', gistId);
+            alert('备份已创建，后续点击同步将自动更新');
+          } else throw new Error('创建失败');
         }
+      } catch (e) {
+        alert('同步失败: ' + e.message + '\n请检查Token是否正确或网络连接');
       }
     }
-  } else {
-    setEffectiveSubmitted(q, true);
-    totalAnswered++;
-    if (effAnswer === q.answer) {
-      totalCorrect++;
-      wrongSet.delete(q.originalIndex);
-    } else {
-      wrongSet.add(q.originalIndex);
-    }
-  }
-  disableOptions();
-  highlightCorrectAnswer(q, effAnswer);
-  showResult(q, effAnswer);
-  $('submitBtn').style.display = 'none';
-  $('nextBtn').style.display = 'inline-block';
-  markDirty();
-}
 
-function disableOptions() {
-  document.querySelectorAll('.option').forEach(o => { o.style.pointerEvents = 'none'; o.classList.remove('selected'); });
-}
-function highlightCorrectAnswer(q, userAnswer) {
-  document.querySelectorAll('.option').forEach(o => {
-    o.classList.remove('correct', 'wrong', 'selected');
-    const key = o.dataset.key;
-    if (q.answer.includes(key)) o.classList.add('correct');
-    else if (userAnswer.includes(key)) o.classList.add('wrong');
-  });
-}
-function showResult(q, userAnswer) {
-  const correct = userAnswer === q.answer;
-  const analysis = q.analysis || '暂无解析';
-  $('resultBox').style.display = 'block';
-  $('resultBox').innerHTML = `
-    <div style="font-weight:bold;color:${correct?'#2ba471':'#d54941'}">${correct ? '✔ 回答正确！' : '✘ 回答错误，正确答案是：' + q.answer}</div>
-    <div style="margin-top:8px; white-space:pre-wrap;">${analysis}</div>
-  `;
-}
-
-function nextQuestion() {
-  const q = currentQuestions[currentIndex];
-  if (!isEffectiveSubmitted(q)) { showToast('请先提交当前题目'); return; }
-  if (currentIndex < currentQuestions.length - 1) { currentIndex++; markDirty(); refreshQuestionCard(); }
-  else showToast('已经是最后一题');
-}
-function prevQuestion() {
-  const q = currentQuestions[currentIndex];
-  if (!isEffectiveSubmitted(q)) { showToast('请先提交当前题目'); return; }
-  if (currentIndex > 0) { currentIndex--; markDirty(); refreshQuestionCard(); }
-  else showToast('已经是第一题');
-}
-
-function applyFilter() {
-  let base = selectedChapter === '全部题目'
-    ? [...allQuestions]
-    : allQuestions.filter(q => q.chapter === selectedChapter);
-  switch (mode) {
-    case 'random':
-      currentQuestions = base.sort(() => Math.random() - 0.5);
-      break;
-    case 'wrong':
-      currentQuestions = base.filter(q => wrongSet.has(q.originalIndex));
-      break;
-    default:
-      currentQuestions = base;
-  }
-  if (mode === 'wrong') {
-    wrongModeAnswers = {};
-    wrongModeSubmitted = {};
-  }
-}
-
-function switchMode(newMode) {
-  modeIndexMap[mode] = currentIndex;
-  mode = newMode;
-  applyFilter();
-  currentIndex = modeIndexMap[mode] || 0;
-  if (currentIndex >= currentQuestions.length) currentIndex = Math.max(0, currentQuestions.length-1);
-  $('seqBtn').classList.toggle('active', mode==='sequence');
-  $('randBtn').classList.toggle('active', mode==='random');
-  $('wrongBtn').classList.toggle('active', mode==='wrong');
-  markDirty();
-  refreshQuestionCard();
-}
-
-$('seqBtn').onclick = () => switchMode('sequence');
-$('randBtn').onclick = () => switchMode('random');
-$('wrongBtn').onclick = () => switchMode('wrong');
-
-$('chapterSelect').onchange = function() {
-  selectedChapter = this.value;
-  modeIndexMap[mode] = currentIndex;
-  applyFilter();
-  currentIndex = 0;
-  markDirty();
-  refreshQuestionCard();
-};
-
-$('submitBtn').onclick = submitAnswer;
-$('nextBtn').onclick = nextQuestion;
-$('prevBtn').onclick = prevQuestion;
-
-$('toggleNotesBtn').onclick = function() {
-  const panel = $('notesPanel');
-  panel.classList.toggle('hidden');
-  if (!panel.classList.contains('hidden')) renderNotes(currentQuestions[currentIndex]);
-};
-
-$('addNoteBtn').onclick = function() {
-  const note = $('noteInput').value.trim();
-  if (!note) return;
-  const q = currentQuestions[currentIndex];
-  q.notes.push(note);
-  $('noteInput').value = '';
-  renderNotes(q);
-  markDirty();
-};
-
-function renderNotes(q) {
-  if (!q.notes.length) {
-    $('notesList').innerHTML = '<div style="color:#999;">暂无笔记</div>';
-  } else {
-    $('notesList').innerHTML = q.notes.map((n,i) => `<div style="margin-bottom:6px;"><b>${i+1}.</b> ${n}</div>`).join('');
-  }
-}
-
-$('clearRecordsBtn').onclick = function() {
-  if (!confirm('确定清空当前模式的做题记录吗？')) return;
-  if (mode === 'wrong') {
-    wrongModeAnswers = {};
-    wrongModeSubmitted = {};
-  } else {
-    delete modeAnswers[mode];
-    delete modeSubmitted[mode];
-  }
-  markDirty();
-  refreshQuestionCard();
-  showToast('记录已清空');
-};
-
-$('exportWrongBtn').onclick = function() {
-  if (!wrongSet.size) { showToast('暂无错题'); return; }
-  let md = '# 错题本\n\n';
-  let i = 1;
-  for (let q of allQuestions) {
-    if (wrongSet.has(q.originalIndex)) {
-      md += `**${i++}. ${q.title}**\n\n`;
-      for (let [k,v] of Object.entries(q.options)) md += `- **${k}**. ${v}\n`;
-      md += `\n**正确答案**：${q.answer}\n\n**解析**：\n${q.analysis || '无'}\n\n---\n\n`;
-    }
-  }
-  downloadFile('错题本.md', md);
-  showToast('已导出错题本');
-};
-
-function downloadFile(filename, text) {
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(new Blob([text], {type: 'text/markdown'}));
-  a.download = filename;
-  a.click();
-}
-
-// ===================== 同步逻辑 =====================
-function markDirty() {
-  recordDirty = true;
-}
-
-async function syncRecords() {
-  if (!recordDirty || !ghToken) return;
-  try {
-    const recordData = {
-      modeAnswers, modeSubmitted, wrongModeAnswers, wrongModeSubmitted,
-      wrongSet: [...wrongSet],
-      totalAnswered, totalCorrect, mode, selectedChapter, currentIndex,
-      lastSyncTime: new Date().toISOString(),
-      notes: allQuestions.map(q => ({ idx: q.originalIndex, notes: q.notes })),
-      wrongCorrectCounts: allQuestions.map(q => ({ idx: q.originalIndex, count: q.wrongCorrectCount }))
-    };
-    const content = JSON.stringify(recordData, null, 2);
-    let sha = null;
-    try {
-      const existing = await getFileContent('record.json');
-      if (existing) sha = existing.sha;
-    } catch(e) {}
-    await putFile('record.json', content, sha, `Sync records ${new Date().toLocaleString()}`);
-    lastSyncTime = new Date();
-    recordDirty = false;
-    showToast('✔ 记录已同步到 GitHub');
-  } catch (e) {
-    console.error('同步失败:', e);
-    showToast('⚠ 同步失败，稍后重试');
-  }
-}
-
-setInterval(() => { if (recordDirty) syncRecords(); }, 10 * 60 * 1000);
-
-// ===================== 连接与加载 =====================
-async function connectAndLoad() {
-  ghOwner = $('ghOwner').value;
-  ghRepo = $('ghRepo').value;
-  ghToken = $('ghToken').value.trim();
-  if (!ghToken) { showToast('请输入 Token'); return; }
-  saveConfig();
-  const debugBox = $('debugBox');
-  debugBox.classList.add('hidden');
-  try {
-    let quizText = '';
-    try {
-      const res = await getFileContent('quiz_text.md');
-      if (res) quizText = res.content;
-    } catch (e) {
-      debugBox.textContent = '读取题库文件时出错：' + e.message;
-      debugBox.classList.remove('hidden');
-      return;
-    }
-
-    if (!quizText || quizText.trim() === '') {
-      debugBox.textContent = '读取到的题库内容为空。请检查仓库中的 quiz_text.md 是否有内容。';
-      debugBox.classList.remove('hidden');
-      return;
-    }
-
-    const parsed = parseQuestions(quizText);
-    if (!parsed.questions.length) {
-      const preview = quizText.length > 500 ? quizText.substring(0, 500) + '...' : quizText;
-      debugBox.innerHTML = `<strong>⚠ 未解析到题目，请检查题库格式。</strong><br><br>
-        <strong>读取到的内容开头：</strong><br><pre>${escapeHtml(preview)}</pre>
-        <br>可能原因：缺少章节标题、题号格式不符、答案行未识别。<br>
-        标准格式示例见下文。`;
-      debugBox.classList.remove('hidden');
-      return;
-    }
-
-    allQuestions = parsed.questions;
-    allChapters = parsed.chapters;
-
-    try {
-      const rec = await getFileContent('record.json');
-      if (rec) {
-        const data = JSON.parse(rec.content);
-        Object.assign(modeAnswers, data.modeAnswers || {});
-        Object.assign(modeSubmitted, data.modeSubmitted || {});
-        wrongModeAnswers = data.wrongModeAnswers || {};
-        wrongModeSubmitted = data.wrongModeSubmitted || {};
-        wrongSet = new Set(data.wrongSet || []);
-        totalAnswered = data.totalAnswered || 0;
-        totalCorrect = data.totalCorrect || 0;
-        mode = data.mode || 'sequence';
-        selectedChapter = data.selectedChapter || '全部题目';
-        currentIndex = data.currentIndex || 0;
-        lastSyncTime = data.lastSyncTime ? new Date(data.lastSyncTime) : null;
-        if (data.notes) {
-          data.notes.forEach(({idx, notes}) => {
-            const q = allQuestions.find(q => q.originalIndex === idx);
-            if (q) q.notes = notes;
-          });
+    async function loadFromGist() {
+      if (!gistId && !localStorage.getItem('gistId')) return false;
+      if (!gistId) gistId = localStorage.getItem('gistId');
+      if (!githubToken) githubToken = localStorage.getItem('githubToken');
+      if (!githubToken) return false;
+      try {
+        const res = await fetch(`https://api.github.com/gists/${gistId}`, {
+          headers: { 'Authorization': `token ${githubToken}` }
+        });
+        if (res.ok) {
+          const json = await res.json();
+          const content = json.files['quiz-state.json']?.content;
+          if (content) {
+            const data = JSON.parse(content);
+            modeAnswers = data.modeAnswers || {};
+            modeSubmitted = data.modeSubmitted || {};
+            wrongAnswers = data.wrongAnswers || {};
+            wrongSubmitted = data.wrongSubmitted || {};
+            wrongSet = new Set(data.wrongSet || []);
+            totalAnswered = data.totalAnswered || 0;
+            totalCorrect = data.totalCorrect || 0;
+            notes = data.notes || {};
+            currentMode = data.currentMode || 'sequence';
+            selectedChapter = data.selectedChapter || '全部题目';
+            currentIndex = data.currentIndex || 0;
+            saveState();
+            return true;
+          }
         }
-        if (data.wrongCorrectCounts) {
-          data.wrongCorrectCounts.forEach(({idx, count}) => {
-            const q = allQuestions.find(q => q.originalIndex === idx);
-            if (q) q.wrongCorrectCount = count;
-          });
+      } catch (e) {}
+      return false;
+    }
+
+    // ========== 界面逻辑 ==========
+    document.getElementById('startBtn').addEventListener('click', async () => {
+      const text = document.getElementById('quizInput').value;
+      if (!text.trim()) return alert('请粘贴题库内容');
+      allQuestions = parseQuestions(text);
+      if (!allQuestions.length) return alert('未解析到有效题目');
+      chapters = ['全部题目', ...new Set(allQuestions.map(q => q.chapter))];
+      const chapterSelect = document.getElementById('chapterSelect');
+      chapterSelect.innerHTML = chapters.map(c => `<option>${c}</option>`).join('');
+      chapterSelect.value = selectedChapter;
+      // 先尝试从Gist恢复，再本地加载
+      githubToken = localStorage.getItem('githubToken') || '';
+      gistId = localStorage.getItem('gistId') || null;
+      const restored = await loadFromGist();
+      if (!restored) loadState();
+      document.getElementById('importPage').classList.add('hidden');
+      document.getElementById('quizPage').classList.remove('hidden');
+      updateModeButtons();
+      renderQuestion();
+    });
+
+    function getCurrentQuestions() {
+      let base = selectedChapter === '全部题目' ? [...allQuestions] : allQuestions.filter(q => q.chapter === selectedChapter);
+      if (currentMode === 'random') shuffle(base);
+      else if (currentMode === 'wrong') {
+        base = base.filter(q => wrongSet.has(q.originalIndex));
+        shuffle(base);
+      }
+      return base;
+    }
+
+    function shuffle(arr) { for (let i = arr.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [arr[i], arr[j]] = [arr[j], arr[i]]; } }
+
+    function getEffectiveAnswer(q) {
+      if (currentMode === 'wrong') return wrongAnswers[q.originalIndex] || '';
+      return (modeAnswers[currentMode] || {})[q.originalIndex] || '';
+    }
+    function isSubmitted(q) {
+      if (currentMode === 'wrong') return !!wrongSubmitted[q.originalIndex];
+      return !!((modeSubmitted[currentMode] || {})[q.originalIndex]);
+    }
+    function setAnswer(q, answer) {
+      if (currentMode === 'wrong') wrongAnswers[q.originalIndex] = answer;
+      else { if (!modeAnswers[currentMode]) modeAnswers[currentMode] = {}; modeAnswers[currentMode][q.originalIndex] = answer; }
+    }
+    function setSubmitted(q, val = true) {
+      if (currentMode === 'wrong') wrongSubmitted[q.originalIndex] = val;
+      else { if (!modeSubmitted[currentMode]) modeSubmitted[currentMode] = {}; modeSubmitted[currentMode][q.originalIndex] = val; }
+    }
+
+    function renderQuestion() {
+      const questions = getCurrentQuestions();
+      if (!questions.length) {
+        document.getElementById('qTitle').innerText = '暂无题目';
+        document.getElementById('optionsContainer').innerHTML = '';
+        document.getElementById('resultContainer').classList.add('hidden');
+        document.getElementById('submitBtn').style.display = 'inline-block';
+        document.getElementById('nextBtn').style.display = 'none';
+        updateStats(questions);
+        renderThumbnails(questions);
+        return;
+      }
+      if (currentIndex >= questions.length) currentIndex = questions.length - 1;
+      if (currentIndex < 0) currentIndex = 0;
+      const q = questions[currentIndex];
+      document.getElementById('qTitle').innerText = q.title;
+      document.getElementById('qType').innerText = q.isMulti ? '多选题' : '单选题';
+      document.getElementById('qType').style.background = q.isMulti ? '#fff7e6' : '#e8f3ff';
+      document.getElementById('qNumber').innerText = `第 ${currentIndex+1} 题 / 共 ${questions.length} 题 (全局:${q.originalIndex+1})`;
+
+      const optsDiv = document.getElementById('optionsContainer');
+      optsDiv.innerHTML = '';
+      const effAnswer = getEffectiveAnswer(q);
+      const submitted = isSubmitted(q);
+
+      for (const [key, val] of Object.entries(q.options)) {
+        const row = document.createElement('div');
+        row.className = 'option-row';
+        if (submitted) {
+          if (q.answer.includes(key)) row.classList.add('option-correct');
+          else if (effAnswer.includes(key)) row.classList.add('option-wrong');
+        } else if (effAnswer.includes(key)) row.classList.add('option-selected');
+        row.innerHTML = `<span class="option-key">${key}</span><span>${val}</span>`;
+        row.addEventListener('click', () => selectOption(q, key));
+        optsDiv.appendChild(row);
+      }
+
+      document.getElementById('resultContainer').classList.add('hidden');
+      if (submitted) {
+        document.getElementById('submitBtn').style.display = 'none';
+        document.getElementById('nextBtn').style.display = 'inline-block';
+        showResult(q, effAnswer);
+      } else {
+        document.getElementById('submitBtn').style.display = 'inline-block';
+        document.getElementById('nextBtn').style.display = 'none';
+      }
+      updateStats(questions);
+      renderThumbnails(questions);
+    }
+
+    function selectOption(q, key) {
+      if (isSubmitted(q)) return;
+      let ans = getEffectiveAnswer(q);
+      if (q.isMulti) ans = ans.includes(key) ? ans.replace(key, '') : (ans + key).split('').sort().join('');
+      else ans = key;
+      setAnswer(q, ans);
+      renderQuestion();
+    }
+
+    function showResult(q, effAnswer) {
+      const correct = effAnswer === q.answer;
+      const resultDiv = document.getElementById('resultContainer');
+      resultDiv.classList.remove('hidden');
+      resultDiv.innerHTML = `<div style="font-weight:bold; color:${correct?'#2ba471':'#d54941'}">${correct ? '✔ 回答正确！' : '✘ 回答错误！正确答案：' + q.answer}</div><div style="font-weight:bold; margin-top:10px;">解析：</div><div style="white-space:pre-wrap;">${q.analysis || '无'}</div>`;
+    }
+
+    function submitAnswer() {
+      const questions = getCurrentQuestions();
+      if (!questions.length) return;
+      const q = questions[currentIndex];
+      const effAnswer = getEffectiveAnswer(q);
+      if (!effAnswer) return alert('请先选择答案');
+      if (currentMode === 'wrong') {
+        wrongSubmitted[q.originalIndex] = true;
+        if (effAnswer === q.answer) {
+          q.wrongCorrectCount = (q.wrongCorrectCount || 0) + 1;
+          if (q.wrongCorrectCount >= 10) wrongSet.delete(q.originalIndex);
+        }
+      } else {
+        setSubmitted(q);
+        totalAnswered++;
+        if (effAnswer === q.answer) { totalCorrect++; wrongSet.delete(q.originalIndex); }
+        else wrongSet.add(q.originalIndex);
+      }
+      saveState();
+      renderQuestion();
+    }
+
+    function nextQuestion() {
+      const questions = getCurrentQuestions();
+      if (!isSubmitted(questions[currentIndex])) return alert('请先提交当前题目');
+      if (currentIndex < questions.length - 1) currentIndex++;
+      else return alert('已经是最后一题');
+      saveState();
+      renderQuestion();
+    }
+
+    function prevQuestion() {
+      const questions = getCurrentQuestions();
+      if (!isSubmitted(questions[currentIndex])) return alert('请先提交当前题目');
+      if (currentIndex > 0) currentIndex--;
+      else return alert('已经是第一题');
+      saveState();
+      renderQuestion();
+    }
+
+    function switchMode(mode) {
+      if (currentMode !== mode) {
+        currentMode = mode;
+        currentIndex = 0;
+        thumbPage = 0;
+        saveState();
+        updateModeButtons();
+        renderQuestion();
+      }
+    }
+
+    function updateModeButtons() {
+      document.querySelectorAll('.mode-btn').forEach(btn => btn.classList.toggle('active', btn.dataset.mode === currentMode));
+    }
+
+    function clearCurrentModeRecords() {
+      if (currentMode === 'wrong') { wrongAnswers = {}; wrongSubmitted = {}; }
+      else {
+        const sub = modeSubmitted[currentMode];
+        if (sub) {
+          let cleared = 0, clearedCorrect = 0;
+          const ans = modeAnswers[currentMode] || {};
+          for (const idx in sub) {
+            if (sub[idx]) {
+              cleared++;
+              const q = allQuestions.find(q => q.originalIndex == idx);
+              if (q && ans[idx] === q.answer) clearedCorrect++;
+            }
+          }
+          totalAnswered -= cleared;
+          totalCorrect -= clearedCorrect;
+          delete modeAnswers[currentMode];
+          delete modeSubmitted[currentMode];
         }
       }
-    } catch(e) { console.warn('加载记录失败', e); }
+      saveState();
+      renderQuestion();
+      alert('当前模式做题记录已清空');
+    }
 
-    $('chapterSelect').innerHTML = allChapters.map(c => `<option ${c===selectedChapter?'selected':''}>${c}</option>`).join('');
-    applyFilter();
-    if (currentIndex >= currentQuestions.length) currentIndex = 0;
-    $('seqBtn').classList.toggle('active', mode==='sequence');
-    $('randBtn').classList.toggle('active', mode==='random');
-    $('wrongBtn').classList.toggle('active', mode==='wrong');
+    function renderThumbnails(questions) {
+      const container = document.getElementById('thumbContainer');
+      container.innerHTML = '';
+      if (!questions.length) return;
+      const containerWidth = container.clientWidth || 300;
+      thumbItemsPerPage = Math.max(1, Math.floor((containerWidth + 3) / 33));
+      const totalPages = Math.ceil(questions.length / thumbItemsPerPage);
+      if (thumbPage >= totalPages) thumbPage = totalPages - 1;
+      if (thumbPage < 0) thumbPage = 0;
+      const start = thumbPage * thumbItemsPerPage;
+      const end = Math.min(start + thumbItemsPerPage, questions.length);
+      for (let i = start; i < end; i++) {
+        const q = questions[i];
+        const cell = document.createElement('div');
+        cell.className = 'thumb-cell';
+        cell.innerText = i + 1;
+        if (i === currentIndex) cell.classList.add('current');
+        const submitted = isSubmitted(q);
+        if (submitted) {
+          const effAnswer = getEffectiveAnswer(q);
+          cell.classList.add(effAnswer === q.answer ? 'correct' : 'wrong');
+        }
+        cell.addEventListener('click', () => { currentIndex = i; saveState(); renderQuestion(); });
+        container.appendChild(cell);
+      }
+    }
 
-    $('configPanel').classList.add('hidden');
-    $('mainPanel').classList.remove('hidden');
-    refreshQuestionCard();
-    showToast(`加载成功，共 ${allQuestions.length} 题`);
-  } catch(e) {
-    debugBox.textContent = '连接失败: ' + e.message;
-    debugBox.classList.remove('hidden');
-  }
-}
+    // 事件绑定
+    document.querySelectorAll('.mode-btn').forEach(btn => btn.addEventListener('click', () => switchMode(btn.dataset.mode)));
+    document.getElementById('submitBtn').addEventListener('click', submitAnswer);
+    document.getElementById('nextBtn').addEventListener('click', nextQuestion);
+    document.getElementById('prevBtn').addEventListener('click', prevQuestion);
+    document.getElementById('toggleNoteBtn').addEventListener('click', () => document.getElementById('notePanel').classList.toggle('hidden'));
+    document.getElementById('addAnalysisBtn').addEventListener('click', () => {
+      const q = getCurrentQuestions()[currentIndex];
+      if (!q) return;
+      const text = document.getElementById('noteInput').value.trim();
+      if (!text) return;
+      if (q.analysis) q.analysis += '\n\n' + text;
+      else q.analysis = text;
+      document.getElementById('noteInput').value = '';
+      saveState();
+      renderQuestion();
+      alert('解析已添加');
+    });
+    document.getElementById('exportWrongBtn').addEventListener('click', () => {
+      const wrongQuestions = allQuestions.filter(q => wrongSet.has(q.originalIndex));
+      if (!wrongQuestions.length) return alert('暂无错题');
+      let md = '# 错题本\n\n';
+      wrongQuestions.forEach((q, i) => {
+        md += `**${i+1}. ${q.title}**\n\n`;
+        for (const [k, v] of Object.entries(q.options)) md += `- **${k}**. ${v}\n`;
+        md += `\n**正确答案**：${q.answer}\n\n`;
+        md += `**解析**：\n${q.analysis || '无'}\n\n---\n\n`;
+      });
+      downloadFile('错题本.md', md);
+    });
+    document.getElementById('saveQuizBtn').addEventListener('click', () => {
+      let md = '# 题库\n\n';
+      const chapters = [...new Set(allQuestions.map(q => q.chapter))];
+      chapters.forEach(ch => {
+        md += `## ${ch}\n\n`;
+        allQuestions.filter(q => q.chapter === ch).forEach(q => {
+          md += `${q.originalIndex+1}. ${q.title}\n\n`;
+          for (const [k, v] of Object.entries(q.options)) md += `${k}. ${v}\n`;
+          md += `\n答案：${q.answer}\n\n`;
+          if (q.analysis) md += `解析：\n${q.analysis}\n\n`;
+          md += '\n';
+        });
+      });
+      downloadFile('题库.md', md);
+    });
+    document.getElementById('saveAsBtn').addEventListener('click', () => document.getElementById('saveQuizBtn').click());
+    document.getElementById('syncBtn').addEventListener('click', syncToGist);
+    document.getElementById('clearRecordBtn').addEventListener('click', clearCurrentModeRecords);
+    document.getElementById('clearCacheBtn').addEventListener('click', () => { if (confirm('确定清除所有记录和题库吗？')) { clearAllData(); location.reload(); } });
+    document.getElementById('fileBtn').addEventListener('click', () => document.getElementById('fileInput').click());
+    document.getElementById('fileInput').addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = (e) => document.getElementById('quizInput').value = e.target.result;
+      reader.readAsText(file);
+    });
+    document.getElementById('goBtn').addEventListener('click', () => {
+      const num = parseInt(document.getElementById('jumpInput').value);
+      const questions = getCurrentQuestions();
+      if (num >= 1 && num <= questions.length) { currentIndex = num - 1; saveState(); renderQuestion(); }
+      else alert('题号超出范围');
+    });
+    document.getElementById('chapterSelect').addEventListener('change', (e) => { selectedChapter = e.target.value; currentIndex = 0; thumbPage = 0; saveState(); renderQuestion(); });
+    document.getElementById('prevGroupBtn').addEventListener('click', () => { if (thumbPage > 0) thumbPage--; renderThumbnails(getCurrentQuestions()); });
+    document.getElementById('nextGroupBtn').addEventListener('click', () => { thumbPage++; renderThumbnails(getCurrentQuestions()); });
 
-function escapeHtml(text) {
-  return text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-}
+    function downloadFile(filename, text) {
+      const blob = new Blob([text], {type: 'text/markdown'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = filename;
+      a.click();
+      URL.revokeObjectURL(url);
+    }
 
-$('connectBtn').onclick = connectAndLoad;
+    function updateStats(questions) {
+      document.getElementById('correctStat').innerText = `正确:${totalCorrect}`;
+      const acc = totalAnswered > 0 ? (totalCorrect / totalAnswered * 100).toFixed(0) : 0;
+      document.getElementById('accuracyStat').innerText = `正确率:${acc}%`;
+      document.getElementById('progressStat').innerText = `${totalAnswered}/${allQuestions.length}`;
+      const progress = questions.length ? (currentIndex + 1) / questions.length : 0;
+      document.getElementById('progressFill').style.width = (progress * 100) + '%';
+    }
 
-$('resetConfigBtn').onclick = function() {
-  if (confirm('确定清除保存的 Token 吗？这将需要重新输入。')) {
-    localStorage.removeItem('quiz_gh_token');
-    location.reload();
-  }
-};
-
-// ===================== 页面初始化 =====================
-loadConfig();
-if (ghToken) {
-  connectAndLoad().catch(() => {
-    $('configPanel').classList.remove('hidden');
-  });
-} else {
-  $('configPanel').classList.remove('hidden');
-}
-
-// PWA manifest
-const manifest = {
-  name: '全能刷题工具',
-  short_name: '刷题',
-  start_url: '.',
-  display: 'standalone',
-  background_color: '#f5f7fa',
-  theme_color: '#0052d9',
-  icons: [{
-    src: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">📝</text></svg>',
-    sizes: '100x100',
-    type: 'image/svg+xml'
-  }]
-};
-const blob = new Blob([JSON.stringify(manifest)], {type: 'application/json'});
-$('manifest-link').href = URL.createObjectURL(blob);
-
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('sw.js').catch(() => {});
-  });
-}
-</script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js').catch(() => {});
+    }
+  </script>
 </body>
 </html>
