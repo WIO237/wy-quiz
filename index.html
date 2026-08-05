@@ -22,6 +22,10 @@
     background: #0052d9; color: white; border: none; font-weight: bold;
   }
   .config-card .info-text { font-size: 14px; color: #666; margin: 8px 0; }
+  .debug-box {
+    margin-top: 12px; padding: 10px; background: #fff3cd; border: 1px solid #ffc107;
+    border-radius: 8px; font-size: 13px; white-space: pre-wrap; max-height: 200px; overflow: auto;
+  }
 
   .stats { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 16px; }
   .stat-item {
@@ -83,7 +87,6 @@
   <div id="configPanel" class="config-card">
     <h2>⚙️ 连接 GitHub 同步</h2>
     <p class="info-text">题库与做题记录将保存在 <b>WIO237/wy-quiz</b> 仓库中。</p>
-    <!-- 用户名和仓库名固化在代码中，无需用户输入 -->
     <input type="hidden" id="ghOwner" value="WIO237">
     <input type="hidden" id="ghRepo" value="wy-quiz">
     
@@ -93,6 +96,8 @@
     <p style="font-size:12px;color:#999;margin-top:10px;">
       Token 仅在您的浏览器本地保存，不会上传。首次输入后自动记住。
     </p>
+    <!-- 调试信息显示区 -->
+    <div id="debugBox" class="debug-box hidden"></div>
   </div>
 
   <!-- 主界面（初始隐藏） -->
@@ -152,10 +157,8 @@ const GITHUB_API = 'https://api.github.com';
 let ghOwner, ghRepo, ghToken;
 
 function loadConfig() {
-  // 用户名和仓库名从 HTML 隐藏域读取（已固定）
   ghOwner = $('ghOwner').value;
   ghRepo = $('ghRepo').value;
-  // Token 尝试从 localStorage 读取
   ghToken = localStorage.getItem('quiz_gh_token') || '';
   $('ghToken').value = ghToken;
 }
@@ -214,6 +217,7 @@ class Question {
 }
 
 function parseQuestions(text) {
+  // 去除 markdown 标记和多余格式
   text = text.replace(/```[a-z]*\n?/g, '')
         .replace(/#{1,6}\s*/g, '')
         .replace(/\*\*(.*?)\*\*/g, '$1')
@@ -230,11 +234,13 @@ function parseQuestions(text) {
   for (let rawLine of lines) {
     let line = rawLine.trim();
     if (!line) continue;
+    // 章节标题（如“操作系统 约20道”或“第一章 绪论”）
     if (line.match(/^.+?[（(]约\d+道[）)]$/) || line.match(/^第[一二三四五六七八九十\d]+章\s*.+$/)) {
       currentChapter = line.replace(/[（(]约\d+道[）)]/, '').trim();
       chapterSet.add(currentChapter);
       continue;
     }
+    // 题号（如 1. 题目内容）
     if (line.match(/^\d+[.、．]\s*(.*)/)) {
       if (currentQ && currentQ.answer) questions.push(currentQ);
       const title = line.replace(/^\d+[.、．]\s*/, '');
@@ -243,18 +249,21 @@ function parseQuestions(text) {
       continue;
     }
     if (!currentQ) continue;
+    // 选项（A. xxx）
     if (line.match(/^[A-Ea-e][.、．\s]\s*(.*)/) && !isReadingAnalysis) {
       const key = line.charAt(0).toUpperCase();
       const val = line.substring(1).replace(/^[.、．\s]+/, '');
       currentQ.options[key] = val;
       continue;
     }
+    // 答案行
     if (line.match(/^(正确答案|答案)[：:]\s*([A-Ea-e,\s]+)/)) {
       const ansStr = line.replace(/^(正确答案|答案)[：:]\s*/, '').replace(/[^A-Ea-e]/g, '').toUpperCase();
       currentQ.answer = ansStr.split('').sort().join('');
       currentQ.isMulti = currentQ.answer.length > 1;
       continue;
     }
+    // 解析行
     if (line.match(/^解析[：:]\s*(.*)/)) {
       currentQ.analysis = line.replace(/^解析[：:]\s*/, '');
       isReadingAnalysis = true;
@@ -603,25 +612,47 @@ async function syncRecords() {
 
 setInterval(() => { if (recordDirty) syncRecords(); }, 10 * 60 * 1000);
 
-// ===================== 启动与连接 =====================
+// ===================== 连接与加载（带调试） =====================
 async function connectAndLoad() {
   ghOwner = $('ghOwner').value;
   ghRepo = $('ghRepo').value;
   ghToken = $('ghToken').value.trim();
   if (!ghToken) { showToast('请输入 Token'); return; }
-  saveConfig();  // 记住 Token
+  saveConfig();
+  const debugBox = $('debugBox');
+  debugBox.classList.add('hidden');
   try {
+    // 获取题库文件
     let quizText = '';
     try {
       const res = await getFileContent('quiz_text.md');
       if (res) quizText = res.content;
-    } catch (e) {}
-    if (!quizText) {
-      showToast('仓库中未找到 quiz_text.md，请先上传题库。');
+    } catch (e) {
+      debugBox.textContent = '读取题库文件时出错：' + e.message;
+      debugBox.classList.remove('hidden');
       return;
     }
+
+    if (!quizText || quizText.trim() === '') {
+      debugBox.textContent = '读取到的题库内容为空。请检查仓库中的 quiz_text.md 是否有内容。';
+      debugBox.classList.remove('hidden');
+      return;
+    }
+
+    // 解析题库
     const parsed = parseQuestions(quizText);
-    if (!parsed.questions.length) { showToast('未解析到有效题目'); return; }
+    if (!parsed.questions.length) {
+      // 显示调试信息：原始内容的前500字符
+      const preview = quizText.length > 500 ? quizText.substring(0, 500) + '...' : quizText;
+      debugBox.innerHTML = `<strong>⚠ 未解析到题目，请检查题库格式。</strong><br><br>
+        <strong>读取到的内容开头：</strong><br><pre>${escapeHtml(preview)}</pre>
+        <br>可能原因：缺少章节标题、题号格式不符、答案行未识别。<br>
+        标准格式示例见下文。`;
+      debugBox.classList.remove('hidden');
+      return;
+    }
+
+    // 加载记录
     allQuestions = parsed.questions;
     allChapters = parsed.chapters;
 
@@ -667,8 +698,13 @@ async function connectAndLoad() {
     refreshQuestionCard();
     showToast(`加载成功，共 ${allQuestions.length} 题`);
   } catch(e) {
-    showToast('连接失败: ' + e.message);
+    debugBox.textContent = '连接失败: ' + e.message;
+    debugBox.classList.remove('hidden');
   }
+}
+
+function escapeHtml(text) {
+  return text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 }
 
 $('connectBtn').onclick = connectAndLoad;
@@ -683,7 +719,6 @@ $('resetConfigBtn').onclick = function() {
 // ===================== 页面初始化 =====================
 loadConfig();
 if (ghToken) {
-  // 如果已有 Token，尝试自动连接
   connectAndLoad().catch(() => {
     $('configPanel').classList.remove('hidden');
   });
