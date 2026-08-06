@@ -23,7 +23,8 @@
       "18": "C",
       "19": "D",
       "20": "B",
-      "21": "ABCD"
+      "21": "ABCD",
+      "22": "C"
     }
   },
   "modeSubmitted": {
@@ -50,7 +51,8 @@
       "18": true,
       "19": true,
       "20": true,
-      "21": true
+      "21": true,
+      "22": true
     }
   },
   "wrongAnswers": {},
@@ -59,10 +61,10 @@
     37,
     13
   ],
-  "totalAnswered": 22,
-  "totalCorrect": 21,
+  "totalAnswered": 23,
+  "totalCorrect": 22,
   "notes": {},
   "currentMode": "sequence",
   "selectedChapter": "全部题目",
-  "currentIndex": 21
+  "currentIndex": 22
 }
