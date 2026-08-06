@@ -21,7 +21,8 @@
       "16": "D",
       "17": "ABE",
       "18": "C",
-      "19": "D"
+      "19": "D",
+      "20": "B"
     }
   },
   "modeSubmitted": {
@@ -46,7 +47,8 @@
       "16": true,
       "17": true,
       "18": true,
-      "19": true
+      "19": true,
+      "20": true
     }
   },
   "wrongAnswers": {},
@@ -55,10 +57,10 @@
     37,
     13
   ],
-  "totalAnswered": 20,
-  "totalCorrect": 19,
+  "totalAnswered": 21,
+  "totalCorrect": 20,
   "notes": {},
   "currentMode": "sequence",
   "selectedChapter": "全部题目",
-  "currentIndex": 19
+  "currentIndex": 20
 }
