@@ -43,7 +43,8 @@
       "38": "A",
       "39": "D",
       "40": "C",
-      "41": "A"
+      "41": "A",
+      "42": "B"
     }
   },
   "modeSubmitted": {
@@ -90,7 +91,8 @@
       "38": true,
       "39": true,
       "40": true,
-      "41": true
+      "41": true,
+      "42": true
     }
   },
   "wrongAnswers": {},
@@ -98,12 +100,13 @@
   "wrongSet": [
     13,
     31,
-    37
+    37,
+    42
   ],
-  "totalAnswered": 42,
+  "totalAnswered": 43,
   "totalCorrect": 40,
   "notes": {},
   "currentMode": "sequence",
   "selectedChapter": "全部题目",
-  "currentIndex": 41
+  "currentIndex": 42
 }
