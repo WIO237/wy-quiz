@@ -55,7 +55,8 @@
       "50": "D",
       "51": "B",
       "52": "ABDE",
-      "53": "C"
+      "53": "C",
+      "54": "ACDE"
     }
   },
   "modeSubmitted": {
@@ -114,7 +115,8 @@
       "50": true,
       "51": true,
       "52": true,
-      "53": true
+      "53": true,
+      "54": true
     }
   },
   "wrongAnswers": {},
@@ -125,10 +127,10 @@
     37,
     42
   ],
-  "totalAnswered": 54,
-  "totalCorrect": 51,
+  "totalAnswered": 55,
+  "totalCorrect": 52,
   "notes": {},
   "currentMode": "sequence",
   "selectedChapter": "全部题目",
-  "currentIndex": 53
+  "currentIndex": 54
 }
