@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <title>全能刷题工具</title>
-  <!-- 允许加载任意图片 -->
   <meta http-equiv="Content-Security-Policy" content="img-src * data:; script-src 'self' 'unsafe-inline' blob:; style-src 'self' 'unsafe-inline';">
   <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogIuWFqOiDveWIu+mimOW3pei3nyIsCiAgInNob3J0X25hbWUiOiAi5Yi75a6Y5bel5YW3IiwKICAic3RhcnRfdXJsIjogIi4vaW5kZXguaHRtbCIsCiAgImRpc3BsYXkiOiAic3RhbmRhbG9uZSIsCiAgImJhY2tncm91bmRfY29sb3IiOiAiI2Y1ZjdmYSIsCiAgInRoZW1lX2NvbG9yIjogIiMwMDUyZDkiLAogICJpY29ucyI6IFsKICAgIHsKICAgICAgInNyYyI6ICJkYXRhOmltYWdlL3N2Zyt4bWw7YmFzZTY0LFBITjJaeUI0Yld4dWN6MGlhSFIwY0RvdkwzZDNkeTUzTXk1M2FIQXZaeTlpZVQwbmRISmhNUzEzWkc5dVNtOTBhR1Z5U1QwbmRHOXdZV3d1WkdWbVpYSmhkR2x1Wnk4aVBnbzhjM0JoWTJsdVp6NDhMM056WVdOcGJtYytQQzl6ZG1jKyIKICAgIH0KICBdCn0=">
   <meta name="theme-color" content="#0052d9">
@@ -77,7 +76,7 @@
     </div>
     <div id="loadingStatus">正在准备题库...</div>
     <button class="btn-full" id="startBtn">▶ 开始刷题</button>
-    <p style="text-align:center;color:#999;font-size:12px;">图片已修复，强制刷新后可见</p>
+    <p style="text-align:center;color:#999;font-size:12px;">图片通过 CDN 加速，多端同步不冲突</p>
   </div>
 
   <div id="quizPage" class="hidden">
@@ -136,7 +135,8 @@
 
     // ★★★ 配置区 ★★★
     const QUIZ_MD_URL   = 'https://raw.githubusercontent.com/WIO237/wy-quiz/main/quiz.md';
-    const GITHUB_RAW_BASE = 'https://raw.githubusercontent.com/WIO237/wy-quiz/main/';
+    // 图片基础地址改用 jsDelivr CDN（解决 raw 被屏蔽问题）
+    const GITHUB_RAW_BASE = 'https://cdn.jsdelivr.net/gh/WIO237/wy-quiz@main/';
     const GITHUB_REPO_OWNER = 'WIO237';
     const GITHUB_REPO_NAME  = 'wy-quiz';
     const QUIZ_FILE_PATH    = 'quiz.md';
@@ -164,17 +164,19 @@
 
     function shuffle(arr) { for (let i=arr.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]];} }
 
-    // 修复图片路径：仅转换本地绝对路径，跳过 http 远程路径
+    // 修复图片路径：本地路径 → CDN，远程 raw 链接 → CDN
     function fixImagePaths(md) {
+      // 第一步：将已有的 raw.githubusercontent.com 链接替换为 jsDelivr
+      md = md.replace(/https:\/\/raw\.githubusercontent\.com\/WIO237\/wy-quiz\/main\//g, GITHUB_RAW_BASE);
+      // 第二步：将本地绝对路径（非 http 开头的）转换为 CDN 地址
       return md.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, (match, alt, path) => {
-        // 如果已经是远程 URL，直接返回原始匹配（不修改）
         if (/^https?:\/\//i.test(path)) {
+          // 已经是远程 URL，直接保留（前面可能已被替换为 CDN）
           return match;
         }
-        // 否则，提取文件名，拼接远程 base 路径
+        // 本地路径，提取文件名拼接
         const name = path.split(/[/\\]/).pop();
-        const encodedName = encodeURIComponent(name);
-        return `![${alt}](${GITHUB_RAW_BASE}2026一级建造师习题班汇总.assets/${encodedName})`;
+        return `![${alt}](${GITHUB_RAW_BASE}2026一级建造师习题班汇总.assets/${encodeURIComponent(name)})`;
       });
     }
 
@@ -253,6 +255,7 @@
       totalCorrect = calcCorrect;
     }
 
+    // 同步到仓库（拉取→合并→上传）
     async function syncProgressToRepo(silent=false) {
       if (!githubToken) return;
       const apiUrl = `https://api.github.com/repos/${GITHUB_REPO_OWNER}/${GITHUB_REPO_NAME}/contents/${PROGRESS_FILE_PATH}`;
@@ -425,9 +428,7 @@
       const correct = effAns===q.answer;
       const div = document.getElementById('resultContainer');
       div.classList.remove('hidden');
-      // 确保图片可显示
       div.innerHTML = `<div style="font-weight:bold;color:${correct?'#2ba471':'#d54941'}">${correct ? '✔ 回答正确！' : '✘ 回答错误！正确答案：' + q.answer}</div><div style="font-weight:bold;margin-top:10px;">解析：</div><div style="white-space:pre-wrap;">${q.analysis || '无'}</div>`;
-      // 如果解析包含图片，可以进行一些错误处理（可选）
     }
 
     async function submitAnswer() {
