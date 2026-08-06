@@ -279,6 +279,9 @@ E. 路堤
 
 答案：ABC
 
+解析：
+![图片](https://cdn.jsdelivr.net/gh/WIO237/wy-quiz@main/2026一级建造师习题班汇总.assets/img_1785983906692_a8jly7.png)
+
 
 12. 关于路面垫层的作用，下列说法错误的是（ ）。
 
@@ -662,21 +665,22 @@ E. 透水性好
 答案：ABCD
 
 解析：
+
 <table border="1" style="border-collapse: collapse; width: 100%; text-align: left; font-size: 14px; line-height: 1.6; vertical-align: middle;">
-    <tbody>
-        <tr>
-            <td style="padding: 12px; border: 1px solid #000; text-align: center; width: 20%;">面层</td>
-            <td style="padding: 12px; border: 1px solid #000;">强度、高温稳定性、低温抗裂性、抗疲劳、抗水损害能力、抗滑能力、平整度</td>
-        </tr>
-        <tr>
-            <td style="padding: 12px; border: 1px solid #000; text-align: center;">基层</td>
-            <td style="padding: 12px; border: 1px solid #000;">强度、扩散荷载、水稳性</td>
-        </tr>
-        <tr>
-            <td style="padding: 12px; border: 1px solid #000; text-align: center;">垫层</td>
-            <td style="padding: 12px; border: 1px solid #000;">强度、扩散荷载、水稳性</td>
-        </tr>
-    </tbody>
+<tbody>
+<tr>
+<td style="padding: 12px; border: 1px solid 000; text-align: center; width: 20%;">面层</td>
+<td style="padding: 12px; border: 1px solid 000;">强度、高温稳定性、低温抗裂性、抗疲劳、抗水损害能力、抗滑能力、平整度</td>
+</tr>
+<tr>
+<td style="padding: 12px; border: 1px solid 000; text-align: center;">基层</td>
+<td style="padding: 12px; border: 1px solid 000;">强度、扩散荷载、水稳性</td>
+</tr>
+<tr>
+<td style="padding: 12px; border: 1px solid 000; text-align: center;">垫层</td>
+<td style="padding: 12px; border: 1px solid 000;">强度、扩散荷载、水稳性</td>
+</tr>
+</tbody>
 </table>
 
 
