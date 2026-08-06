@@ -1,9 +1,11 @@
 {
   "modeAnswers": {
-    "random": {}
+    "random": {},
+    "sequence": {}
   },
   "modeSubmitted": {
-    "random": {}
+    "random": {},
+    "sequence": {}
   },
   "wrongAnswers": {},
   "wrongSubmitted": {},
