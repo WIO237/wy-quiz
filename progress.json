@@ -53,7 +53,8 @@
       "48": "B",
       "49": "BC",
       "50": "D",
-      "51": "B"
+      "51": "B",
+      "52": "ABDE"
     }
   },
   "modeSubmitted": {
@@ -126,5 +127,5 @@
   "notes": {},
   "currentMode": "sequence",
   "selectedChapter": "全部题目",
-  "currentIndex": 51
+  "currentIndex": 52
 }
