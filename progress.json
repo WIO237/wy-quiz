@@ -3,14 +3,16 @@
     "random": {},
     "sequence": {
       "9": "ABC",
-      "37": "A"
+      "37": "A",
+      "48": "B"
     }
   },
   "modeSubmitted": {
     "random": {},
     "sequence": {
       "9": true,
-      "37": true
+      "37": true,
+      "48": true
     }
   },
   "wrongAnswers": {},
@@ -18,10 +20,10 @@
   "wrongSet": [
     37
   ],
-  "totalAnswered": 2,
-  "totalCorrect": 1,
+  "totalAnswered": 3,
+  "totalCorrect": 2,
   "notes": {},
   "currentMode": "sequence",
   "selectedChapter": "全部题目",
-  "currentIndex": 9
+  "currentIndex": 48
 }
