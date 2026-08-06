@@ -31,7 +31,8 @@
       "26": "C",
       "27": "BC",
       "28": "B",
-      "29": "ABD"
+      "29": "ABD",
+      "30": "C"
     }
   },
   "modeSubmitted": {
@@ -66,7 +67,8 @@
       "26": true,
       "27": true,
       "28": true,
-      "29": true
+      "29": true,
+      "30": true
     }
   },
   "wrongAnswers": {},
@@ -75,10 +77,10 @@
     37,
     13
   ],
-  "totalAnswered": 30,
-  "totalCorrect": 29,
+  "totalAnswered": 31,
+  "totalCorrect": 30,
   "notes": {},
   "currentMode": "sequence",
   "selectedChapter": "全部题目",
-  "currentIndex": 29
+  "currentIndex": 30
 }
