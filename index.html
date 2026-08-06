@@ -221,7 +221,6 @@
       const headers = { 'Authorization': `token ${githubToken}`, 'Content-Type': 'application/json' };
 
       try {
-        // 获取现有文件 SHA（如果存在）
         let sha = null;
         try {
           const getRes = await fetch(apiUrl, { headers });
@@ -273,13 +272,15 @@
             totalAnswered = data.totalAnswered || 0;
             totalCorrect = data.totalCorrect || 0;
             notes = data.notes || {};
-            currentMode = data.currentMode || 'sequence';
-            selectedChapter = data.selectedChapter || '全部题目';
+            currentMode = ['sequence','random','wrong'].includes(data.currentMode) ? data.currentMode : 'sequence';
+            selectedChapter = chapters.includes(data.selectedChapter) ? data.selectedChapter : '全部题目';
             currentIndex = data.currentIndex || 0;
+            // 同步UI
+            document.getElementById('chapterSelect').value = selectedChapter;
+            updateModeButtons();
             saveState();
             return true;
           }
-          // 文件不存在(404)表示首次使用，返回 false 但不算错误
           if (res.status === 404) return false;
         } catch (e) {}
         if (i < retries - 1) await new Promise(r => setTimeout(r, 1000));
@@ -485,16 +486,16 @@
       chapters = ['全部题目', ...new Set(allQuestions.map(q=>q.chapter))];
       const sel = document.getElementById('chapterSelect');
       sel.innerHTML = chapters.map(c=>`<option>${c}</option>`).join('');
-      sel.value = selectedChapter;
+      sel.value = selectedChapter;   // 先设为默认值
 
       // 从仓库加载进度
       document.getElementById('loadingStatus').innerText = '正在从云端恢复记录...';
       const restored = await loadProgressFromRepo(3);
       if (!restored) {
-        // 如果云端没有记录（首次使用），保持空白
-        // 已初始化为空，无需操作
+        // 云端无数据，保持初始状态
       }
-      // 启动自动同步
+      // 再次确保下拉框与当前章节一致
+      document.getElementById('chapterSelect').value = selectedChapter;
       startAutoSync();
       updateSyncTimeDisplay();
 
