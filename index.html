@@ -76,7 +76,7 @@
     </div>
     <div id="loadingStatus">正在准备题库...</div>
     <button class="btn-full" id="startBtn">▶ 开始刷题</button>
-    <p style="text-align:center;color:#999;font-size:12px;">支持上传图片至题库，自动同步</p>
+    <p style="text-align:center;color:#999;font-size:12px;">支持上传图片，立即显示</p>
   </div>
 
   <div id="quizPage" class="hidden">
@@ -139,6 +139,7 @@
     const IMAGE_FOLDER = '2026一级建造师习题班汇总.assets';
     // ★★★ 配置结束 ★★★
 
+    // 全局状态
     let allQuestions = [];
     let currentMode = 'sequence';
     let wrongSet = new Set();
@@ -158,12 +159,18 @@
     let autoSyncTimer = null;
 
     function shuffle(arr) { for (let i=arr.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]];} }
+
+    // 将 Markdown 图片语法转换为 <img> 标签，保留 data URI 和远程 URL
     function convertImagesToHtml(text) {
       if (!text) return '';
+      // 将 raw 链接替换为 CDN
       let fixed = text.replace(/https:\/\/raw\.githubusercontent\.com\/WIO237\/wy-quiz\/main\//g, GITHUB_RAW_BASE);
       return fixed.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, (match, alt, path) => {
         let src = path;
-        if (!/^https?:\/\//i.test(path)) {
+        if (/^https?:\/\//i.test(path) || /^data:/i.test(path)) {
+          // 已经是远程 URL 或 data URI，直接使用
+        } else {
+          // 本地路径，提取文件名拼接 CDN 地址
           const name = path.split(/[/\\]/).pop();
           src = GITHUB_RAW_BASE + IMAGE_FOLDER + '/' + encodeURIComponent(name);
         }
@@ -201,7 +208,7 @@
           for (const [k, v] of Object.entries(q.options)) md += `${k}. ${v}\n`;
           md += `\n答案：${q.answer}\n\n`;
           if (q.analysis) {
-            // 解析中的 Base64 暂时保留（上传时会替换）
+            // 解析中可能仍有 Base64 图片，保存时会替换，这里直接写入
             md += `解析：\n${q.analysis}\n\n`;
           }
           md += '\n';
@@ -215,6 +222,7 @@
       localStorage.setItem('quizState', JSON.stringify(state));
     }
 
+    // 合并远程数据
     function mergeProgress(remote) {
       for (const m of ['sequence', 'random']) {
         if (!modeSubmitted[m]) modeSubmitted[m] = {};
@@ -256,16 +264,11 @@
         let sha = null, remoteData = null;
         try {
           const res = await fetch(apiUrl, { headers });
-          if (res.ok) {
-            const fi = await res.json();
-            sha = fi.sha;
-            remoteData = JSON.parse(atob(fi.content));
-          }
+          if (res.ok) { const fi = await res.json(); sha = fi.sha; remoteData = JSON.parse(atob(fi.content)); }
         } catch(e) {}
         if (remoteData) mergeProgress(remoteData);
         const dataToSave = { modeAnswers, modeSubmitted, wrongAnswers, wrongSubmitted, wrongSet:Array.from(wrongSet), totalAnswered, totalCorrect, notes, currentMode, selectedChapter, currentIndex };
-        const newContent = JSON.stringify(dataToSave, null, 2);
-        const body = { message: 'Update progress', content: btoa(unescape(encodeURIComponent(newContent))) };
+        const body = { message: 'Update progress', content: btoa(unescape(encodeURIComponent(JSON.stringify(dataToSave, null, 2)))) };
         if (sha) body.sha = sha;
         const putRes = await fetch(apiUrl, { method: 'PUT', headers, body: JSON.stringify(body) });
         if (!putRes.ok) throw new Error('上传失败');
@@ -285,23 +288,15 @@
         try {
           const res = await fetch(apiUrl, { headers: { 'Authorization': `token ${githubToken}` } });
           if (res.ok) {
-            const fi = await res.json();
-            const data = JSON.parse(atob(fi.content));
-            modeAnswers = data.modeAnswers || {};
-            modeSubmitted = data.modeSubmitted || {};
-            wrongAnswers = data.wrongAnswers || {};
-            wrongSubmitted = data.wrongSubmitted || {};
-            wrongSet = new Set(data.wrongSet || []);
-            totalAnswered = data.totalAnswered || 0;
-            totalCorrect = data.totalCorrect || 0;
-            notes = data.notes || {};
-            currentMode = ['sequence','random','wrong'].includes(data.currentMode) ? data.currentMode : 'sequence';
+            const data = JSON.parse(atob((await res.json()).content));
+            modeAnswers = data.modeAnswers || {}; modeSubmitted = data.modeSubmitted || {};
+            wrongAnswers = data.wrongAnswers || {}; wrongSubmitted = data.wrongSubmitted || {};
+            wrongSet = new Set(data.wrongSet || []); totalAnswered = data.totalAnswered || 0; totalCorrect = data.totalCorrect || 0;
+            notes = data.notes || {}; currentMode = data.currentMode || 'sequence';
             selectedChapter = chapters.includes(data.selectedChapter) ? data.selectedChapter : '全部题目';
             currentIndex = data.currentIndex || 0;
             document.getElementById('chapterSelect').value = selectedChapter;
-            updateModeButtons();
-            saveState();
-            return true;
+            updateModeButtons(); saveState(); return true;
           }
           if (res.status === 404) return false;
         } catch(e) {}
@@ -323,7 +318,7 @@
       autoSyncTimer = setInterval(() => syncProgressToRepo(true), 10*60*1000);
     }
 
-    // 上传 Base64 图片到 GitHub 仓库并返回 CDN 链接
+    // 上传 Base64 图片到 GitHub 仓库
     async function uploadImageToRepo(base64Data) {
       if (!base64Data.startsWith('data:image')) return null;
       const [header, data] = base64Data.split(',');
@@ -333,53 +328,39 @@
       const path = `${IMAGE_FOLDER}/${filename}`;
       const apiUrl = `https://api.github.com/repos/${GITHUB_REPO_OWNER}/${GITHUB_REPO_NAME}/contents/${path}`;
       const headers = { 'Authorization': `token ${githubToken}`, 'Content-Type': 'application/json' };
-      const body = {
-        message: `Upload ${filename}`,
-        content: data
-      };
-      const res = await fetch(apiUrl, { method: 'PUT', headers, body: JSON.stringify(body) });
+      const res = await fetch(apiUrl, { method: 'PUT', headers, body: JSON.stringify({ message: `Upload ${filename}`, content: data }) });
       if (!res.ok) throw new Error('上传图片失败');
-      // 返回 CDN 链接
       return `${GITHUB_RAW_BASE}${IMAGE_FOLDER}/${encodeURIComponent(filename)}`;
     }
 
-    // 扫描并替换所有题目解析中的 Base64 图片，上传后替换为远程链接
+    // 扫描并上传所有解析中的 Base64 图片
     async function uploadAllBase64Images() {
       const regex = /data:image\/[^;]+;base64,[A-Za-z0-9+/=]+/g;
-      const uploadTasks = [];
+      const tasks = [];
       for (let q of allQuestions) {
         if (!q.analysis) continue;
         const matches = q.analysis.match(regex);
         if (!matches) continue;
         for (let b64 of matches) {
-          uploadTasks.push((async () => {
+          tasks.push((async () => {
             const url = await uploadImageToRepo(b64);
-            if (url) {
-              q.analysis = q.analysis.replace(b64, url);
-            }
+            if (url) q.analysis = q.analysis.replace(b64, url);
           })());
         }
       }
-      await Promise.all(uploadTasks);
+      await Promise.all(tasks);
     }
 
     async function saveQuizToGitHub() {
       if (!githubToken) return alert('请先输入 GitHub Token');
-      try {
-        // 先上传解析中的图片并替换链接
-        await uploadAllBase64Images();
-      } catch(e) {
-        alert('图片上传失败: ' + e.message);
-        return;
-      }
+      try { await uploadAllBase64Images(); } catch(e) { alert('图片上传失败: ' + e.message); return; }
       const newContent = generateFullQuizText();
       const apiUrl = `https://api.github.com/repos/${GITHUB_REPO_OWNER}/${GITHUB_REPO_NAME}/contents/${QUIZ_FILE_PATH}`;
       try {
         const getRes = await fetch(apiUrl, { headers: { 'Authorization': `token ${githubToken}` } });
-        if (!getRes.ok) throw new Error('无法获取文件信息，请检查仓库与Token权限');
-        const fileInfo = await getRes.json();
-        const sha = fileInfo.sha;
-        const putBody = { message: 'Update quiz via PWA', content: btoa(unescape(encodeURIComponent(newContent))), sha: sha };
+        if (!getRes.ok) throw new Error('无法获取文件信息');
+        const sha = (await getRes.json()).sha;
+        const putBody = { message: 'Update quiz', content: btoa(unescape(encodeURIComponent(newContent))), sha };
         const putRes = await fetch(apiUrl, { method: 'PUT', headers: { 'Authorization': `token ${githubToken}`, 'Content-Type': 'application/json' }, body: JSON.stringify(putBody) });
         if (!putRes.ok) throw new Error('更新失败');
         alert('题库已保存至 GitHub 仓库！');
@@ -389,10 +370,7 @@
 
     async function loadQuizText() {
       const cached = localStorage.getItem('quizText');
-      if (cached) {
-        document.getElementById('loadingStatus').innerText = '正在恢复本地题库...';
-        return cached;
-      }
+      if (cached) { document.getElementById('loadingStatus').innerText = '正在恢复本地题库...'; return cached; }
       document.getElementById('loadingStatus').innerText = '正在从 GitHub 下载题库...';
       try {
         const res = await fetch(QUIZ_MD_URL);
@@ -400,10 +378,7 @@
         const text = await res.text();
         localStorage.setItem('quizText', text);
         return text;
-      } catch(e) {
-        alert('无法下载题库，请检查题库 URL 或网络连接。');
-        throw e;
-      }
+      } catch(e) { alert('无法下载题库，请检查题库 URL 或网络连接。'); throw e; }
     }
 
     function getCurrentQuestions() {
@@ -521,7 +496,7 @@
       document.getElementById('progressFill').style.width=`${questions.length?(currentIndex+1)/questions.length*100:0}%`;
     }
 
-    // 图片上传至输入框
+    // 上传图片按钮
     document.getElementById('uploadImageBtn').addEventListener('click', () => {
       const input = document.createElement('input');
       input.type = 'file';
@@ -529,7 +504,6 @@
       input.onchange = async (e) => {
         const file = e.target.files[0];
         if (!file) return;
-        // 压缩并转为 Base64
         const reader = new FileReader();
         reader.onload = async (ev) => {
           const img = new Image();
@@ -537,17 +511,11 @@
           img.onload = () => {
             const maxWidth = 800;
             let width = img.width, height = img.height;
-            if (width > maxWidth) {
-              height = (maxWidth / width) * height;
-              width = maxWidth;
-            }
+            if (width > maxWidth) { height = (maxWidth / width) * height; width = maxWidth; }
             const canvas = document.createElement('canvas');
-            canvas.width = width;
-            canvas.height = height;
-            const ctx = canvas.getContext('2d');
-            ctx.drawImage(img, 0, 0, width, height);
+            canvas.width = width; canvas.height = height;
+            canvas.getContext('2d').drawImage(img, 0, 0, width, height);
             const base64 = canvas.toDataURL(file.type, 0.8);
-            // 插入到输入框末尾
             const noteInput = document.getElementById('noteInput');
             noteInput.value += `\n![图片](${base64})`;
           };
@@ -565,12 +533,7 @@
     });
 
     document.getElementById('startBtn').addEventListener('click', async ()=>{
-      if (!githubToken) {
-        const token = document.getElementById('tokenInput').value.trim();
-        if (!token) return alert('请先输入 GitHub Token');
-        githubToken = token;
-        localStorage.setItem('githubToken', token);
-      }
+      if (!githubToken) { const token = document.getElementById('tokenInput').value.trim(); if (!token) return alert('请先输入 GitHub Token'); githubToken = token; localStorage.setItem('githubToken', token); }
       let text = '';
       try { text = await loadQuizText(); } catch(e) { return; }
       if (!text.trim()) return alert('题库内容为空');
@@ -580,14 +543,11 @@
       const sel = document.getElementById('chapterSelect');
       sel.innerHTML = chapters.map(c=>`<option>${c}</option>`).join('');
       sel.value = selectedChapter;
-
       document.getElementById('loadingStatus').innerText = '正在从云端恢复记录...';
-      const restored = await loadProgressFromRepo(3);
-      if (!restored) {}
-      document.getElementById('chapterSelect').value = selectedChapter;
+      await loadProgressFromRepo(3);
+      sel.value = selectedChapter;
       startAutoSync();
       updateSyncTimeDisplay();
-
       document.getElementById('importPage').classList.add('hidden');
       document.getElementById('quizPage').classList.remove('hidden');
       updateModeButtons();
