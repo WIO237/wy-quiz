@@ -39,7 +39,8 @@
       "34": "ACDE",
       "35": "ABD",
       "36": "D",
-      "37": "ABD"
+      "37": "ABD",
+      "38": "A"
     }
   },
   "modeSubmitted": {
@@ -82,7 +83,8 @@
       "34": true,
       "35": true,
       "36": true,
-      "37": true
+      "37": true,
+      "38": true
     }
   },
   "wrongAnswers": {},
@@ -92,10 +94,10 @@
     31,
     37
   ],
-  "totalAnswered": 38,
-  "totalCorrect": 36,
+  "totalAnswered": 39,
+  "totalCorrect": 37,
   "notes": {},
   "currentMode": "sequence",
   "selectedChapter": "全部题目",
-  "currentIndex": 37
+  "currentIndex": 39
 }
