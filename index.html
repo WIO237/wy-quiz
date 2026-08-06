@@ -76,7 +76,7 @@
     </div>
     <div id="loadingStatus">正在准备题库...</div>
     <button class="btn-full" id="startBtn">▶ 开始刷题</button>
-    <p style="text-align:center;color:#999;font-size:12px;">图片通过 CDN 加速，多端同步不冲突</p>
+    <p style="text-align:center;color:#999;font-size:12px;">图片已实时修复，应该可见了</p>
   </div>
 
   <div id="quizPage" class="hidden">
@@ -135,7 +135,7 @@
 
     // ★★★ 配置区 ★★★
     const QUIZ_MD_URL   = 'https://raw.githubusercontent.com/WIO237/wy-quiz/main/quiz.md';
-    // 图片基础地址改用 jsDelivr CDN（解决 raw 被屏蔽问题）
+    // 图片基础地址使用 jsDelivr CDN
     const GITHUB_RAW_BASE = 'https://cdn.jsdelivr.net/gh/WIO237/wy-quiz@main/';
     const GITHUB_REPO_OWNER = 'WIO237';
     const GITHUB_REPO_NAME  = 'wy-quiz';
@@ -166,15 +166,15 @@
 
     // 修复图片路径：本地路径 → CDN，远程 raw 链接 → CDN
     function fixImagePaths(md) {
-      // 第一步：将已有的 raw.githubusercontent.com 链接替换为 jsDelivr
-      md = md.replace(/https:\/\/raw\.githubusercontent\.com\/WIO237\/wy-quiz\/main\//g, GITHUB_RAW_BASE);
-      // 第二步：将本地绝对路径（非 http 开头的）转换为 CDN 地址
-      return md.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, (match, alt, path) => {
+      if (!md) return '';
+      // 第一步：将 raw.githubusercontent.com 替换为 CDN
+      let fixed = md.replace(/https:\/\/raw\.githubusercontent\.com\/WIO237\/wy-quiz\/main\//g, GITHUB_RAW_BASE);
+      // 第二步：将本地绝对路径（非 http 开头）转换为 CDN
+      return fixed.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, (match, alt, path) => {
         if (/^https?:\/\//i.test(path)) {
-          // 已经是远程 URL，直接保留（前面可能已被替换为 CDN）
-          return match;
+          return match; // 已是远程 URL
         }
-        // 本地路径，提取文件名拼接
+        // 本地路径
         const name = path.split(/[/\\]/).pop();
         return `![${alt}](${GITHUB_RAW_BASE}2026一级建造师习题班汇总.assets/${encodeURIComponent(name)})`;
       });
@@ -255,7 +255,6 @@
       totalCorrect = calcCorrect;
     }
 
-    // 同步到仓库（拉取→合并→上传）
     async function syncProgressToRepo(silent=false) {
       if (!githubToken) return;
       const apiUrl = `https://api.github.com/repos/${GITHUB_REPO_OWNER}/${GITHUB_REPO_NAME}/contents/${PROGRESS_FILE_PATH}`;
@@ -394,7 +393,8 @@
       if (currentIndex>=questions.length) currentIndex=questions.length-1;
       if (currentIndex<0) currentIndex=0;
       const q = questions[currentIndex];
-      document.getElementById('qTitle').innerHTML = q.title;
+      // 实时修复图片路径
+      document.getElementById('qTitle').innerHTML = fixImagePaths(q.title);
       document.getElementById('qType').innerText = q.isMulti?'多选题':'单选题';
       document.getElementById('qType').style.background = q.isMulti?'#fff7e6':'#e8f3ff';
       document.getElementById('qNumber').innerText = `第 ${currentIndex+1} 题 / 共 ${questions.length} 题 (全局:${q.originalIndex+1})`;
@@ -428,7 +428,9 @@
       const correct = effAns===q.answer;
       const div = document.getElementById('resultContainer');
       div.classList.remove('hidden');
-      div.innerHTML = `<div style="font-weight:bold;color:${correct?'#2ba471':'#d54941'}">${correct ? '✔ 回答正确！' : '✘ 回答错误！正确答案：' + q.answer}</div><div style="font-weight:bold;margin-top:10px;">解析：</div><div style="white-space:pre-wrap;">${q.analysis || '无'}</div>`;
+      // 重要：对解析再次执行 fixImagePaths，确保图片链接绝对可用
+      const analysisHtml = fixImagePaths(q.analysis || '无');
+      div.innerHTML = `<div style="font-weight:bold;color:${correct?'#2ba471':'#d54941'}">${correct ? '✔ 回答正确！' : '✘ 回答错误！正确答案：' + q.answer}</div><div style="font-weight:bold;margin-top:10px;">解析：</div><div style="white-space:pre-wrap;">${analysisHtml}</div>`;
     }
 
     async function submitAnswer() {
