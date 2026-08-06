@@ -75,7 +75,7 @@
     </div>
     <div id="loadingStatus">正在准备题库...</div>
     <button class="btn-full" id="startBtn">▶ 开始刷题</button>
-    <p style="text-align:center;color:#999;font-size:12px;">题库将从 GitHub 自动下载，无需手动导入</p>
+    <p style="text-align:center;color:#999;font-size:12px;">题库从 GitHub 下载，记录云端同步</p>
   </div>
 
   <div id="quizPage" class="hidden">
@@ -91,7 +91,7 @@
       <button class="mode-btn" data-mode="wrong">错题本</button>
       <button class="action-btn" id="exportWrongBtn">导出错题</button>
       <button class="action-btn" id="saveQuizBtn">💾 保存题库至GitHub</button>
-      <button class="action-btn" id="syncBtn">🔄 同步记录</button>
+      <button class="action-btn" id="syncBtn">🔄 立即同步</button>
       <span class="sync-time" id="syncTime">未同步</span>
       <button class="action-btn" id="clearRecordBtn">清空记录</button>
       <button class="action-btn danger-btn" id="clearCacheBtn">清除缓存</button>
@@ -175,11 +175,10 @@
       const lines = text.split('\n');
       const questions = [];
       let cur = null, id=0, analysis=false, chapter='默认章节';
-      const chapSet = new Set(['全部题目', chapter]);
       for (let line of lines) {
         line = line.trim();
         if (!line) continue;
-        if (/^.+?[（(]约\d+道[）)]$/.test(line)||/^第[一二三四五六七八九十\d]+章\s*.+$/.test(line)) { chapter=line.replace(/[（(]约\d+道[）)]/,'').trim(); chapSet.add(chapter); continue; }
+        if (/^.+?[（(]约\d+道[）)]$/.test(line)||/^第[一二三四五六七八九十\d]+章\s*.+$/.test(line)) { chapter=line.replace(/[（(]约\d+道[）)]/,'').trim(); continue; }
         if (/^\d+[.、．]\s*(.*)/.test(line)) { if (cur&&cur.answer) questions.push(cur); cur={originalIndex:id++,chapter,title:line.replace(/^\d+[.、．]\s*/,''),options:{},answer:'',isMulti:false,analysis:''}; analysis=false; continue; }
         if (!cur) continue;
         if (/^[A-Ea-e][.、．\s]\s*(.*)/.test(line)&&!analysis) { const k=line[0].toUpperCase(); cur.options[k]=line.substring(1).replace(/^[.、．\s]+/,''); continue; }
@@ -207,17 +206,13 @@
       return md;
     }
 
-    // 持久化
+    // 本地缓存仅用于暂存，不做恢复源
     function saveState() {
       const state = { modeAnswers, modeSubmitted, wrongAnswers, wrongSubmitted, wrongSet:Array.from(wrongSet), totalAnswered, totalCorrect, notes, currentMode, selectedChapter, currentIndex };
       localStorage.setItem('quizState', JSON.stringify(state));
     }
-    function loadState() {
-      const s=localStorage.getItem('quizState'); if(!s)return false;
-      try{const d=JSON.parse(s); modeAnswers=d.modeAnswers||{}; modeSubmitted=d.modeSubmitted||{}; wrongAnswers=d.wrongAnswers||{}; wrongSubmitted=d.wrongSubmitted||{}; wrongSet=new Set(d.wrongSet||[]); totalAnswered=d.totalAnswered||0; totalCorrect=d.totalCorrect||0; notes=d.notes||{}; currentMode=d.currentMode||'sequence'; selectedChapter=d.selectedChapter||'全部题目'; currentIndex=d.currentIndex||0; return true;}catch(e){return false;}
-    }
 
-    // GitHub 同步 (记录)
+    // ==================== GitHub 同步核心 ====================
     async function syncToGist(silent=false) {
       if (!githubToken) return;
       const data = { modeAnswers, modeSubmitted, wrongAnswers, wrongSubmitted, wrongSet:Array.from(wrongSet), totalAnswered, totalCorrect, notes, currentMode, selectedChapter, currentIndex };
@@ -228,7 +223,7 @@
           const res = await fetch(`https://api.github.com/gists/${gistId}`, {method:'PATCH', headers, body:JSON.stringify({files:{'quiz-state.json':{content}}})});
           if (!res.ok) throw new Error('更新失败');
         } else {
-          const res = await fetch('https://api.github.com/gists', {method:'POST', headers, body:JSON.stringify({description:'刷题数据',public:false,files:{'quiz-state.json':{content}}})});
+          const res = await fetch('https://api.github.com/gists', {method:'POST', headers, body:JSON.stringify({description:'刷题数据备份',public:false,files:{'quiz-state.json':{content}}})});
           if (!res.ok) throw new Error('创建失败');
           const json = await res.json();
           gistId = json.id;
@@ -237,30 +232,45 @@
         lastSyncTime = new Date();
         updateSyncTimeDisplay();
         if (!silent) alert('同步成功！');
-      } catch(e) { if (!silent) alert('同步失败: '+e.message); }
+      } catch(e) {
+        if (!silent) alert('同步失败: ' + e.message);
+        else console.log('自动同步失败: ' + e.message);
+      }
     }
 
-    async function loadFromGist() {
+    async function loadFromGist(retries = 3) {
       if (!gistId) gistId = localStorage.getItem('gistId');
-      if (!gistId||!githubToken) return false;
-      try {
-        const res = await fetch(`https://api.github.com/gists/${gistId}`, {headers:{'Authorization':`token ${githubToken}`}});
-        if (res.ok) {
-          const json = await res.json();
-          const content = json.files['quiz-state.json']?.content;
-          if (content) {
-            const data = JSON.parse(content);
-            modeAnswers = data.modeAnswers||{}; modeSubmitted = data.modeSubmitted||{};
-            wrongAnswers = data.wrongAnswers||{}; wrongSubmitted = data.wrongSubmitted||{};
-            wrongSet = new Set(data.wrongSet||[]);
-            totalAnswered = data.totalAnswered||0; totalCorrect = data.totalCorrect||0;
-            notes = data.notes||{}; currentMode = data.currentMode||'sequence';
-            selectedChapter = data.selectedChapter||'全部题目'; currentIndex = data.currentIndex||0;
-            saveState();
-            return true;
+      if (!gistId || !githubToken) return false;
+      for (let i = 0; i < retries; i++) {
+        try {
+          const res = await fetch(`https://api.github.com/gists/${gistId}`, {
+            headers: { 'Authorization': `token ${githubToken}` }
+          });
+          if (res.ok) {
+            const json = await res.json();
+            const content = json.files?.['quiz-state.json']?.content;
+            if (content) {
+              const data = JSON.parse(content);
+              modeAnswers = data.modeAnswers || {};
+              modeSubmitted = data.modeSubmitted || {};
+              wrongAnswers = data.wrongAnswers || {};
+              wrongSubmitted = data.wrongSubmitted || {};
+              wrongSet = new Set(data.wrongSet || []);
+              totalAnswered = data.totalAnswered || 0;
+              totalCorrect = data.totalCorrect || 0;
+              notes = data.notes || {};
+              currentMode = data.currentMode || 'sequence';
+              selectedChapter = data.selectedChapter || '全部题目';
+              currentIndex = data.currentIndex || 0;
+              // 更新本地缓存（仅作为副本）
+              saveState();
+              return true;
+            }
           }
-        }
-      } catch(e) {}
+        } catch(e) {}
+        // 重试前等待1秒
+        if (i < retries - 1) await new Promise(resolve => setTimeout(resolve, 1000));
+      }
       return false;
     }
 
@@ -273,6 +283,7 @@
     function startAutoSync() {
       if (autoSyncTimer) clearInterval(autoSyncTimer);
       if (!githubToken) return;
+      // 立即同步一次
       syncToGist(true);
       autoSyncTimer = setInterval(() => syncToGist(true), 10*60*1000);
     }
@@ -288,7 +299,7 @@
         const fileInfo = await getRes.json();
         const sha = fileInfo.sha;
         const putBody = {
-          message: 'Update quiz-text.md via PWA',
+          message: 'Update quiz via PWA',
           content: btoa(unescape(encodeURIComponent(newContent))),
           sha: sha
         };
@@ -318,21 +329,9 @@
         localStorage.setItem('quizText', text);
         return text;
       } catch(e) {
-        alert('无法下载题库，请检查题库 URL 或网络连接。\n您也可以手动粘贴题库内容。');
-        showManualInput();
+        alert('无法下载题库，请检查题库 URL 或网络连接。');
         throw e;
       }
-    }
-
-    function showManualInput() {
-      const importPage = document.getElementById('importPage');
-      const textarea = document.createElement('textarea');
-      textarea.id = 'quizInput';
-      textarea.placeholder = '在此粘贴题库内容...';
-      textarea.style.cssText = 'flex:1;min-height:150px;margin:10px 0;padding:12px;border-radius:10px;border:1px solid #ccc;font-size:16px;background:white;';
-      const startBtn = document.getElementById('startBtn');
-      importPage.insertBefore(textarea, startBtn);
-      document.getElementById('loadingStatus').innerText = '题库自动下载失败，请手动粘贴题库后点击开始';
     }
 
     // 界面逻辑
@@ -404,7 +403,7 @@
       else { setSubmitted(q); totalAnswered++; if(ans===q.answer){ totalCorrect++; wrongSet.delete(q.originalIndex); } else wrongSet.add(q.originalIndex); }
       saveState();
       renderQuestion();
-      // 自动静默同步
+      // 立即静默同步
       syncToGist(true);
     }
 
@@ -451,7 +450,7 @@
       document.getElementById('progressFill').style.width=`${questions.length?(currentIndex+1)/questions.length*100:0}%`;
     }
 
-    // 事件绑定
+    // ==================== 事件绑定 ====================
     document.getElementById('tokenInput').value = githubToken;
     document.getElementById('saveTokenBtn').addEventListener('click',()=>{
       const token = document.getElementById('tokenInput').value.trim();
@@ -466,9 +465,7 @@
         localStorage.setItem('githubToken', token);
       }
       let text = '';
-      const manualInput = document.getElementById('quizInput');
-      if (manualInput) text = manualInput.value;
-      if (!text) { try { text = await loadQuizText(); } catch(e) { return; } }
+      try { text = await loadQuizText(); } catch(e) { return; }
       if (!text.trim()) return alert('题库内容为空');
       allQuestions = parseQuestions(text);
       if (!allQuestions.length) return alert('未解析到有效题目');
@@ -477,9 +474,24 @@
       sel.innerHTML = chapters.map(c=>`<option>${c}</option>`).join('');
       sel.value = selectedChapter;
 
-      // 优先从 Gist 恢复记录
-      const restored = await loadFromGist();
-      if (!restored) loadState();
+      // 核心：只从云端恢复，不读本地缓存
+      document.getElementById('loadingStatus').innerText = '正在从云端恢复记录...';
+      const restored = await loadFromGist(3);
+      if (!restored) {
+        // 如果云端没有记录（首次使用），保持空白状态
+        if (!gistId) {
+          // 新用户，初始化空白
+          modeAnswers = {}; modeSubmitted = {};
+          wrongAnswers = {}; wrongSubmitted = {};
+          wrongSet = new Set();
+          totalAnswered = 0; totalCorrect = 0;
+          notes = {};
+        } else {
+          alert('无法从云端恢复记录，请检查网络后重新进入。');
+          return;
+        }
+      }
+      // 启动自动同步（会创建/更新 Gist）
       startAutoSync();
       updateSyncTimeDisplay();
 
