@@ -13,7 +13,8 @@
       "9": "ABC",
       "10": "ABC",
       "11": "C",
-      "12": "ABCD"
+      "12": "ABCD",
+      "13": "ABC"
     },
     "random": {}
   },
@@ -31,15 +32,16 @@
       "9": true,
       "10": true,
       "11": true,
-      "12": true
+      "12": true,
+      "13": true
     },
     "random": {}
   },
   "wrongAnswers": {},
   "wrongSubmitted": {},
   "wrongSet": [],
-  "totalAnswered": 13,
-  "totalCorrect": 13,
+  "totalAnswered": 14,
+  "totalCorrect": 14,
   "notes": {},
   "currentMode": "sequence",
   "selectedChapter": "全部题目",
