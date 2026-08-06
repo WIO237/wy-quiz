@@ -135,6 +135,7 @@
     // ★★★ 配置区 ★★★
     const QUIZ_MD_URL   = 'https://raw.githubusercontent.com/WIO237/wy-quiz/main/quiz.md';
     const GITHUB_RAW_BASE = 'https://raw.githubusercontent.com/WIO237/wy-quiz/main/';
+    const IMG_FOLDER    = '2026一级建造师习题班汇总.assets';   // 图片文件夹名（仓库根目录下）
     const GITHUB_REPO_OWNER = 'WIO237';
     const GITHUB_REPO_NAME  = 'wy-quiz';
     const QUIZ_FILE_PATH    = 'quiz.md';
@@ -162,9 +163,12 @@
 
     function shuffle(arr) { for (let i=arr.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]];} }
     function fixImagePaths(md) {
-      return md.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, (match,alt,path) => {
-        const name = path.split(/[/\\]/).pop();
-        return `![${alt}](${GITHUB_RAW_BASE}2026一级建造师习题班汇总.assets/${encodeURIComponent(name)})`;
+      // 将本地绝对路径（如 E:\...\image.png）转换为 raw 路径
+      return md.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, (match, alt, filePath) => {
+        const name = filePath.split(/[/\\]/).pop();  // 只保留文件名
+        const folderEnc = encodeURIComponent(IMG_FOLDER);
+        const nameEnc = encodeURIComponent(name);
+        return `![${alt}](${GITHUB_RAW_BASE}${folderEnc}/${nameEnc})`;
       });
     }
 
@@ -209,30 +213,25 @@
       localStorage.setItem('quizState', JSON.stringify(state));
     }
 
-    // 合并远程数据到本地（保留本地已有的，补充远程新增的）
+    // 合并远程数据（保留本地已有的，补充远程新增的）
     function mergeProgress(remote) {
-      // 合并顺序/随机模式
       for (const m of ['sequence', 'random']) {
         if (!modeSubmitted[m]) modeSubmitted[m] = {};
         if (!modeAnswers[m]) modeAnswers[m] = {};
         const rSub = (remote.modeSubmitted && remote.modeSubmitted[m]) || {};
         const rAns = (remote.modeAnswers && remote.modeAnswers[m]) || {};
         for (const idx in rSub) {
-          // 如果本地还没有这个题目的提交记录，则采用远程的
           if (!modeSubmitted[m][idx]) {
             modeSubmitted[m][idx] = rSub[idx];
             modeAnswers[m][idx] = rAns[idx] || '';
           }
         }
       }
-      // 合并错题本
       wrongAnswers = { ...remote.wrongAnswers, ...wrongAnswers };
       wrongSubmitted = { ...remote.wrongSubmitted, ...wrongSubmitted };
-      // 合并错题集（并集）
       wrongSet = new Set([...wrongSet, ...(Array.isArray(remote.wrongSet) ? remote.wrongSet : [])]);
-      // 合并笔记
       notes = { ...remote.notes, ...notes };
-      // 重新计算统计（顺序+随机）
+      // 重新计算统计
       let calcTotal = 0, calcCorrect = 0;
       for (const m of ['sequence', 'random']) {
         const subMap = modeSubmitted[m] || {};
@@ -249,14 +248,13 @@
       totalCorrect = calcCorrect;
     }
 
-    // 同步到仓库（拉取→合并→上传）
     async function syncProgressToRepo(silent=false) {
       if (!githubToken) return;
       const apiUrl = `https://api.github.com/repos/${GITHUB_REPO_OWNER}/${GITHUB_REPO_NAME}/contents/${PROGRESS_FILE_PATH}`;
       const headers = { 'Authorization': `token ${githubToken}`, 'Content-Type': 'application/json' };
 
       try {
-        // 1. 获取远程文件
+        // 1. 拉取远程
         let sha = null;
         let remoteData = null;
         try {
@@ -264,23 +262,17 @@
           if (getRes.ok) {
             const fileInfo = await getRes.json();
             sha = fileInfo.sha;
-            const content = atob(fileInfo.content);
-            remoteData = JSON.parse(content);
+            remoteData = JSON.parse(atob(fileInfo.content));
           }
         } catch (e) {}
 
-        // 2. 合并远程数据
-        if (remoteData) {
-          mergeProgress(remoteData);
-        }
+        // 2. 合并
+        if (remoteData) mergeProgress(remoteData);
 
-        // 3. 准备上传
-        const dataToSave = { modeAnswers, modeSubmitted, wrongAnswers, wrongSubmitted, wrongSet:Array.from(wrongSet), totalAnswered, totalCorrect, notes, currentMode, selectedChapter, currentIndex };
+        // 3. 上传
+        const dataToSave = { modeAnswers, modeSubmitted, wrongAnswers, wrongSubmitted, wrongSet: Array.from(wrongSet), totalAnswered, totalCorrect, notes, currentMode, selectedChapter, currentIndex };
         const newContent = JSON.stringify(dataToSave, null, 2);
-        const body = {
-          message: 'Update progress',
-          content: btoa(unescape(encodeURIComponent(newContent))),
-        };
+        const body = { message: 'Update progress', content: btoa(unescape(encodeURIComponent(newContent))) };
         if (sha) body.sha = sha;
 
         const putRes = await fetch(apiUrl, { method: 'PUT', headers, body: JSON.stringify(body) });
@@ -302,8 +294,7 @@
           const res = await fetch(apiUrl, { headers: { 'Authorization': `token ${githubToken}` } });
           if (res.ok) {
             const fileInfo = await res.json();
-            const content = atob(fileInfo.content);
-            const data = JSON.parse(content);
+            const data = JSON.parse(atob(fileInfo.content));
             modeAnswers = data.modeAnswers || {};
             modeSubmitted = data.modeSubmitted || {};
             wrongAnswers = data.wrongAnswers || {};
@@ -330,14 +321,14 @@
     function updateSyncTimeDisplay() {
       const el = document.getElementById('syncTime');
       if (!lastSyncTime) el.textContent = '未同步';
-      else { const t=lastSyncTime; el.textContent=`上次同步：${String(t.getHours()).padStart(2,'0')}:${String(t.getMinutes()).padStart(2,'0')}`; }
+      else { const t = lastSyncTime; el.textContent = `上次同步：${String(t.getHours()).padStart(2, '0')}:${String(t.getMinutes()).padStart(2, '0')}`; }
     }
 
     function startAutoSync() {
       if (autoSyncTimer) clearInterval(autoSyncTimer);
       if (!githubToken) return;
       syncProgressToRepo(true);
-      autoSyncTimer = setInterval(() => syncProgressToRepo(true), 10*60*1000);
+      autoSyncTimer = setInterval(() => syncProgressToRepo(true), 10 * 60 * 1000);
     }
 
     async function saveQuizToGitHub() {
@@ -346,7 +337,7 @@
       const apiUrl = `https://api.github.com/repos/${GITHUB_REPO_OWNER}/${GITHUB_REPO_NAME}/contents/${QUIZ_FILE_PATH}`;
       try {
         const getRes = await fetch(apiUrl, { headers: { 'Authorization': `token ${githubToken}` } });
-        if (!getRes.ok) throw new Error('无法获取文件信息，请检查仓库与Token权限');
+        if (!getRes.ok) throw new Error('无法获取文件信息');
         const fileInfo = await getRes.json();
         const sha = fileInfo.sha;
         const putBody = { message: 'Update quiz via PWA', content: btoa(unescape(encodeURIComponent(newContent))), sha: sha };
@@ -370,134 +361,134 @@
         const text = await res.text();
         localStorage.setItem('quizText', text);
         return text;
-      } catch(e) {
+      } catch (e) {
         alert('无法下载题库，请检查题库 URL 或网络连接。');
         throw e;
       }
     }
 
     function getCurrentQuestions() {
-      let base = selectedChapter==='全部题目'?[...allQuestions]:allQuestions.filter(q=>q.chapter===selectedChapter);
-      if (currentMode==='random') shuffle(base);
-      else if (currentMode==='wrong') { base = base.filter(q=>wrongSet.has(q.originalIndex)); shuffle(base); }
+      let base = selectedChapter === '全部题目' ? [...allQuestions] : allQuestions.filter(q => q.chapter === selectedChapter);
+      if (currentMode === 'random') shuffle(base);
+      else if (currentMode === 'wrong') { base = base.filter(q => wrongSet.has(q.originalIndex)); shuffle(base); }
       return base;
     }
-    function getEffectiveAnswer(q) { return currentMode==='wrong'?wrongAnswers[q.originalIndex]||'':(modeAnswers[currentMode]||{})[q.originalIndex]||''; }
-    function isSubmitted(q) { return currentMode==='wrong'?!!wrongSubmitted[q.originalIndex]:!!((modeSubmitted[currentMode]||{})[q.originalIndex]); }
-    function setAnswer(q,ans) { if(currentMode==='wrong') wrongAnswers[q.originalIndex]=ans; else { if(!modeAnswers[currentMode]) modeAnswers[currentMode]={}; modeAnswers[currentMode][q.originalIndex]=ans; } }
-    function setSubmitted(q,v=true) { if(currentMode==='wrong') wrongSubmitted[q.originalIndex]=v; else { if(!modeSubmitted[currentMode]) modeSubmitted[currentMode]={}; modeSubmitted[currentMode][q.originalIndex]=v; } }
+    function getEffectiveAnswer(q) { return currentMode === 'wrong' ? wrongAnswers[q.originalIndex] || '' : (modeAnswers[currentMode] || {})[q.originalIndex] || ''; }
+    function isSubmitted(q) { return currentMode === 'wrong' ? !!wrongSubmitted[q.originalIndex] : !!((modeSubmitted[currentMode] || {})[q.originalIndex]); }
+    function setAnswer(q, ans) { if (currentMode === 'wrong') wrongAnswers[q.originalIndex] = ans; else { if (!modeAnswers[currentMode]) modeAnswers[currentMode] = {}; modeAnswers[currentMode][q.originalIndex] = ans; } }
+    function setSubmitted(q, v = true) { if (currentMode === 'wrong') wrongSubmitted[q.originalIndex] = v; else { if (!modeSubmitted[currentMode]) modeSubmitted[currentMode] = {}; modeSubmitted[currentMode][q.originalIndex] = v; } }
 
     function renderQuestion() {
       const questions = getCurrentQuestions();
       if (!questions.length) {
-        document.getElementById('qTitle').innerText='暂无题目';
-        document.getElementById('optionsContainer').innerHTML='';
+        document.getElementById('qTitle').innerText = '暂无题目';
+        document.getElementById('optionsContainer').innerHTML = '';
         document.getElementById('resultContainer').classList.add('hidden');
-        document.getElementById('submitBtn').style.display='inline-block';
-        document.getElementById('nextBtn').style.display='none';
+        document.getElementById('submitBtn').style.display = 'inline-block';
+        document.getElementById('nextBtn').style.display = 'none';
         updateStats(questions); renderThumbnails(questions); return;
       }
-      if (currentIndex>=questions.length) currentIndex=questions.length-1;
-      if (currentIndex<0) currentIndex=0;
+      if (currentIndex >= questions.length) currentIndex = questions.length - 1;
+      if (currentIndex < 0) currentIndex = 0;
       const q = questions[currentIndex];
       document.getElementById('qTitle').innerHTML = q.title;
-      document.getElementById('qType').innerText = q.isMulti?'多选题':'单选题';
-      document.getElementById('qType').style.background = q.isMulti?'#fff7e6':'#e8f3ff';
-      document.getElementById('qNumber').innerText = `第 ${currentIndex+1} 题 / 共 ${questions.length} 题 (全局:${q.originalIndex+1})`;
+      document.getElementById('qType').innerText = q.isMulti ? '多选题' : '单选题';
+      document.getElementById('qType').style.background = q.isMulti ? '#fff7e6' : '#e8f3ff';
+      document.getElementById('qNumber').innerText = `第 ${currentIndex + 1} 题 / 共 ${questions.length} 题 (全局:${q.originalIndex + 1})`;
       const optsDiv = document.getElementById('optionsContainer');
       optsDiv.innerHTML = '';
       const effAns = getEffectiveAnswer(q);
       const sub = isSubmitted(q);
-      for (const [k,v] of Object.entries(q.options)) {
+      for (const [k, v] of Object.entries(q.options)) {
         const row = document.createElement('div');
         row.className = 'option-row';
         if (sub) { if (q.answer.includes(k)) row.classList.add('option-correct'); else if (effAns.includes(k)) row.classList.add('option-wrong'); }
         else if (effAns.includes(k)) row.classList.add('option-selected');
         row.innerHTML = `<span class="option-key">${k}</span><span>${v}</span>`;
-        row.addEventListener('click', ()=>selectOption(q,k));
+        row.addEventListener('click', () => selectOption(q, k));
         optsDiv.appendChild(row);
       }
       document.getElementById('resultContainer').classList.add('hidden');
       if (sub) {
-        document.getElementById('submitBtn').style.display='none';
-        document.getElementById('nextBtn').style.display='inline-block';
-        showResult(q,effAns);
+        document.getElementById('submitBtn').style.display = 'none';
+        document.getElementById('nextBtn').style.display = 'inline-block';
+        showResult(q, effAns);
       } else {
-        document.getElementById('submitBtn').style.display='inline-block';
-        document.getElementById('nextBtn').style.display='none';
+        document.getElementById('submitBtn').style.display = 'inline-block';
+        document.getElementById('nextBtn').style.display = 'none';
       }
       updateStats(questions); renderThumbnails(questions);
     }
 
-    function selectOption(q,key) { if(isSubmitted(q))return; let ans=getEffectiveAnswer(q); if(q.isMulti) ans=ans.includes(key)?ans.replace(key,''):(ans+key).split('').sort().join(''); else ans=key; setAnswer(q,ans); renderQuestion(); }
-    function showResult(q,effAns) {
-      const correct = effAns===q.answer;
+    function selectOption(q, key) { if (isSubmitted(q)) return; let ans = getEffectiveAnswer(q); if (q.isMulti) ans = ans.includes(key) ? ans.replace(key, '') : (ans + key).split('').sort().join(''); else ans = key; setAnswer(q, ans); renderQuestion(); }
+    function showResult(q, effAns) {
+      const correct = effAns === q.answer;
       const div = document.getElementById('resultContainer');
       div.classList.remove('hidden');
-      div.innerHTML = `<div style="font-weight:bold;color:${correct?'#2ba471':'#d54941'}">${correct?'✔ 回答正确！':'✘ 回答错误！正确答案：'+q.answer}</div><div style="font-weight:bold;margin-top:10px;">解析：</div><div style="white-space:pre-wrap;">${q.analysis||'无'}</div>`;
+      div.innerHTML = `<div style="font-weight:bold;color:${correct ? '#2ba471' : '#d54941'}">${correct ? '✔ 回答正确！' : '✘ 回答错误！正确答案：' + q.answer}</div><div style="font-weight:bold;margin-top:10px;">解析：</div><div style="white-space:pre-wrap;">${q.analysis || '无'}</div>`;
     }
 
     async function submitAnswer() {
-      const questions = getCurrentQuestions(); if(!questions.length)return;
-      const q = questions[currentIndex]; const ans = getEffectiveAnswer(q); if(!ans)return alert('请先选择答案');
-      if(currentMode==='wrong') { wrongSubmitted[q.originalIndex]=true; if(ans===q.answer){ q.wrongCorrectCount=(q.wrongCorrectCount||0)+1; if(q.wrongCorrectCount>=10) wrongSet.delete(q.originalIndex); } }
-      else { setSubmitted(q); totalAnswered++; if(ans===q.answer){ totalCorrect++; wrongSet.delete(q.originalIndex); } else wrongSet.add(q.originalIndex); }
+      const questions = getCurrentQuestions(); if (!questions.length) return;
+      const q = questions[currentIndex]; const ans = getEffectiveAnswer(q); if (!ans) return alert('请先选择答案');
+      if (currentMode === 'wrong') { wrongSubmitted[q.originalIndex] = true; if (ans === q.answer) { q.wrongCorrectCount = (q.wrongCorrectCount || 0) + 1; if (q.wrongCorrectCount >= 10) wrongSet.delete(q.originalIndex); } }
+      else { setSubmitted(q); totalAnswered++; if (ans === q.answer) { totalCorrect++; wrongSet.delete(q.originalIndex); } else wrongSet.add(q.originalIndex); }
       saveState();
       renderQuestion();
-      syncProgressToRepo(true);  // 静默合并同步
+      syncProgressToRepo(true);
     }
 
     function nextQuestion() {
-      const questions = getCurrentQuestions(); if(!isSubmitted(questions[currentIndex]))return alert('请先提交当前题目');
-      if(currentIndex<questions.length-1) currentIndex++; else return alert('已经是最后一题');
+      const questions = getCurrentQuestions(); if (!isSubmitted(questions[currentIndex])) return alert('请先提交当前题目');
+      if (currentIndex < questions.length - 1) currentIndex++; else return alert('已经是最后一题');
       saveState(); renderQuestion();
     }
     function prevQuestion() {
-      const questions = getCurrentQuestions(); if(!isSubmitted(questions[currentIndex]))return alert('请先提交当前题目');
-      if(currentIndex>0) currentIndex--; else return alert('已经是第一题');
+      const questions = getCurrentQuestions(); if (!isSubmitted(questions[currentIndex])) return alert('请先提交当前题目');
+      if (currentIndex > 0) currentIndex--; else return alert('已经是第一题');
       saveState(); renderQuestion();
     }
 
-    function switchMode(mode) { if(currentMode!==mode){ currentMode=mode; currentIndex=0; thumbPage=0; saveState(); updateModeButtons(); renderQuestion(); } }
-    function updateModeButtons() { document.querySelectorAll('.mode-btn').forEach(b=>b.classList.toggle('active',b.dataset.mode===currentMode)); }
+    function switchMode(mode) { if (currentMode !== mode) { currentMode = mode; currentIndex = 0; thumbPage = 0; saveState(); updateModeButtons(); renderQuestion(); } }
+    function updateModeButtons() { document.querySelectorAll('.mode-btn').forEach(b => b.classList.toggle('active', b.dataset.mode === currentMode)); }
 
     function clearCurrentModeRecords() {
-      if(currentMode==='wrong'){ wrongAnswers={}; wrongSubmitted={}; }
-      else { const sub=modeSubmitted[currentMode]; if(sub){ let cl=0,cc=0; const ans=modeAnswers[currentMode]||{}; for(const idx in sub){ if(sub[idx]){ cl++; const q=allQuestions.find(q=>q.originalIndex==idx); if(q&&ans[idx]===q.answer)cc++; } } totalAnswered-=cl; totalCorrect-=cc; delete modeAnswers[currentMode]; delete modeSubmitted[currentMode]; } }
+      if (currentMode === 'wrong') { wrongAnswers = {}; wrongSubmitted = {}; }
+      else { const sub = modeSubmitted[currentMode]; if (sub) { let cl = 0, cc = 0; const ans = modeAnswers[currentMode] || {}; for (const idx in sub) { if (sub[idx]) { cl++; const q = allQuestions.find(q => q.originalIndex == idx); if (q && ans[idx] === q.answer) cc++; } } totalAnswered -= cl; totalCorrect -= cc; delete modeAnswers[currentMode]; delete modeSubmitted[currentMode]; } }
       saveState(); renderQuestion(); alert('当前模式做题记录已清空');
     }
 
     function renderThumbnails(questions) {
-      const container=document.getElementById('thumbContainer'); container.innerHTML=''; if(!questions.length)return;
-      const cw=container.clientWidth||300; thumbItemsPerPage=Math.max(1,Math.floor((cw+3)/33));
-      const totalPages=Math.ceil(questions.length/thumbItemsPerPage); if(thumbPage>=totalPages) thumbPage=totalPages-1; if(thumbPage<0) thumbPage=0;
-      const start=thumbPage*thumbItemsPerPage, end=Math.min(start+thumbItemsPerPage,questions.length);
-      for(let i=start;i<end;i++) {
-        const q=questions[i]; const cell=document.createElement('div'); cell.className='thumb-cell'; cell.innerText=i+1;
-        if(i===currentIndex) cell.classList.add('current');
-        const sub=isSubmitted(q); if(sub){ const ans=getEffectiveAnswer(q); cell.classList.add(ans===q.answer?'correct':'wrong'); }
-        cell.addEventListener('click',()=>{ currentIndex=i; saveState(); renderQuestion(); });
+      const container = document.getElementById('thumbContainer'); container.innerHTML = ''; if (!questions.length) return;
+      const cw = container.clientWidth || 300; thumbItemsPerPage = Math.max(1, Math.floor((cw + 3) / 33));
+      const totalPages = Math.ceil(questions.length / thumbItemsPerPage); if (thumbPage >= totalPages) thumbPage = totalPages - 1; if (thumbPage < 0) thumbPage = 0;
+      const start = thumbPage * thumbItemsPerPage, end = Math.min(start + thumbItemsPerPage, questions.length);
+      for (let i = start; i < end; i++) {
+        const q = questions[i]; const cell = document.createElement('div'); cell.className = 'thumb-cell'; cell.innerText = i + 1;
+        if (i === currentIndex) cell.classList.add('current');
+        const sub = isSubmitted(q); if (sub) { const ans = getEffectiveAnswer(q); cell.classList.add(ans === q.answer ? 'correct' : 'wrong'); }
+        cell.addEventListener('click', () => { currentIndex = i; saveState(); renderQuestion(); });
         container.appendChild(cell);
       }
     }
 
-    function downloadFile(filename,text) { const blob=new Blob([text],{type:'text/markdown'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=filename; a.click(); URL.revokeObjectURL(a.href); }
+    function downloadFile(filename, text) { const blob = new Blob([text], { type: 'text/markdown' }); const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = filename; a.click(); URL.revokeObjectURL(a.href); }
     function updateStats(questions) {
-      document.getElementById('correctStat').innerText=`正确:${totalCorrect}`;
-      const acc=totalAnswered>0?(totalCorrect/totalAnswered*100).toFixed(0):0;
-      document.getElementById('accuracyStat').innerText=`正确率:${acc}%`;
-      document.getElementById('progressStat').innerText=`${totalAnswered}/${allQuestions.length}`;
-      document.getElementById('progressFill').style.width=`${questions.length?(currentIndex+1)/questions.length*100:0}%`;
+      document.getElementById('correctStat').innerText = `正确:${totalCorrect}`;
+      const acc = totalAnswered > 0 ? (totalCorrect / totalAnswered * 100).toFixed(0) : 0;
+      document.getElementById('accuracyStat').innerText = `正确率:${acc}%`;
+      document.getElementById('progressStat').innerText = `${totalAnswered}/${allQuestions.length}`;
+      document.getElementById('progressFill').style.width = `${questions.length ? (currentIndex + 1) / questions.length * 100 : 0}%`;
     }
 
     // 事件绑定
     document.getElementById('tokenInput').value = githubToken;
-    document.getElementById('saveTokenBtn').addEventListener('click',()=>{
+    document.getElementById('saveTokenBtn').addEventListener('click', () => {
       const token = document.getElementById('tokenInput').value.trim();
-      if(token){ githubToken=token; localStorage.setItem('githubToken',token); alert('Token已保存'); }
+      if (token) { githubToken = token; localStorage.setItem('githubToken', token); alert('Token已保存'); }
     });
 
-    document.getElementById('startBtn').addEventListener('click', async ()=>{
+    document.getElementById('startBtn').addEventListener('click', async () => {
       if (!githubToken) {
         const token = document.getElementById('tokenInput').value.trim();
         if (!token) return alert('请先输入 GitHub Token');
@@ -505,13 +496,13 @@
         localStorage.setItem('githubToken', token);
       }
       let text = '';
-      try { text = await loadQuizText(); } catch(e) { return; }
+      try { text = await loadQuizText(); } catch (e) { return; }
       if (!text.trim()) return alert('题库内容为空');
       allQuestions = parseQuestions(text);
       if (!allQuestions.length) return alert('未解析到有效题目');
-      chapters = ['全部题目', ...new Set(allQuestions.map(q=>q.chapter))];
+      chapters = ['全部题目', ...new Set(allQuestions.map(q => q.chapter))];
       const sel = document.getElementById('chapterSelect');
-      sel.innerHTML = chapters.map(c=>`<option>${c}</option>`).join('');
+      sel.innerHTML = chapters.map(c => `<option>${c}</option>`).join('');
       sel.value = selectedChapter;
 
       document.getElementById('loadingStatus').innerText = '正在从云端恢复记录...';
@@ -527,33 +518,33 @@
       renderQuestion();
     });
 
-    document.querySelectorAll('.mode-btn').forEach(b=>b.addEventListener('click',()=>switchMode(b.dataset.mode)));
+    document.querySelectorAll('.mode-btn').forEach(b => b.addEventListener('click', () => switchMode(b.dataset.mode)));
     document.getElementById('submitBtn').addEventListener('click', submitAnswer);
-    document.getElementById('nextBtn').addEventListener('click',nextQuestion);
-    document.getElementById('prevBtn').addEventListener('click',prevQuestion);
-    document.getElementById('toggleNoteBtn').addEventListener('click',()=>document.getElementById('notePanel').classList.toggle('hidden'));
-    document.getElementById('addAnalysisBtn').addEventListener('click',()=>{
-      const q=getCurrentQuestions()[currentIndex]; if(!q)return;
-      const text=document.getElementById('noteInput').value.trim(); if(!text)return;
-      if(q.analysis) q.analysis+='\n\n'+text; else q.analysis=text;
-      document.getElementById('noteInput').value=''; saveState(); renderQuestion(); alert('解析已添加');
+    document.getElementById('nextBtn').addEventListener('click', nextQuestion);
+    document.getElementById('prevBtn').addEventListener('click', prevQuestion);
+    document.getElementById('toggleNoteBtn').addEventListener('click', () => document.getElementById('notePanel').classList.toggle('hidden'));
+    document.getElementById('addAnalysisBtn').addEventListener('click', () => {
+      const q = getCurrentQuestions()[currentIndex]; if (!q) return;
+      const text = document.getElementById('noteInput').value.trim(); if (!text) return;
+      if (q.analysis) q.analysis += '\n\n' + text; else q.analysis = text;
+      document.getElementById('noteInput').value = ''; saveState(); renderQuestion(); alert('解析已添加');
     });
-    document.getElementById('exportWrongBtn').addEventListener('click',()=>{
-      const wrong=allQuestions.filter(q=>wrongSet.has(q.originalIndex)); if(!wrong.length)return alert('暂无错题');
-      let md='# 错题本\n\n'; wrong.forEach((q,i)=>{
-        md+=`**${i+1}. ${q.title}**\n\n`;
-        for(const [k,v] of Object.entries(q.options)) md+=`- **${k}**. ${v}\n`;
-        md+=`\n**正确答案**：${q.answer}\n\n**解析**：\n${q.analysis||'无'}\n\n---\n\n`;
-      }); downloadFile('错题本.md',md);
+    document.getElementById('exportWrongBtn').addEventListener('click', () => {
+      const wrong = allQuestions.filter(q => wrongSet.has(q.originalIndex)); if (!wrong.length) return alert('暂无错题');
+      let md = '# 错题本\n\n'; wrong.forEach((q, i) => {
+        md += `**${i + 1}. ${q.title}**\n\n`;
+        for (const [k, v] of Object.entries(q.options)) md += `- **${k}**. ${v}\n`;
+        md += `\n**正确答案**：${q.answer}\n\n**解析**：\n${q.analysis || '无'}\n\n---\n\n`;
+      }); downloadFile('错题本.md', md);
     });
     document.getElementById('saveQuizBtn').addEventListener('click', saveQuizToGitHub);
-    document.getElementById('syncBtn').addEventListener('click',()=>syncProgressToRepo(false));
-    document.getElementById('clearRecordBtn').addEventListener('click',clearCurrentModeRecords);
-    document.getElementById('clearCacheBtn').addEventListener('click',()=>{ if(confirm('确定清除所有记录和题库吗？')){ localStorage.clear(); location.reload(); } });
-    document.getElementById('goBtn').addEventListener('click',()=>{ const n=parseInt(document.getElementById('jumpInput').value); const qs=getCurrentQuestions(); if(n>=1&&n<=qs.length){ currentIndex=n-1; saveState(); renderQuestion(); } else alert('题号超出范围'); });
-    document.getElementById('chapterSelect').addEventListener('change',(e)=>{ selectedChapter=e.target.value; currentIndex=0; thumbPage=0; saveState(); renderQuestion(); });
-    document.getElementById('prevGroupBtn').addEventListener('click',()=>{ if(thumbPage>0) thumbPage--; renderThumbnails(getCurrentQuestions()); });
-    document.getElementById('nextGroupBtn').addEventListener('click',()=>{ thumbPage++; renderThumbnails(getCurrentQuestions()); });
+    document.getElementById('syncBtn').addEventListener('click', () => syncProgressToRepo(false));
+    document.getElementById('clearRecordBtn').addEventListener('click', clearCurrentModeRecords);
+    document.getElementById('clearCacheBtn').addEventListener('click', () => { if (confirm('确定清除所有记录和题库吗？')) { localStorage.clear(); location.reload(); } });
+    document.getElementById('goBtn').addEventListener('click', () => { const n = parseInt(document.getElementById('jumpInput').value); const qs = getCurrentQuestions(); if (n >= 1 && n <= qs.length) { currentIndex = n - 1; saveState(); renderQuestion(); } else alert('题号超出范围'); });
+    document.getElementById('chapterSelect').addEventListener('change', (e) => { selectedChapter = e.target.value; currentIndex = 0; thumbPage = 0; saveState(); renderQuestion(); });
+    document.getElementById('prevGroupBtn').addEventListener('click', () => { if (thumbPage > 0) thumbPage--; renderThumbnails(getCurrentQuestions()); });
+    document.getElementById('nextGroupBtn').addEventListener('click', () => { thumbPage++; renderThumbnails(getCurrentQuestions()); });
 
     updateSyncTimeDisplay();
   </script>
