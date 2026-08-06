@@ -11,7 +11,8 @@
       "7": "ABD",
       "8": "B",
       "9": "ABC"
-    }
+    },
+    "random": {}
   },
   "modeSubmitted": {
     "sequence": {
@@ -25,7 +26,8 @@
       "7": true,
       "8": true,
       "9": true
-    }
+    },
+    "random": {}
   },
   "wrongAnswers": {},
   "wrongSubmitted": {},
