@@ -426,6 +426,9 @@ D. 150cm
 
 答案：C
 
+解析：
+![图片](https://cdn.jsdelivr.net/gh/WIO237/wy-quiz@main/2026一级建造师习题班汇总.assets/img_1785987439100_xmhl5s.png)
+
 
 20. 上路堤是指路面结构层以下（ ）的填方路基。
 
@@ -891,7 +894,8 @@ D. 伸缩杆
 答案：B
 
 解析：
-![图片](https://cdn.jsdelivr.net/gh/WIO237/wy-quiz@main/2026一级建造师习题班汇总.assets/img_1785986760061_c6noje.png)
+
+<img src="https://cdn.jsdelivr.net/gh/WIO237/wy-quiz@main/2026一级建造师习题班汇总.assets/img_1785986760061_c6noje.png" alt="图片" style="max-width:100%;height:auto;" referrerpolicy="no-referrer">
 
 
 50. 水泥混凝土路面的纵向接缝是根据（ ）设置的。
