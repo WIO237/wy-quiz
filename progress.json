@@ -9,6 +9,7 @@
       "5": "ABC",
       "6": "C",
       "7": "ABD",
+      "8": "B",
       "9": "ABC",
       "10": "ABC",
       "11": "C",
@@ -25,6 +26,7 @@
       "5": true,
       "6": true,
       "7": true,
+      "8": true,
       "9": true,
       "10": true,
       "11": true,
@@ -34,10 +36,10 @@
   "wrongAnswers": {},
   "wrongSubmitted": {},
   "wrongSet": [],
-  "totalAnswered": 12,
-  "totalCorrect": 12,
+  "totalAnswered": 13,
+  "totalCorrect": 13,
   "notes": {},
   "currentMode": "sequence",
   "selectedChapter": "全部题目",
-  "currentIndex": 7
+  "currentIndex": 8
 }
