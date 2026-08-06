@@ -32,7 +32,8 @@
       "27": "BC",
       "28": "B",
       "29": "ABD",
-      "30": "C"
+      "30": "C",
+      "31": "D"
     }
   },
   "modeSubmitted": {
@@ -68,19 +69,21 @@
       "27": true,
       "28": true,
       "29": true,
-      "30": true
+      "30": true,
+      "31": true
     }
   },
   "wrongAnswers": {},
   "wrongSubmitted": {},
   "wrongSet": [
     37,
-    13
+    13,
+    31
   ],
-  "totalAnswered": 31,
+  "totalAnswered": 32,
   "totalCorrect": 30,
   "notes": {},
   "currentMode": "sequence",
   "selectedChapter": "全部题目",
-  "currentIndex": 30
+  "currentIndex": 31
 }
