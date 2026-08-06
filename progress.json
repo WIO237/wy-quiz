@@ -9,7 +9,8 @@
       "5": "ABC",
       "6": "C",
       "7": "ABD",
-      "8": "B"
+      "8": "B",
+      "9": "ABC"
     }
   },
   "modeSubmitted": {
@@ -22,16 +23,17 @@
       "5": true,
       "6": true,
       "7": true,
-      "8": true
+      "8": true,
+      "9": true
     }
   },
   "wrongAnswers": {},
   "wrongSubmitted": {},
   "wrongSet": [],
-  "totalAnswered": 9,
-  "totalCorrect": 9,
+  "totalAnswered": 10,
+  "totalCorrect": 10,
   "notes": {},
   "currentMode": "sequence",
   "selectedChapter": "全部题目",
-  "currentIndex": 8
+  "currentIndex": 9
 }
