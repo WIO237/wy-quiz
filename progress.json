@@ -19,7 +19,8 @@
       "15": "C",
       "16": "D",
       "17": "ABE",
-      "18": "C"
+      "18": "C",
+      "32": "ACDE"
     },
     "random": {}
   },
@@ -43,17 +44,18 @@
       "15": true,
       "16": true,
       "17": true,
-      "18": true
+      "18": true,
+      "32": true
     },
     "random": {}
   },
   "wrongAnswers": {},
   "wrongSubmitted": {},
   "wrongSet": [],
-  "totalAnswered": 19,
-  "totalCorrect": 19,
+  "totalAnswered": 20,
+  "totalCorrect": 20,
   "notes": {},
   "currentMode": "sequence",
   "selectedChapter": "全部题目",
-  "currentIndex": 17
+  "currentIndex": 32
 }
