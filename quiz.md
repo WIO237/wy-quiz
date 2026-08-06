@@ -266,7 +266,7 @@ E. 沥青类路面
 
 解析：
 
-![image-20260804162520265](https://raw.githubusercontent.com/WIO237/wy-quiz/main/2026一级建造师习题班汇总.assets/image-20260804162520265.png)
+<img src="https://cdn.jsdelivr.net/gh/WIO237/wy-quiz@main/2026一级建造师习题班汇总.assets/image-20260804162520265.png" alt="image-20260804162520265" style="max-width:100%;height:auto;" referrerpolicy="no-referrer">
 
 
 11. 道路路面的基本结构层一般为（ ）。
@@ -660,6 +660,24 @@ D. 抗冻性
 E. 透水性好
 
 答案：ABCD
+
+解析：
+<table border="1" style="border-collapse: collapse; width: 100%; text-align: left; font-size: 14px; line-height: 1.6; vertical-align: middle;">
+    <tbody>
+        <tr>
+            <td style="padding: 12px; border: 1px solid #000; text-align: center; width: 20%;">面层</td>
+            <td style="padding: 12px; border: 1px solid #000;">强度、高温稳定性、低温抗裂性、抗疲劳、抗水损害能力、抗滑能力、平整度</td>
+        </tr>
+        <tr>
+            <td style="padding: 12px; border: 1px solid #000; text-align: center;">基层</td>
+            <td style="padding: 12px; border: 1px solid #000;">强度、扩散荷载、水稳性</td>
+        </tr>
+        <tr>
+            <td style="padding: 12px; border: 1px solid #000; text-align: center;">垫层</td>
+            <td style="padding: 12px; border: 1px solid #000;">强度、扩散荷载、水稳性</td>
+        </tr>
+    </tbody>
+</table>
 
 
 35. 沥青混合料面层的性能指标包括（ ）。
@@ -7784,7 +7802,7 @@ E. 初始顶进的参数
 
 解析：
 
-![image-20260804162656006](https://raw.githubusercontent.com/WIO237/wy-quiz/main/2026一级建造师习题班汇总.assets/image-20260804162656006.png)
+<img src="https://cdn.jsdelivr.net/gh/WIO237/wy-quiz@main/2026一级建造师习题班汇总.assets/image-20260804162656006.png" alt="image-20260804162656006" style="max-width:100%;height:auto;" referrerpolicy="no-referrer">
 B. 倒挂井壁法
 C. 明挖法
 D. 顶管法
@@ -8953,8 +8971,8 @@ E. 次防渗层
 解析：
 
 防渗系统结构可分为单层防渗系统结构和双层防渗系统结构。单层防渗系统基本结构应包括渗沥液收集导排系统、防渗层及上下保护层和基础层。双层防渗系统基本结构应包括渗沥液导排系统、主防渗层及上下保护层、渗沥液检测层、次防渗层及上下保护层和基础层。应根据需要设置地下水导排系统和反滤层。
-![image-20260804162930830](https://raw.githubusercontent.com/WIO237/wy-quiz/main/2026一级建造师习题班汇总.assets/image-20260804162930830.png)
-![image-20260804162943020](https://raw.githubusercontent.com/WIO237/wy-quiz/main/2026一级建造师习题班汇总.assets/image-20260804162943020.png)
+<img src="https://cdn.jsdelivr.net/gh/WIO237/wy-quiz@main/2026一级建造师习题班汇总.assets/image-20260804162930830.png" alt="image-20260804162930830" style="max-width:100%;height:auto;" referrerpolicy="no-referrer">
+<img src="https://cdn.jsdelivr.net/gh/WIO237/wy-quiz@main/2026一级建造师习题班汇总.assets/image-20260804162943020.png" alt="image-20260804162943020" style="max-width:100%;height:auto;" referrerpolicy="no-referrer">
 
 
 568. 关于生活垃圾卫生填埋场HDPE膜的施工要求，正确的有（）
