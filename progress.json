@@ -40,7 +40,8 @@
       "35": "ABD",
       "36": "D",
       "37": "ABD",
-      "38": "A"
+      "38": "A",
+      "39": "D"
     }
   },
   "modeSubmitted": {
@@ -84,7 +85,8 @@
       "35": true,
       "36": true,
       "37": true,
-      "38": true
+      "38": true,
+      "39": true
     }
   },
   "wrongAnswers": {},
@@ -94,8 +96,8 @@
     31,
     37
   ],
-  "totalAnswered": 39,
-  "totalCorrect": 37,
+  "totalAnswered": 40,
+  "totalCorrect": 38,
   "notes": {},
   "currentMode": "sequence",
   "selectedChapter": "全部题目",
