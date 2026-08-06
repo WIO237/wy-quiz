@@ -18,7 +18,8 @@
       "14": "BCD",
       "15": "C",
       "16": "D",
-      "17": "ABE"
+      "17": "ABE",
+      "18": "C"
     },
     "random": {}
   },
@@ -41,17 +42,18 @@
       "14": true,
       "15": true,
       "16": true,
-      "17": true
+      "17": true,
+      "18": true
     },
     "random": {}
   },
   "wrongAnswers": {},
   "wrongSubmitted": {},
   "wrongSet": [],
-  "totalAnswered": 18,
-  "totalCorrect": 18,
+  "totalAnswered": 19,
+  "totalCorrect": 19,
   "notes": {},
   "currentMode": "sequence",
   "selectedChapter": "全部题目",
-  "currentIndex": 9
+  "currentIndex": 18
 }
