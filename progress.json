@@ -2,12 +2,14 @@
   "modeAnswers": {
     "random": {},
     "sequence": {
+      "9": "ABC",
       "37": "A"
     }
   },
   "modeSubmitted": {
     "random": {},
     "sequence": {
+      "9": true,
       "37": true
     }
   },
@@ -16,10 +18,10 @@
   "wrongSet": [
     37
   ],
-  "totalAnswered": 1,
-  "totalCorrect": 0,
+  "totalAnswered": 2,
+  "totalCorrect": 1,
   "notes": {},
   "currentMode": "sequence",
   "selectedChapter": "全部题目",
-  "currentIndex": 37
+  "currentIndex": 9
 }
