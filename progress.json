@@ -11,7 +11,8 @@
       "7": "ABD",
       "8": "B",
       "9": "ABC",
-      "10": "ABC"
+      "10": "ABC",
+      "11": "C"
     },
     "random": {}
   },
@@ -27,17 +28,18 @@
       "7": true,
       "8": true,
       "9": true,
-      "10": true
+      "10": true,
+      "11": true
     },
     "random": {}
   },
   "wrongAnswers": {},
   "wrongSubmitted": {},
   "wrongSet": [],
-  "totalAnswered": 11,
-  "totalCorrect": 11,
+  "totalAnswered": 12,
+  "totalCorrect": 12,
   "notes": {},
   "currentMode": "sequence",
   "selectedChapter": "全部题目",
-  "currentIndex": 10
+  "currentIndex": 11
 }
