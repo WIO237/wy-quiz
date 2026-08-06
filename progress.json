@@ -29,7 +29,8 @@
       "24": "C",
       "25": "BCE",
       "26": "C",
-      "27": "BC"
+      "27": "BC",
+      "28": "B"
     }
   },
   "modeSubmitted": {
@@ -62,7 +63,8 @@
       "24": true,
       "25": true,
       "26": true,
-      "27": true
+      "27": true,
+      "28": true
     }
   },
   "wrongAnswers": {},
@@ -71,10 +73,10 @@
     37,
     13
   ],
-  "totalAnswered": 28,
-  "totalCorrect": 27,
+  "totalAnswered": 29,
+  "totalCorrect": 28,
   "notes": {},
   "currentMode": "sequence",
   "selectedChapter": "全部题目",
-  "currentIndex": 27
+  "currentIndex": 28
 }
