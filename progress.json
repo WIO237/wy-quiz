@@ -38,7 +38,8 @@
       "33": "ABCD",
       "34": "ACDE",
       "35": "ABD",
-      "36": "D"
+      "36": "D",
+      "37": "ABD"
     }
   },
   "modeSubmitted": {
@@ -80,20 +81,21 @@
       "33": true,
       "34": true,
       "35": true,
-      "36": true
+      "36": true,
+      "37": true
     }
   },
   "wrongAnswers": {},
   "wrongSubmitted": {},
   "wrongSet": [
-    37,
     13,
-    31
+    31,
+    37
   ],
-  "totalAnswered": 37,
-  "totalCorrect": 35,
+  "totalAnswered": 38,
+  "totalCorrect": 36,
   "notes": {},
   "currentMode": "sequence",
   "selectedChapter": "全部题目",
-  "currentIndex": 36
+  "currentIndex": 37
 }
