@@ -70,12 +70,12 @@
   <div id="importPage">
     <h2 style="text-align:center; color:#0052d9;">全能刷题工具</h2>
     <div class="token-row">
-      <input type="text" id="tokenInput" placeholder="输入 GitHub Token (需要 gist 和 repo 权限)">
+      <input type="text" id="tokenInput" placeholder="输入 GitHub Token (需要 repo 权限)">
       <button id="saveTokenBtn" class="action-btn">保存</button>
     </div>
     <div id="loadingStatus">正在准备题库...</div>
     <button class="btn-full" id="startBtn">▶ 开始刷题</button>
-    <p style="text-align:center;color:#999;font-size:12px;">题库从 GitHub 下载，记录云端同步</p>
+    <p style="text-align:center;color:#999;font-size:12px;">题库从 GitHub 下载，记录存储在仓库 progress.json</p>
   </div>
 
   <div id="quizPage" class="hidden">
@@ -138,6 +138,7 @@
     const GITHUB_REPO_OWNER = 'WIO237';
     const GITHUB_REPO_NAME  = 'wy-quiz';
     const QUIZ_FILE_PATH    = 'quiz.md';
+    const PROGRESS_FILE_PATH = 'progress.json';   // 做题记录文件
     // ★★★ 配置结束 ★★★
 
     // 全局状态
@@ -155,7 +156,6 @@
     let thumbPage = 0;
     let thumbItemsPerPage = 20;
     let notes = {};
-    let gistId = localStorage.getItem('gistId') || null;
     let githubToken = localStorage.getItem('githubToken') || '';
     let lastSyncTime = null;
     let autoSyncTimer = null;
@@ -206,70 +206,83 @@
       return md;
     }
 
-    // 本地缓存仅用于暂存，不做恢复源
+    // 本地缓存仅用于临时暂存
     function saveState() {
       const state = { modeAnswers, modeSubmitted, wrongAnswers, wrongSubmitted, wrongSet:Array.from(wrongSet), totalAnswered, totalCorrect, notes, currentMode, selectedChapter, currentIndex };
       localStorage.setItem('quizState', JSON.stringify(state));
     }
 
-    // ==================== GitHub 同步核心 ====================
-    async function syncToGist(silent=false) {
+    // ==================== 同步到仓库文件 ====================
+    async function syncProgressToRepo(silent=false) {
       if (!githubToken) return;
       const data = { modeAnswers, modeSubmitted, wrongAnswers, wrongSubmitted, wrongSet:Array.from(wrongSet), totalAnswered, totalCorrect, notes, currentMode, selectedChapter, currentIndex };
-      const content = JSON.stringify(data);
-      const headers = { 'Authorization':`token ${githubToken}`, 'Content-Type':'application/json' };
+      const content = JSON.stringify(data, null, 2);
+      const apiUrl = `https://api.github.com/repos/${GITHUB_REPO_OWNER}/${GITHUB_REPO_NAME}/contents/${PROGRESS_FILE_PATH}`;
+      const headers = { 'Authorization': `token ${githubToken}`, 'Content-Type': 'application/json' };
+
       try {
-        if (gistId) {
-          const res = await fetch(`https://api.github.com/gists/${gistId}`, {method:'PATCH', headers, body:JSON.stringify({files:{'quiz-state.json':{content}}})});
-          if (!res.ok) throw new Error('更新失败');
-        } else {
-          const res = await fetch('https://api.github.com/gists', {method:'POST', headers, body:JSON.stringify({description:'刷题数据备份',public:false,files:{'quiz-state.json':{content}}})});
-          if (!res.ok) throw new Error('创建失败');
-          const json = await res.json();
-          gistId = json.id;
-          localStorage.setItem('gistId', gistId);
-        }
+        // 获取现有文件 SHA（如果存在）
+        let sha = null;
+        try {
+          const getRes = await fetch(apiUrl, { headers });
+          if (getRes.ok) {
+            const fileInfo = await getRes.json();
+            sha = fileInfo.sha;
+          }
+        } catch (e) {}
+
+        const body = {
+          message: 'Update progress',
+          content: btoa(unescape(encodeURIComponent(content))),
+        };
+        if (sha) body.sha = sha;
+
+        const putRes = await fetch(apiUrl, {
+          method: 'PUT',
+          headers,
+          body: JSON.stringify(body)
+        });
+
+        if (!putRes.ok) throw new Error('上传失败');
         lastSyncTime = new Date();
         updateSyncTimeDisplay();
         if (!silent) alert('同步成功！');
-      } catch(e) {
+      } catch (e) {
         if (!silent) alert('同步失败: ' + e.message);
         else console.log('自动同步失败: ' + e.message);
       }
     }
 
-    async function loadFromGist(retries = 3) {
-      if (!gistId) gistId = localStorage.getItem('gistId');
-      if (!gistId || !githubToken) return false;
+    async function loadProgressFromRepo(retries = 3) {
+      if (!githubToken) return false;
+      const apiUrl = `https://api.github.com/repos/${GITHUB_REPO_OWNER}/${GITHUB_REPO_NAME}/contents/${PROGRESS_FILE_PATH}`;
       for (let i = 0; i < retries; i++) {
         try {
-          const res = await fetch(`https://api.github.com/gists/${gistId}`, {
+          const res = await fetch(apiUrl, {
             headers: { 'Authorization': `token ${githubToken}` }
           });
           if (res.ok) {
-            const json = await res.json();
-            const content = json.files?.['quiz-state.json']?.content;
-            if (content) {
-              const data = JSON.parse(content);
-              modeAnswers = data.modeAnswers || {};
-              modeSubmitted = data.modeSubmitted || {};
-              wrongAnswers = data.wrongAnswers || {};
-              wrongSubmitted = data.wrongSubmitted || {};
-              wrongSet = new Set(data.wrongSet || []);
-              totalAnswered = data.totalAnswered || 0;
-              totalCorrect = data.totalCorrect || 0;
-              notes = data.notes || {};
-              currentMode = data.currentMode || 'sequence';
-              selectedChapter = data.selectedChapter || '全部题目';
-              currentIndex = data.currentIndex || 0;
-              // 更新本地缓存（仅作为副本）
-              saveState();
-              return true;
-            }
+            const fileInfo = await res.json();
+            const content = atob(fileInfo.content);
+            const data = JSON.parse(content);
+            modeAnswers = data.modeAnswers || {};
+            modeSubmitted = data.modeSubmitted || {};
+            wrongAnswers = data.wrongAnswers || {};
+            wrongSubmitted = data.wrongSubmitted || {};
+            wrongSet = new Set(data.wrongSet || []);
+            totalAnswered = data.totalAnswered || 0;
+            totalCorrect = data.totalCorrect || 0;
+            notes = data.notes || {};
+            currentMode = data.currentMode || 'sequence';
+            selectedChapter = data.selectedChapter || '全部题目';
+            currentIndex = data.currentIndex || 0;
+            saveState();
+            return true;
           }
-        } catch(e) {}
-        // 重试前等待1秒
-        if (i < retries - 1) await new Promise(resolve => setTimeout(resolve, 1000));
+          // 文件不存在(404)表示首次使用，返回 false 但不算错误
+          if (res.status === 404) return false;
+        } catch (e) {}
+        if (i < retries - 1) await new Promise(r => setTimeout(r, 1000));
       }
       return false;
     }
@@ -284,8 +297,8 @@
       if (autoSyncTimer) clearInterval(autoSyncTimer);
       if (!githubToken) return;
       // 立即同步一次
-      syncToGist(true);
-      autoSyncTimer = setInterval(() => syncToGist(true), 10*60*1000);
+      syncProgressToRepo(true);
+      autoSyncTimer = setInterval(() => syncProgressToRepo(true), 10*60*1000);
     }
 
     // 保存题库到 GitHub 仓库
@@ -310,7 +323,7 @@
         });
         if (!putRes.ok) throw new Error('更新失败，可能权限不足');
         alert('题库已保存至 GitHub 仓库！');
-        syncToGist(true);
+        syncProgressToRepo(true);
       } catch (e) { alert('保存失败：' + e.message); }
     }
 
@@ -403,8 +416,8 @@
       else { setSubmitted(q); totalAnswered++; if(ans===q.answer){ totalCorrect++; wrongSet.delete(q.originalIndex); } else wrongSet.add(q.originalIndex); }
       saveState();
       renderQuestion();
-      // 立即静默同步
-      syncToGist(true);
+      // 立即同步到仓库
+      syncProgressToRepo(true);
     }
 
     function nextQuestion() {
@@ -474,24 +487,14 @@
       sel.innerHTML = chapters.map(c=>`<option>${c}</option>`).join('');
       sel.value = selectedChapter;
 
-      // 核心：只从云端恢复，不读本地缓存
+      // 从仓库加载进度
       document.getElementById('loadingStatus').innerText = '正在从云端恢复记录...';
-      const restored = await loadFromGist(3);
+      const restored = await loadProgressFromRepo(3);
       if (!restored) {
-        // 如果云端没有记录（首次使用），保持空白状态
-        if (!gistId) {
-          // 新用户，初始化空白
-          modeAnswers = {}; modeSubmitted = {};
-          wrongAnswers = {}; wrongSubmitted = {};
-          wrongSet = new Set();
-          totalAnswered = 0; totalCorrect = 0;
-          notes = {};
-        } else {
-          alert('无法从云端恢复记录，请检查网络后重新进入。');
-          return;
-        }
+        // 如果云端没有记录（首次使用），保持空白
+        // 已初始化为空，无需操作
       }
-      // 启动自动同步（会创建/更新 Gist）
+      // 启动自动同步
       startAutoSync();
       updateSyncTimeDisplay();
 
@@ -521,7 +524,7 @@
       }); downloadFile('错题本.md',md);
     });
     document.getElementById('saveQuizBtn').addEventListener('click', saveQuizToGitHub);
-    document.getElementById('syncBtn').addEventListener('click',()=>syncToGist(false));
+    document.getElementById('syncBtn').addEventListener('click',()=>syncProgressToRepo(false));
     document.getElementById('clearRecordBtn').addEventListener('click',clearCurrentModeRecords);
     document.getElementById('clearCacheBtn').addEventListener('click',()=>{ if(confirm('确定清除所有记录和题库吗？')){ localStorage.clear(); location.reload(); } });
     document.getElementById('goBtn').addEventListener('click',()=>{ const n=parseInt(document.getElementById('jumpInput').value); const qs=getCurrentQuestions(); if(n>=1&&n<=qs.length){ currentIndex=n-1; saveState(); renderQuestion(); } else alert('题号超出范围'); });
