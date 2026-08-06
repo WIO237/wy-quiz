@@ -26,7 +26,8 @@
       "21": "ABCD",
       "22": "C",
       "23": "BDE",
-      "24": "C"
+      "24": "C",
+      "25": "BCE"
     }
   },
   "modeSubmitted": {
@@ -56,7 +57,8 @@
       "21": true,
       "22": true,
       "23": true,
-      "24": true
+      "24": true,
+      "25": true
     }
   },
   "wrongAnswers": {},
@@ -65,10 +67,10 @@
     37,
     13
   ],
-  "totalAnswered": 25,
-  "totalCorrect": 24,
+  "totalAnswered": 26,
+  "totalCorrect": 25,
   "notes": {},
   "currentMode": "sequence",
   "selectedChapter": "全部题目",
-  "currentIndex": 19
+  "currentIndex": 25
 }
