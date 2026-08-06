@@ -3,6 +3,7 @@
     "random": {},
     "sequence": {
       "0": "B",
+      "18": "C",
       "42": "C"
     }
   },
@@ -10,6 +11,7 @@
     "random": {},
     "sequence": {
       "0": true,
+      "18": true,
       "42": true
     }
   },
@@ -18,10 +20,10 @@
   "wrongSet": [
     37
   ],
-  "totalAnswered": 2,
-  "totalCorrect": 2,
+  "totalAnswered": 3,
+  "totalCorrect": 3,
   "notes": {},
   "currentMode": "sequence",
   "selectedChapter": "全部题目",
-  "currentIndex": 42
+  "currentIndex": 18
 }
