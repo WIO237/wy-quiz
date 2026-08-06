@@ -1,33 +1,19 @@
 {
   "modeAnswers": {
-    "random": {},
-    "sequence": {
-      "0": "B",
-      "1": "C",
-      "2": "BC",
-      "18": "C",
-      "42": "C"
-    }
+    "random": {}
   },
   "modeSubmitted": {
-    "random": {},
-    "sequence": {
-      "0": true,
-      "1": true,
-      "2": true,
-      "18": true,
-      "42": true
-    }
+    "random": {}
   },
   "wrongAnswers": {},
   "wrongSubmitted": {},
   "wrongSet": [
     37
   ],
-  "totalAnswered": 5,
-  "totalCorrect": 5,
+  "totalAnswered": 0,
+  "totalCorrect": 0,
   "notes": {},
   "currentMode": "sequence",
   "selectedChapter": "全部题目",
-  "currentIndex": 18
+  "currentIndex": 0
 }
