@@ -48,7 +48,8 @@
       "43": "ABCD",
       "44": "B",
       "45": "ABCD",
-      "46": "CE"
+      "46": "CE",
+      "47": "ABCD"
     }
   },
   "modeSubmitted": {
@@ -100,7 +101,8 @@
       "43": true,
       "44": true,
       "45": true,
-      "46": true
+      "46": true,
+      "47": true
     }
   },
   "wrongAnswers": {},
@@ -111,10 +113,10 @@
     37,
     42
   ],
-  "totalAnswered": 47,
-  "totalCorrect": 44,
+  "totalAnswered": 48,
+  "totalCorrect": 45,
   "notes": {},
   "currentMode": "sequence",
   "selectedChapter": "全部题目",
-  "currentIndex": 46
+  "currentIndex": 47
 }
