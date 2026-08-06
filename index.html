@@ -75,7 +75,7 @@
     </div>
     <div id="loadingStatus">正在准备题库...</div>
     <button class="btn-full" id="startBtn">▶ 开始刷题</button>
-    <p style="text-align:center;color:#999;font-size:12px;">题库从 GitHub 下载，记录存储在仓库 progress.json</p>
+    <p style="text-align:center;color:#999;font-size:12px;">题库从 GitHub 下载，多端同步合并</p>
   </div>
 
   <div id="quizPage" class="hidden">
@@ -138,7 +138,7 @@
     const GITHUB_REPO_OWNER = 'WIO237';
     const GITHUB_REPO_NAME  = 'wy-quiz';
     const QUIZ_FILE_PATH    = 'quiz.md';
-    const PROGRESS_FILE_PATH = 'progress.json';   // 做题记录文件
+    const PROGRESS_FILE_PATH = 'progress.json';
     // ★★★ 配置结束 ★★★
 
     // 全局状态
@@ -160,7 +160,6 @@
     let lastSyncTime = null;
     let autoSyncTimer = null;
 
-    // 工具函数
     function shuffle(arr) { for (let i=arr.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]];} }
     function fixImagePaths(md) {
       return md.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, (match,alt,path) => {
@@ -169,7 +168,6 @@
       });
     }
 
-    // 题库解析
     function parseQuestions(text) {
       text = fixImagePaths(text).replace(/```[a-z]*\n?/g,'').replace(/#{1,6}\s*/g,'').replace(/\*\*(.*?)\*\*/g,'$1').replace(/\*(.*?)\*/g,'$1').replace(/\r\n/g,'\n').replace(/\r/g,'\n');
       const lines = text.split('\n');
@@ -206,33 +204,102 @@
       return md;
     }
 
-    // 本地缓存仅用于临时暂存
     function saveState() {
       const state = { modeAnswers, modeSubmitted, wrongAnswers, wrongSubmitted, wrongSet:Array.from(wrongSet), totalAnswered, totalCorrect, notes, currentMode, selectedChapter, currentIndex };
       localStorage.setItem('quizState', JSON.stringify(state));
     }
 
-    // ==================== 同步到仓库文件 ====================
+    // 合并远程数据到本地内存
+    function mergeProgress(remote) {
+      // 合并顺序/随机/错题本 的提交状态和答案
+      const allModes = [...new Set([...Object.keys(modeSubmitted), ...Object.keys(remote.modeSubmitted || {})])];
+      for (const m of allModes) {
+        if (!modeSubmitted[m]) modeSubmitted[m] = {};
+        if (!modeAnswers[m]) modeAnswers[m] = {};
+        const remoteSub = (remote.modeSubmitted && remote.modeSubmitted[m]) || {};
+        const remoteAns = (remote.modeAnswers && remote.modeAnswers[m]) || {};
+        // 合并：若远程有提交记录，且本地没有，则采用远程
+        for (const idx in remoteSub) {
+          if (remoteSub[idx] && !modeSubmitted[m][idx]) {
+            modeSubmitted[m][idx] = true;
+            modeAnswers[m][idx] = remoteAns[idx] || '';
+          }
+        }
+        // 保留本地已有的记录（本地优先）
+      }
+      // 合并错题本临时记录
+      wrongAnswers = { ...remote.wrongAnswers, ...wrongAnswers };
+      wrongSubmitted = { ...remote.wrongSubmitted, ...wrongSubmitted };
+      // 合并错题集（并集）
+      wrongSet = new Set([...wrongSet, ...(Array.isArray(remote.wrongSet) ? remote.wrongSet : [])]);
+      // 合并笔记
+      notes = { ...remote.notes, ...notes };
+      // 重新计算全局统计（基于合并后的 modeSubmitted）
+      let newTotal = 0, newCorrect = 0;
+      for (const m in modeSubmitted) {
+        const subMap = modeSubmitted[m];
+        const ansMap = modeAnswers[m] || {};
+        for (const idx in subMap) {
+          if (subMap[idx]) {
+            newTotal++;
+            const q = allQuestions.find(q => q.originalIndex == idx);
+            if (q && ansMap[idx] === q.answer) newCorrect++;
+          }
+        }
+      }
+      // 错题本统计暂不计入全局（可根据需要，这里先保持原有逻辑）
+      // 注意：原来 totalAnswered 只统计非错题本模式，所以这里按原逻辑只计算顺序/随机
+      // 我们保持原有 totalAnswered 定义：只包含 sequence/random 模式
+      // 因此重新计算时只考虑这两个模式
+      let calcTotal = 0, calcCorrect = 0;
+      for (const m of ['sequence', 'random']) {
+        const subMap = modeSubmitted[m] || {};
+        const ansMap = modeAnswers[m] || {};
+        for (const idx in subMap) {
+          if (subMap[idx]) {
+            calcTotal++;
+            const q = allQuestions.find(q => q.originalIndex == idx);
+            if (q && ansMap[idx] === q.answer) calcCorrect++;
+          }
+        }
+      }
+      totalAnswered = calcTotal;
+      totalCorrect = calcCorrect;
+    }
+
+    // 同步到仓库（拉取→合并→上传）
     async function syncProgressToRepo(silent=false) {
       if (!githubToken) return;
-      const data = { modeAnswers, modeSubmitted, wrongAnswers, wrongSubmitted, wrongSet:Array.from(wrongSet), totalAnswered, totalCorrect, notes, currentMode, selectedChapter, currentIndex };
-      const content = JSON.stringify(data, null, 2);
       const apiUrl = `https://api.github.com/repos/${GITHUB_REPO_OWNER}/${GITHUB_REPO_NAME}/contents/${PROGRESS_FILE_PATH}`;
       const headers = { 'Authorization': `token ${githubToken}`, 'Content-Type': 'application/json' };
 
       try {
+        // 1. 获取远程文件（包含SHA）
         let sha = null;
+        let remoteData = null;
         try {
           const getRes = await fetch(apiUrl, { headers });
           if (getRes.ok) {
             const fileInfo = await getRes.json();
             sha = fileInfo.sha;
+            const content = atob(fileInfo.content);
+            remoteData = JSON.parse(content);
           }
         } catch (e) {}
 
+        // 2. 合并远程数据到本地
+        if (remoteData) {
+          mergeProgress(remoteData);
+        }
+
+        // 3. 准备上传数据
+        const dataToSave = { modeAnswers, modeSubmitted, wrongAnswers, wrongSubmitted, wrongSet:Array.from(wrongSet), totalAnswered, totalCorrect, notes, currentMode, selectedChapter, currentIndex };
+        const newContent = JSON.stringify(dataToSave, null, 2);
+
+        // 4. 上传
         const body = {
           message: 'Update progress',
-          content: btoa(unescape(encodeURIComponent(content))),
+          content: btoa(unescape(encodeURIComponent(newContent))),
         };
         if (sha) body.sha = sha;
 
@@ -257,13 +324,12 @@
       const apiUrl = `https://api.github.com/repos/${GITHUB_REPO_OWNER}/${GITHUB_REPO_NAME}/contents/${PROGRESS_FILE_PATH}`;
       for (let i = 0; i < retries; i++) {
         try {
-          const res = await fetch(apiUrl, {
-            headers: { 'Authorization': `token ${githubToken}` }
-          });
+          const res = await fetch(apiUrl, { headers: { 'Authorization': `token ${githubToken}` } });
           if (res.ok) {
             const fileInfo = await res.json();
             const content = atob(fileInfo.content);
             const data = JSON.parse(content);
+            // 直接覆盖本地内存（因为启动时本地无有效数据）
             modeAnswers = data.modeAnswers || {};
             modeSubmitted = data.modeSubmitted || {};
             wrongAnswers = data.wrongAnswers || {};
@@ -275,7 +341,6 @@
             currentMode = ['sequence','random','wrong'].includes(data.currentMode) ? data.currentMode : 'sequence';
             selectedChapter = chapters.includes(data.selectedChapter) ? data.selectedChapter : '全部题目';
             currentIndex = data.currentIndex || 0;
-            // 同步UI
             document.getElementById('chapterSelect').value = selectedChapter;
             updateModeButtons();
             saveState();
@@ -297,12 +362,11 @@
     function startAutoSync() {
       if (autoSyncTimer) clearInterval(autoSyncTimer);
       if (!githubToken) return;
-      // 立即同步一次
+      // 立即静默同步一次
       syncProgressToRepo(true);
       autoSyncTimer = setInterval(() => syncProgressToRepo(true), 10*60*1000);
     }
 
-    // 保存题库到 GitHub 仓库
     async function saveQuizToGitHub() {
       if (!githubToken) return alert('请先输入 GitHub Token');
       const newContent = generateFullQuizText();
@@ -328,7 +392,6 @@
       } catch (e) { alert('保存失败：' + e.message); }
     }
 
-    // 题库下载
     async function loadQuizText() {
       const cached = localStorage.getItem('quizText');
       if (cached) {
@@ -348,7 +411,6 @@
       }
     }
 
-    // 界面逻辑
     function getCurrentQuestions() {
       let base = selectedChapter==='全部题目'?[...allQuestions]:allQuestions.filter(q=>q.chapter===selectedChapter);
       if (currentMode==='random') shuffle(base);
@@ -417,7 +479,7 @@
       else { setSubmitted(q); totalAnswered++; if(ans===q.answer){ totalCorrect++; wrongSet.delete(q.originalIndex); } else wrongSet.add(q.originalIndex); }
       saveState();
       renderQuestion();
-      // 立即同步到仓库
+      // 同步（内部会先合并再上传）
       syncProgressToRepo(true);
     }
 
@@ -464,7 +526,7 @@
       document.getElementById('progressFill').style.width=`${questions.length?(currentIndex+1)/questions.length*100:0}%`;
     }
 
-    // ==================== 事件绑定 ====================
+    // 事件绑定
     document.getElementById('tokenInput').value = githubToken;
     document.getElementById('saveTokenBtn').addEventListener('click',()=>{
       const token = document.getElementById('tokenInput').value.trim();
@@ -486,15 +548,14 @@
       chapters = ['全部题目', ...new Set(allQuestions.map(q=>q.chapter))];
       const sel = document.getElementById('chapterSelect');
       sel.innerHTML = chapters.map(c=>`<option>${c}</option>`).join('');
-      sel.value = selectedChapter;   // 先设为默认值
+      sel.value = selectedChapter;
 
       // 从仓库加载进度
       document.getElementById('loadingStatus').innerText = '正在从云端恢复记录...';
       const restored = await loadProgressFromRepo(3);
       if (!restored) {
-        // 云端无数据，保持初始状态
+        // 保持空白
       }
-      // 再次确保下拉框与当前章节一致
       document.getElementById('chapterSelect').value = selectedChapter;
       startAutoSync();
       updateSyncTimeDisplay();
