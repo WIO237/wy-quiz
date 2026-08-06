@@ -742,8 +742,7 @@ E. 所有交通等级道路均可使用石灰稳定土
 
 C 选项“只能使用”表述绝对化错误；
 E 选项石灰稳定土不适用于所有交通等级道路。
-
-![图片](https://cdn.jsdelivr.net/gh/WIO237/wy-quiz@main/2026一级建造师习题班汇总.assets/img_1785984380963_v007fw.png)
+<img src="https://cdn.jsdelivr.net/gh/WIO237/wy-quiz@main/2026一级建造师习题班汇总.assets/img_1785984380963_v007fw.png" alt="图片" style="max-width:100%;height:auto;" referrerpolicy="no-referrer">
 
 
 39. 基层的宽度应根据混凝土面层施工方式的不同，比混凝土面层每侧至少宽出 300mm、500mm或 650mm，与上述宽出宽度相对应的施工方式为（ ）。
@@ -790,6 +789,8 @@ D. 素混凝土
 </tr>
 </tbody>
 </table>
+
+![图片](https://cdn.jsdelivr.net/gh/WIO237/wy-quiz@main/2026一级建造师习题班汇总.assets/img_1785985649195_idu77k.png)
 
 
 41. 水泥混凝土路面工程中，基层材料的选用原则，以下说法错误的是（ ）。
