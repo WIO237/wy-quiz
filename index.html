@@ -57,7 +57,7 @@
     </div>
     <div id="loadingStatus">正在准备题库...</div>
     <button class="btn-full" id="startBtn">▶ 开始刷题</button>
-    <p style="text-align:center;color:#999;font-size:12px;">每次启动自动更新题库，图片永久可见</p>
+    <p style="text-align:center;color:#999;font-size:12px;">清空记录云端同步，打开即读云端</p>
   </div>
 
   <div id="quizPage" class="hidden">
@@ -250,15 +250,16 @@
         const putRes = await fetch(apiUrl, { method: 'PUT', headers, body: JSON.stringify(body) });
         if (!putRes.ok) throw new Error('上传失败');
         lastSyncTime = new Date(); updateSyncTimeDisplay();
-        if (!silent) alert('同步成功！');
+        return true; // 表示成功
       } catch (e) {
         if (!silent) alert('同步失败: ' + e.message);
         else console.log('自动同步失败: ' + e.message);
+        return false;
       }
     }
 
     async function loadProgressFromRepo(retries = 3) {
-      if (!githubToken) return false;
+      if (!githubToken) throw new Error('未设置Token');
       const apiUrl = `https://api.github.com/repos/${GITHUB_REPO_OWNER}/${GITHUB_REPO_NAME}/contents/${PROGRESS_FILE_PATH}`;
       for (let i=0; i<retries; i++) {
         try {
@@ -271,14 +272,21 @@
             notes = data.notes || {}; currentMode = data.currentMode || 'sequence';
             selectedChapter = chapters.includes(data.selectedChapter) ? data.selectedChapter : '全部题目';
             currentIndex = data.currentIndex || 0;
-            document.getElementById('chapterSelect').value = selectedChapter;
-            updateModeButtons(); saveState(); return true;
+            saveState();
+            return true;
           }
-          if (res.status === 404) return false;
+          if (res.status === 404) {
+            // 文件不存在，等同于空记录
+            modeAnswers = {}; modeSubmitted = {}; wrongAnswers = {}; wrongSubmitted = {};
+            wrongSet = new Set(); totalAnswered = 0; totalCorrect = 0; notes = {};
+            currentMode = 'sequence'; selectedChapter = '全部题目'; currentIndex = 0;
+            saveState();
+            return true;
+          }
         } catch(e) {}
         if (i < retries-1) await new Promise(r => setTimeout(r, 1000));
       }
-      return false;
+      throw new Error('无法连接到 GitHub，请检查网络');
     }
 
     function updateSyncTimeDisplay() {
@@ -343,9 +351,7 @@
       } catch (e) { if (!silent) alert('保存失败：' + e.message); }
     }
 
-    // ★ 修改点：优先从远程拉取最新题库
     async function loadQuizText() {
-      // 如果有 Token，优先从 GitHub 下载最新题库（确保图片/解析更新）
       if (githubToken) {
         document.getElementById('loadingStatus').innerText = '正在从 GitHub 下载最新题库...';
         try {
@@ -357,13 +363,11 @@
           }
         } catch(e) {}
       }
-      // 回退到本地缓存
       const cached = localStorage.getItem('quizText');
       if (cached) {
         document.getElementById('loadingStatus').innerText = '正在恢复本地题库...';
         return cached;
       }
-      // 最后尝试无 Token 下载
       document.getElementById('loadingStatus').innerText = '正在从 GitHub 下载题库...';
       try {
         const res = await fetch(QUIZ_MD_URL);
@@ -460,6 +464,7 @@
     function switchMode(mode) { if(currentMode!==mode){ currentMode=mode; currentIndex=0; thumbPage=0; saveState(); updateModeButtons(); renderQuestion(); } }
     function updateModeButtons() { document.querySelectorAll('.mode-btn').forEach(b=>b.classList.toggle('active',b.dataset.mode===currentMode)); }
 
+    // 清空当前模式记录，并强制同步云端
     async function clearCurrentModeRecords() {
       if(currentMode==='wrong'){ wrongAnswers = {}; wrongSubmitted = {}; }
       else {
@@ -481,8 +486,12 @@
       }
       saveState();
       renderQuestion();
-      await syncProgressToRepo(true, true);
-      alert('当前模式做题记录已清空，并已同步到云端');
+      const success = await syncProgressToRepo(true, true);
+      if (success) {
+        alert('当前模式做题记录已清空，并已同步到云端');
+      } else {
+        alert('云端清空失败，请检查网络后重试！');
+      }
     }
 
     function renderThumbnails(questions) {
@@ -555,8 +564,15 @@
       const sel = document.getElementById('chapterSelect');
       sel.innerHTML = chapters.map(c=>`<option>${c}</option>`).join('');
       sel.value = selectedChapter;
-      document.getElementById('loadingStatus').innerText = '正在从云端恢复记录...';
-      await loadProgressFromRepo(3);
+
+      // 强制从云端恢复进度，失败则阻止进入
+      try {
+        document.getElementById('loadingStatus').innerText = '正在从云端恢复记录...';
+        await loadProgressFromRepo(3);
+      } catch (e) {
+        alert(e.message);
+        return;
+      }
       sel.value = selectedChapter;
       startAutoSync();
       updateSyncTimeDisplay();
