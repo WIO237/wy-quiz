@@ -1,21 +1,23 @@
 {
   "modeAnswers": {
     "sequence": {
-      "0": "B"
+      "0": "B",
+      "1": "C"
     }
   },
   "modeSubmitted": {
     "sequence": {
-      "0": true
+      "0": true,
+      "1": true
     }
   },
   "wrongAnswers": {},
   "wrongSubmitted": {},
   "wrongSet": [],
-  "totalAnswered": 1,
-  "totalCorrect": 1,
+  "totalAnswered": 2,
+  "totalCorrect": 2,
   "notes": {},
   "currentMode": "sequence",
   "selectedChapter": "全部题目",
-  "currentIndex": 0
+  "currentIndex": 1
 }
