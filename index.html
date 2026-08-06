@@ -9,16 +9,7 @@
   <meta name="theme-color" content="#0052d9">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: system-ui, -apple-system, sans-serif;
-      background: #f5f7fa;
-      display: flex;
-      flex-direction: column;
-      height: 100vh;
-      overflow: hidden;
-      font-size: 15px;
-      padding-bottom: env(safe-area-inset-bottom, 10px);
-    }
+    body { font-family: system-ui, -apple-system, sans-serif; background: #f5f7fa; display: flex; flex-direction: column; height: 100vh; overflow: hidden; font-size: 15px; padding-bottom: env(safe-area-inset-bottom, 10px); }
     #importPage, #quizPage { flex: 1; display: flex; flex-direction: column; overflow-y: auto; padding: 12px; }
     .hidden { display: none !important; }
     .token-row { display: flex; gap: 5px; margin: 10px 0; }
@@ -66,7 +57,7 @@
     </div>
     <div id="loadingStatus">正在准备题库...</div>
     <button class="btn-full" id="startBtn">▶ 开始刷题</button>
-    <p style="text-align:center;color:#999;font-size:12px;">每次打开自动拉取最新题库，图片不再丢失</p>
+    <p style="text-align:center;color:#999;font-size:12px;">每次启动自动更新题库，图片永久可见</p>
   </div>
 
   <div id="quizPage" class="hidden">
@@ -148,7 +139,6 @@
     let lastSyncTime = null;
     let autoSyncTimer = null;
 
-    // ---------- 辅助函数 ----------
     function shuffle(arr) { for (let i=arr.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]];} }
 
     function convertImagesToHtml(text) {
@@ -202,7 +192,6 @@
       return md;
     }
 
-    // ---------- 持久化 ----------
     function saveState() {
       const state = { modeAnswers, modeSubmitted, wrongAnswers, wrongSubmitted, wrongSet:Array.from(wrongSet), totalAnswered, totalCorrect, notes, currentMode, selectedChapter, currentIndex };
       localStorage.setItem('quizState', JSON.stringify(state));
@@ -241,7 +230,6 @@
       totalCorrect = calcCorrect;
     }
 
-    // ---------- GitHub 同步 ----------
     async function syncProgressToRepo(silent=false, skipMerge=false) {
       if (!githubToken) return;
       const apiUrl = `https://api.github.com/repos/${GITHUB_REPO_OWNER}/${GITHUB_REPO_NAME}/contents/${PROGRESS_FILE_PATH}`;
@@ -306,7 +294,6 @@
       autoSyncTimer = setInterval(() => syncProgressToRepo(true), 10*60*1000);
     }
 
-    // ---------- 图片上传 ----------
     async function uploadImageToRepo(base64Data) {
       if (!base64Data.startsWith('data:image')) return null;
       const [header, data] = base64Data.split(',');
@@ -350,15 +337,15 @@
         const putBody = { message: 'Update quiz', content: btoa(unescape(encodeURIComponent(newContent))), sha };
         const putRes = await fetch(apiUrl, { method: 'PUT', headers: { 'Authorization': `token ${githubToken}`, 'Content-Type': 'application/json' }, body: JSON.stringify(putBody) });
         if (!putRes.ok) throw new Error('更新失败');
-        localStorage.setItem('quizText', newContent);  // 更新本地缓存
+        localStorage.setItem('quizText', newContent);
         lastSyncTime = new Date(); updateSyncTimeDisplay();
         if (!silent) alert('题库已保存至 GitHub 仓库！');
       } catch (e) { if (!silent) alert('保存失败：' + e.message); }
     }
 
-    // ---------- 题库加载（优先远程） ----------
+    // ★ 修改点：优先从远程拉取最新题库
     async function loadQuizText() {
-      // 如果有 Token，优先从 GitHub 下载最新题库
+      // 如果有 Token，优先从 GitHub 下载最新题库（确保图片/解析更新）
       if (githubToken) {
         document.getElementById('loadingStatus').innerText = '正在从 GitHub 下载最新题库...';
         try {
@@ -370,13 +357,13 @@
           }
         } catch(e) {}
       }
-      // 否则使用本地缓存
+      // 回退到本地缓存
       const cached = localStorage.getItem('quizText');
       if (cached) {
         document.getElementById('loadingStatus').innerText = '正在恢复本地题库...';
         return cached;
       }
-      // 如果两者都没有，尝试下载（即使没Token也能下载公共仓库）
+      // 最后尝试无 Token 下载
       document.getElementById('loadingStatus').innerText = '正在从 GitHub 下载题库...';
       try {
         const res = await fetch(QUIZ_MD_URL);
@@ -384,13 +371,9 @@
         const text = await res.text();
         localStorage.setItem('quizText', text);
         return text;
-      } catch(e) {
-        alert('无法下载题库，请检查题库 URL 或网络连接。');
-        throw e;
-      }
+      } catch(e) { alert('无法下载题库，请检查题库 URL 或网络连接。'); throw e; }
     }
 
-    // ---------- 答题逻辑 ----------
     function getCurrentQuestions() {
       let base = selectedChapter==='全部题目'?[...allQuestions]:allQuestions.filter(q=>q.chapter===selectedChapter);
       if (currentMode==='random') shuffle(base);
@@ -525,6 +508,35 @@
       document.getElementById('progressFill').style.width=`${questions.length?(currentIndex+1)/questions.length*100:0}%`;
     }
 
+    // 上传图片按钮
+    document.getElementById('uploadImageBtn').addEventListener('click', () => {
+      const input = document.createElement('input');
+      input.type = 'file';
+      input.accept = 'image/*';
+      input.onchange = async (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = async (ev) => {
+          const img = new Image();
+          img.src = ev.target.result;
+          img.onload = () => {
+            const maxWidth = 800;
+            let width = img.width, height = img.height;
+            if (width > maxWidth) { height = (maxWidth / width) * height; width = maxWidth; }
+            const canvas = document.createElement('canvas');
+            canvas.width = width; canvas.height = height;
+            canvas.getContext('2d').drawImage(img, 0, 0, width, height);
+            const base64 = canvas.toDataURL(file.type, 0.8);
+            const noteInput = document.getElementById('noteInput');
+            noteInput.value += `\n![图片](${base64})`;
+          };
+        };
+        reader.readAsDataURL(file);
+      };
+      input.click();
+    });
+
     // 事件绑定
     document.getElementById('tokenInput').value = githubToken;
     document.getElementById('saveTokenBtn').addEventListener('click',()=>{
@@ -582,35 +594,6 @@
     document.getElementById('chapterSelect').addEventListener('change',(e)=>{ selectedChapter=e.target.value; currentIndex=0; thumbPage=0; saveState(); renderQuestion(); });
     document.getElementById('prevGroupBtn').addEventListener('click',()=>{ if(thumbPage>0) thumbPage--; renderThumbnails(getCurrentQuestions()); });
     document.getElementById('nextGroupBtn').addEventListener('click',()=>{ thumbPage++; renderThumbnails(getCurrentQuestions()); });
-
-    // 上传图片按钮
-    document.getElementById('uploadImageBtn').addEventListener('click', () => {
-      const input = document.createElement('input');
-      input.type = 'file';
-      input.accept = 'image/*';
-      input.onchange = async (e) => {
-        const file = e.target.files[0];
-        if (!file) return;
-        const reader = new FileReader();
-        reader.onload = async (ev) => {
-          const img = new Image();
-          img.src = ev.target.result;
-          img.onload = () => {
-            const maxWidth = 800;
-            let width = img.width, height = img.height;
-            if (width > maxWidth) { height = (maxWidth / width) * height; width = maxWidth; }
-            const canvas = document.createElement('canvas');
-            canvas.width = width; canvas.height = height;
-            canvas.getContext('2d').drawImage(img, 0, 0, width, height);
-            const base64 = canvas.toDataURL(file.type, 0.8);
-            const noteInput = document.getElementById('noteInput');
-            noteInput.value += `\n![图片](${base64})`;
-          };
-        };
-        reader.readAsDataURL(file);
-      };
-      input.click();
-    });
 
     updateSyncTimeDisplay();
   </script>
