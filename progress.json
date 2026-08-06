@@ -5,15 +5,7 @@
       "1": "C",
       "2": "BC",
       "3": "D",
-      "4": "B",
-      "5": "ABC",
-      "6": "C",
-      "7": "ABD",
-      "8": "B",
-      "9": "ABC",
-      "10": "ABC",
-      "11": "C",
-      "12": "ABCD"
+      "4": "B"
     }
   },
   "modeSubmitted": {
@@ -22,24 +14,16 @@
       "1": true,
       "2": true,
       "3": true,
-      "4": true,
-      "5": true,
-      "6": true,
-      "7": true,
-      "8": true,
-      "9": true,
-      "10": true,
-      "11": true,
-      "12": true
+      "4": true
     }
   },
   "wrongAnswers": {},
   "wrongSubmitted": {},
   "wrongSet": [],
-  "totalAnswered": 13,
-  "totalCorrect": 13,
+  "totalAnswered": 5,
+  "totalCorrect": 5,
   "notes": {},
   "currentMode": "sequence",
   "selectedChapter": "全部题目",
-  "currentIndex": 8
+  "currentIndex": 0
 }
