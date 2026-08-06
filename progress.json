@@ -4,6 +4,7 @@
     "sequence": {
       "0": "B",
       "1": "C",
+      "2": "BC",
       "18": "C",
       "42": "C"
     }
@@ -13,6 +14,7 @@
     "sequence": {
       "0": true,
       "1": true,
+      "2": true,
       "18": true,
       "42": true
     }
@@ -22,10 +24,10 @@
   "wrongSet": [
     37
   ],
-  "totalAnswered": 4,
-  "totalCorrect": 4,
+  "totalAnswered": 5,
+  "totalCorrect": 5,
   "notes": {},
   "currentMode": "sequence",
   "selectedChapter": "全部题目",
-  "currentIndex": 1
+  "currentIndex": 2
 }
