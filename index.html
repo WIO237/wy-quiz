@@ -76,7 +76,7 @@
     </div>
     <div id="loadingStatus">正在准备题库...</div>
     <button class="btn-full" id="startBtn">▶ 开始刷题</button>
-    <p style="text-align:center;color:#999;font-size:12px;">支持上传图片，立即显示</p>
+    <p style="text-align:center;color:#999;font-size:12px;">添加解析自动保存，清空记录立即同步</p>
   </div>
 
   <div id="quizPage" class="hidden">
@@ -163,14 +163,12 @@
     // 将 Markdown 图片语法转换为 <img> 标签，保留 data URI 和远程 URL
     function convertImagesToHtml(text) {
       if (!text) return '';
-      // 将 raw 链接替换为 CDN
       let fixed = text.replace(/https:\/\/raw\.githubusercontent\.com\/WIO237\/wy-quiz\/main\//g, GITHUB_RAW_BASE);
       return fixed.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, (match, alt, path) => {
         let src = path;
         if (/^https?:\/\//i.test(path) || /^data:/i.test(path)) {
-          // 已经是远程 URL 或 data URI，直接使用
+          // 远程 URL 或 data URI 直接使用
         } else {
-          // 本地路径，提取文件名拼接 CDN 地址
           const name = path.split(/[/\\]/).pop();
           src = GITHUB_RAW_BASE + IMAGE_FOLDER + '/' + encodeURIComponent(name);
         }
@@ -207,10 +205,7 @@
           md += `${q.originalIndex+1}. ${q.title}\n\n`;
           for (const [k, v] of Object.entries(q.options)) md += `${k}. ${v}\n`;
           md += `\n答案：${q.answer}\n\n`;
-          if (q.analysis) {
-            // 解析中可能仍有 Base64 图片，保存时会替换，这里直接写入
-            md += `解析：\n${q.analysis}\n\n`;
-          }
+          if (q.analysis) md += `解析：\n${q.analysis}\n\n`;
           md += '\n';
         });
       });
@@ -333,7 +328,6 @@
       return `${GITHUB_RAW_BASE}${IMAGE_FOLDER}/${encodeURIComponent(filename)}`;
     }
 
-    // 扫描并上传所有解析中的 Base64 图片
     async function uploadAllBase64Images() {
       const regex = /data:image\/[^;]+;base64,[A-Za-z0-9+/=]+/g;
       const tasks = [];
@@ -351,9 +345,9 @@
       await Promise.all(tasks);
     }
 
-    async function saveQuizToGitHub() {
-      if (!githubToken) return alert('请先输入 GitHub Token');
-      try { await uploadAllBase64Images(); } catch(e) { alert('图片上传失败: ' + e.message); return; }
+    async function saveQuizToGitHub(silent = false) {
+      if (!githubToken) return;
+      try { await uploadAllBase64Images(); } catch(e) { if (!silent) alert('图片上传失败: ' + e.message); return; }
       const newContent = generateFullQuizText();
       const apiUrl = `https://api.github.com/repos/${GITHUB_REPO_OWNER}/${GITHUB_REPO_NAME}/contents/${QUIZ_FILE_PATH}`;
       try {
@@ -363,9 +357,10 @@
         const putBody = { message: 'Update quiz', content: btoa(unescape(encodeURIComponent(newContent))), sha };
         const putRes = await fetch(apiUrl, { method: 'PUT', headers: { 'Authorization': `token ${githubToken}`, 'Content-Type': 'application/json' }, body: JSON.stringify(putBody) });
         if (!putRes.ok) throw new Error('更新失败');
-        alert('题库已保存至 GitHub 仓库！');
-        syncProgressToRepo(true);
-      } catch (e) { alert('保存失败：' + e.message); }
+        lastSyncTime = new Date();
+        updateSyncTimeDisplay();
+        if (!silent) alert('题库已保存至 GitHub 仓库！');
+      } catch (e) { if (!silent) alert('保存失败：' + e.message); }
     }
 
     async function loadQuizText() {
@@ -467,10 +462,34 @@
     function switchMode(mode) { if(currentMode!==mode){ currentMode=mode; currentIndex=0; thumbPage=0; saveState(); updateModeButtons(); renderQuestion(); } }
     function updateModeButtons() { document.querySelectorAll('.mode-btn').forEach(b=>b.classList.toggle('active',b.dataset.mode===currentMode)); }
 
-    function clearCurrentModeRecords() {
-      if(currentMode==='wrong'){ wrongAnswers={}; wrongSubmitted={}; }
-      else { const sub=modeSubmitted[currentMode]; if(sub){ let cl=0,cc=0; const ans=modeAnswers[currentMode]||{}; for(const idx in sub){ if(sub[idx]){ cl++; const q=allQuestions.find(q=>q.originalIndex==idx); if(q&&ans[idx]===q.answer)cc++; } } totalAnswered-=cl; totalCorrect-=cc; delete modeAnswers[currentMode]; delete modeSubmitted[currentMode]; } }
-      saveState(); renderQuestion(); alert('当前模式做题记录已清空');
+    // 清空当前模式记录，并立即同步到云端
+    async function clearCurrentModeRecords() {
+      if(currentMode==='wrong'){
+        wrongAnswers = {};
+        wrongSubmitted = {};
+      } else {
+        const sub = modeSubmitted[currentMode];
+        if(sub){
+          let cl=0, cc=0;
+          const ans = modeAnswers[currentMode]||{};
+          for(const idx in sub){
+            if(sub[idx]){
+              cl++;
+              const q = allQuestions.find(q=>q.originalIndex==idx);
+              if(q && ans[idx]===q.answer) cc++;
+            }
+          }
+          totalAnswered -= cl;
+          totalCorrect -= cc;
+          delete modeAnswers[currentMode];
+          delete modeSubmitted[currentMode];
+        }
+      }
+      saveState();
+      renderQuestion();
+      // 立即同步到云端，确保远程记录也被清空
+      await syncProgressToRepo(true);
+      alert('当前模式做题记录已清空，并已同步到云端');
     }
 
     function renderThumbnails(questions) {
@@ -559,11 +578,13 @@
     document.getElementById('nextBtn').addEventListener('click',nextQuestion);
     document.getElementById('prevBtn').addEventListener('click',prevQuestion);
     document.getElementById('toggleNoteBtn').addEventListener('click',()=>document.getElementById('notePanel').classList.toggle('hidden'));
-    document.getElementById('addAnalysisBtn').addEventListener('click',()=>{
+    document.getElementById('addAnalysisBtn').addEventListener('click', async ()=>{
       const q=getCurrentQuestions()[currentIndex]; if(!q)return;
       const text=document.getElementById('noteInput').value.trim(); if(!text)return;
       if(q.analysis) q.analysis+='\n\n'+text; else q.analysis=text;
-      document.getElementById('noteInput').value=''; saveState(); renderQuestion(); alert('解析已添加');
+      document.getElementById('noteInput').value=''; saveState(); renderQuestion();
+      // 自动静默保存题库到 GitHub（含图片上传）
+      saveQuizToGitHub(true);
     });
     document.getElementById('exportWrongBtn').addEventListener('click',()=>{
       const wrong=allQuestions.filter(q=>wrongSet.has(q.originalIndex)); if(!wrong.length)return alert('暂无错题');
@@ -573,7 +594,7 @@
         md+=`\n**正确答案**：${q.answer}\n\n**解析**：\n${q.analysis||'无'}\n\n---\n\n`;
       }); downloadFile('错题本.md',md);
     });
-    document.getElementById('saveQuizBtn').addEventListener('click', saveQuizToGitHub);
+    document.getElementById('saveQuizBtn').addEventListener('click', ()=>saveQuizToGitHub(false));
     document.getElementById('syncBtn').addEventListener('click',()=>syncProgressToRepo(false));
     document.getElementById('clearRecordBtn').addEventListener('click',clearCurrentModeRecords);
     document.getElementById('clearCacheBtn').addEventListener('click',()=>{ if(confirm('确定清除所有记录和题库吗？')){ localStorage.clear(); location.reload(); } });
