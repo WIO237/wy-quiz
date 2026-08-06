@@ -620,6 +620,7 @@ E. 沥青表面处治面层适用于支路及停车场
 答案：ACDE
 
 解析：
+
 <table border="1" cellpadding="6" cellspacing="0" style="border-collapse: collapse; text-align: left;">
 <thead>
 <tr>
@@ -783,6 +784,7 @@ D. 素混凝土
 </tbody>
 </table>
 
+
 41. 水泥混凝土路面工程中，基层材料的选用原则，以下说法错误的是（ ）。
 
 A. 特重交通道路宜选用碾压混凝土或沥青混凝土
@@ -887,6 +889,9 @@ C. 拉力杆
 D. 伸缩杆
 
 答案：B
+
+解析：
+![图片](https://cdn.jsdelivr.net/gh/WIO237/wy-quiz@main/2026一级建造师习题班汇总.assets/img_1785986760061_c6noje.png)
 
 
 50. 水泥混凝土路面的纵向接缝是根据（ ）设置的。
