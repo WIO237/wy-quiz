@@ -59,7 +59,8 @@
       "54": "ACDE",
       "55": "ABCD",
       "56": "ABCD",
-      "57": "B"
+      "57": "B",
+      "58": "ABCE"
     }
   },
   "modeSubmitted": {
@@ -122,7 +123,8 @@
       "54": true,
       "55": true,
       "56": true,
-      "57": true
+      "57": true,
+      "58": true
     }
   },
   "wrongAnswers": {},
@@ -134,10 +136,10 @@
     42,
     55
   ],
-  "totalAnswered": 58,
-  "totalCorrect": 54,
+  "totalAnswered": 59,
+  "totalCorrect": 55,
   "notes": {},
   "currentMode": "sequence",
   "selectedChapter": "全部题目",
-  "currentIndex": 57
+  "currentIndex": 58
 }
