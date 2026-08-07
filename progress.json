@@ -64,7 +64,8 @@
       "59": "B",
       "60": "C",
       "61": "C",
-      "62": "A"
+      "62": "A",
+      "63": "B"
     }
   },
   "modeSubmitted": {
@@ -132,7 +133,8 @@
       "59": true,
       "60": true,
       "61": true,
-      "62": true
+      "62": true,
+      "63": true
     }
   },
   "wrongAnswers": {},
@@ -143,9 +145,10 @@
     37,
     42,
     55,
-    62
+    62,
+    63
   ],
-  "totalAnswered": 63,
+  "totalAnswered": 64,
   "totalCorrect": 58,
   "notes": {},
   "currentMode": "sequence",
