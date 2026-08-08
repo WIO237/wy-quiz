@@ -67,7 +67,8 @@
       "62": "A",
       "63": "B",
       "64": "ABE",
-      "69": "ABE"
+      "69": "ABE",
+      "70": "ABCE"
     }
   },
   "modeSubmitted": {
@@ -138,7 +139,8 @@
       "62": true,
       "63": true,
       "64": true,
-      "69": true
+      "69": true,
+      "70": true
     }
   },
   "wrongAnswers": {},
@@ -150,12 +152,13 @@
     42,
     55,
     62,
-    63
+    63,
+    70
   ],
-  "totalAnswered": 66,
+  "totalAnswered": 67,
   "totalCorrect": 59,
   "notes": {},
   "currentMode": "sequence",
   "selectedChapter": "全部题目",
-  "currentIndex": 64
+  "currentIndex": 65
 }
