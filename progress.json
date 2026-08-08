@@ -68,7 +68,8 @@
       "63": "B",
       "64": "ABE",
       "69": "ABE",
-      "70": "ABCE"
+      "70": "ABCE",
+      "71": "CDE"
     }
   },
   "modeSubmitted": {
@@ -140,7 +141,8 @@
       "63": true,
       "64": true,
       "69": true,
-      "70": true
+      "70": true,
+      "71": true
     }
   },
   "wrongAnswers": {},
@@ -153,9 +155,10 @@
     55,
     62,
     63,
-    70
+    70,
+    71
   ],
-  "totalAnswered": 67,
+  "totalAnswered": 68,
   "totalCorrect": 59,
   "notes": {},
   "currentMode": "sequence",
