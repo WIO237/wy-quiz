@@ -69,7 +69,8 @@
       "64": "ABE",
       "69": "ABE",
       "70": "ABCE",
-      "71": "CDE"
+      "71": "CDE",
+      "72": "ABCD"
     }
   },
   "modeSubmitted": {
@@ -142,7 +143,8 @@
       "64": true,
       "69": true,
       "70": true,
-      "71": true
+      "71": true,
+      "72": true
     }
   },
   "wrongAnswers": {},
@@ -156,12 +158,13 @@
     62,
     63,
     70,
-    71
+    71,
+    72
   ],
-  "totalAnswered": 68,
+  "totalAnswered": 69,
   "totalCorrect": 59,
   "notes": {},
   "currentMode": "sequence",
   "selectedChapter": "全部题目",
-  "currentIndex": 66
+  "currentIndex": 67
 }
