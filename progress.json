@@ -76,7 +76,8 @@
       "75": "B",
       "76": "ACD",
       "77": "B",
-      "78": "D"
+      "78": "D",
+      "79": "AE"
     }
   },
   "modeSubmitted": {
@@ -156,7 +157,8 @@
       "75": true,
       "76": true,
       "77": true,
-      "78": true
+      "78": true,
+      "79": true
     }
   },
   "wrongAnswers": {},
@@ -173,12 +175,13 @@
     71,
     72,
     76,
-    77
+    77,
+    79
   ],
-  "totalAnswered": 75,
+  "totalAnswered": 76,
   "totalCorrect": 63,
   "notes": {},
   "currentMode": "sequence",
   "selectedChapter": "全部题目",
-  "currentIndex": 73
+  "currentIndex": 74
 }
