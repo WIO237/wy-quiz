@@ -83,7 +83,8 @@
       "82": "ABDE",
       "83": "BDE",
       "84": "B",
-      "85": "B"
+      "85": "B",
+      "86": "B"
     }
   },
   "modeSubmitted": {
@@ -170,7 +171,8 @@
       "82": true,
       "83": true,
       "84": true,
-      "85": true
+      "85": true,
+      "86": true
     }
   },
   "wrongAnswers": {},
@@ -192,10 +194,10 @@
     80,
     83
   ],
-  "totalAnswered": 82,
-  "totalCorrect": 61,
+  "totalAnswered": 83,
+  "totalCorrect": 62,
   "notes": {},
   "currentMode": "sequence",
   "selectedChapter": "全部题目",
-  "currentIndex": 80
+  "currentIndex": 86
 }
