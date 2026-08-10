@@ -80,7 +80,8 @@
       "79": "AE",
       "80": "ABE",
       "81": "A",
-      "82": "ABDE"
+      "82": "ABDE",
+      "83": "BDE"
     }
   },
   "modeSubmitted": {
@@ -164,7 +165,8 @@
       "79": true,
       "80": true,
       "81": true,
-      "82": true
+      "82": true,
+      "83": true
     }
   },
   "wrongAnswers": {},
@@ -183,12 +185,13 @@
     76,
     77,
     79,
-    80
+    80,
+    83
   ],
-  "totalAnswered": 79,
+  "totalAnswered": 80,
   "totalCorrect": 65,
   "notes": {},
   "currentMode": "sequence",
   "selectedChapter": "全部题目",
-  "currentIndex": 77
+  "currentIndex": 78
 }
