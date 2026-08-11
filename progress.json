@@ -93,7 +93,8 @@
       "92": "ACD",
       "93": "C",
       "94": "B",
-      "95": "B"
+      "95": "B",
+      "96": "C"
     }
   },
   "modeSubmitted": {
@@ -190,7 +191,8 @@
       "92": true,
       "93": true,
       "94": true,
-      "95": true
+      "95": true,
+      "96": true
     }
   },
   "wrongAnswers": {},
@@ -214,10 +216,10 @@
     90,
     92
   ],
-  "totalAnswered": 92,
-  "totalCorrect": 69,
+  "totalAnswered": 93,
+  "totalCorrect": 70,
   "notes": {},
   "currentMode": "sequence",
   "selectedChapter": "全部题目",
-  "currentIndex": 95
+  "currentIndex": 96
 }
