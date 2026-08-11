@@ -88,7 +88,8 @@
       "87": "ABE",
       "88": "ABCD",
       "89": "B",
-      "90": "A"
+      "90": "A",
+      "91": "C"
     }
   },
   "modeSubmitted": {
@@ -180,7 +181,8 @@
       "87": true,
       "88": true,
       "89": true,
-      "90": true
+      "90": true,
+      "91": true
     }
   },
   "wrongAnswers": {},
@@ -203,10 +205,10 @@
     83,
     90
   ],
-  "totalAnswered": 87,
-  "totalCorrect": 65,
+  "totalAnswered": 88,
+  "totalCorrect": 66,
   "notes": {},
   "currentMode": "sequence",
   "selectedChapter": "全部题目",
-  "currentIndex": 90
+  "currentIndex": 91
 }
