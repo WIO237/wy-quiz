@@ -94,7 +94,8 @@
       "93": "C",
       "94": "B",
       "95": "B",
-      "96": "C"
+      "96": "C",
+      "97": "ABDE"
     }
   },
   "modeSubmitted": {
@@ -192,7 +193,8 @@
       "93": true,
       "94": true,
       "95": true,
-      "96": true
+      "96": true,
+      "97": true
     }
   },
   "wrongAnswers": {},
@@ -216,10 +218,10 @@
     90,
     92
   ],
-  "totalAnswered": 93,
-  "totalCorrect": 70,
+  "totalAnswered": 94,
+  "totalCorrect": 71,
   "notes": {},
   "currentMode": "sequence",
   "selectedChapter": "全部题目",
-  "currentIndex": 96
+  "currentIndex": 97
 }
