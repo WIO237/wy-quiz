@@ -102,7 +102,8 @@
       "101": "C",
       "102": "D",
       "103": "ABDE",
-      "104": "ABC"
+      "104": "ABC",
+      "105": "ABD"
     }
   },
   "modeSubmitted": {
@@ -208,7 +209,8 @@
       "101": true,
       "102": true,
       "103": true,
-      "104": true
+      "104": true,
+      "105": true
     }
   },
   "wrongAnswers": {},
@@ -233,10 +235,10 @@
     92,
     103
   ],
-  "totalAnswered": 101,
-  "totalCorrect": 77,
+  "totalAnswered": 102,
+  "totalCorrect": 78,
   "notes": {},
   "currentMode": "sequence",
   "selectedChapter": "全部题目",
-  "currentIndex": 104
+  "currentIndex": 105
 }
