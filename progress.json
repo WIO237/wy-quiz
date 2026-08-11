@@ -109,7 +109,8 @@
       "108": "C",
       "109": "A",
       "110": "BCD",
-      "111": "ADE"
+      "111": "ADE",
+      "112": "BE"
     }
   },
   "modeSubmitted": {
@@ -222,7 +223,8 @@
       "108": true,
       "109": true,
       "110": true,
-      "111": true
+      "111": true,
+      "112": true
     }
   },
   "wrongAnswers": {},
@@ -251,10 +253,10 @@
     110,
     111
   ],
-  "totalAnswered": 108,
-  "totalCorrect": 80,
+  "totalAnswered": 109,
+  "totalCorrect": 81,
   "notes": {},
   "currentMode": "sequence",
   "selectedChapter": "全部题目",
-  "currentIndex": 111
+  "currentIndex": 112
 }
