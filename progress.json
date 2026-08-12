@@ -123,7 +123,8 @@
       "122": "AC",
       "123": "ABDE",
       "124": "D",
-      "125": "CD"
+      "125": "CD",
+      "126": "D"
     }
   },
   "modeSubmitted": {
@@ -250,7 +251,8 @@
       "122": true,
       "123": true,
       "124": true,
-      "125": true
+      "125": true,
+      "126": true
     }
   },
   "wrongAnswers": {},
@@ -288,10 +290,10 @@
     124,
     125
   ],
-  "totalAnswered": 122,
-  "totalCorrect": 85,
+  "totalAnswered": 123,
+  "totalCorrect": 86,
   "notes": {},
   "currentMode": "sequence",
   "selectedChapter": "全部题目",
-  "currentIndex": 125
+  "currentIndex": 126
 }
