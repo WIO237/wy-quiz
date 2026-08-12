@@ -117,7 +117,8 @@
       "116": "BCDE",
       "117": "B",
       "118": "C",
-      "119": "C"
+      "119": "C",
+      "120": "BE"
     }
   },
   "modeSubmitted": {
@@ -238,7 +239,8 @@
       "116": true,
       "117": true,
       "118": true,
-      "119": true
+      "119": true,
+      "120": true
     }
   },
   "wrongAnswers": {},
@@ -268,12 +270,13 @@
     111,
     113,
     116,
-    119
+    119,
+    120
   ],
-  "totalAnswered": 116,
+  "totalAnswered": 117,
   "totalCorrect": 85,
   "notes": {},
   "currentMode": "sequence",
   "selectedChapter": "全部题目",
-  "currentIndex": 119
+  "currentIndex": 120
 }
