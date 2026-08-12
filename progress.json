@@ -120,7 +120,8 @@
       "119": "C",
       "120": "BE",
       "121": "ADE",
-      "122": "AC"
+      "122": "AC",
+      "123": "ABDE"
     }
   },
   "modeSubmitted": {
@@ -244,7 +245,8 @@
       "119": true,
       "120": true,
       "121": true,
-      "122": true
+      "122": true,
+      "123": true
     }
   },
   "wrongAnswers": {},
@@ -277,12 +279,13 @@
     119,
     120,
     121,
-    122
+    122,
+    123
   ],
-  "totalAnswered": 119,
+  "totalAnswered": 120,
   "totalCorrect": 85,
   "notes": {},
   "currentMode": "sequence",
   "selectedChapter": "全部题目",
-  "currentIndex": 122
+  "currentIndex": 123
 }
