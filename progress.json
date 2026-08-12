@@ -129,7 +129,8 @@
       "128": "DE",
       "129": "DE",
       "130": "A",
-      "131": "A"
+      "131": "A",
+      "132": "C"
     }
   },
   "modeSubmitted": {
@@ -262,7 +263,8 @@
       "128": true,
       "129": true,
       "130": true,
-      "131": true
+      "131": true,
+      "132": true
     }
   },
   "wrongAnswers": {},
@@ -303,10 +305,10 @@
     129,
     130
   ],
-  "totalAnswered": 128,
-  "totalCorrect": 88,
+  "totalAnswered": 129,
+  "totalCorrect": 89,
   "notes": {},
   "currentMode": "sequence",
   "selectedChapter": "全部题目",
-  "currentIndex": 131
+  "currentIndex": 132
 }
