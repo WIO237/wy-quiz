@@ -142,7 +142,8 @@
       "141": "ABD",
       "142": "D",
       "143": "A",
-      "144": "D"
+      "144": "D",
+      "145": "ABC"
     }
   },
   "modeSubmitted": {
@@ -288,7 +289,8 @@
       "141": true,
       "142": true,
       "143": true,
-      "144": true
+      "144": true,
+      "145": true
     }
   },
   "wrongAnswers": {},
@@ -333,10 +335,10 @@
     142,
     143
   ],
-  "totalAnswered": 141,
-  "totalCorrect": 97,
+  "totalAnswered": 142,
+  "totalCorrect": 98,
   "notes": {},
   "currentMode": "sequence",
   "selectedChapter": "全部题目",
-  "currentIndex": 144
+  "currentIndex": 145
 }
