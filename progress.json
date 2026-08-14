@@ -135,7 +135,8 @@
       "134": "A",
       "135": "ACD",
       "136": "ABD",
-      "137": "D"
+      "137": "D",
+      "138": "ACE"
     }
   },
   "modeSubmitted": {
@@ -274,7 +275,8 @@
       "134": true,
       "135": true,
       "136": true,
-      "137": true
+      "137": true,
+      "138": true
     }
   },
   "wrongAnswers": {},
@@ -317,10 +319,10 @@
     134,
     135
   ],
-  "totalAnswered": 134,
-  "totalCorrect": 92,
+  "totalAnswered": 135,
+  "totalCorrect": 93,
   "notes": {},
   "currentMode": "sequence",
   "selectedChapter": "全部题目",
-  "currentIndex": 137
+  "currentIndex": 138
 }
