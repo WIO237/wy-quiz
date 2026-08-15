@@ -151,7 +151,8 @@
       "150": "C",
       "151": "B",
       "152": "CDE",
-      "153": "B"
+      "153": "B",
+      "154": "ABD"
     }
   },
   "modeSubmitted": {
@@ -306,7 +307,8 @@
       "150": true,
       "151": true,
       "152": true,
-      "153": true
+      "153": true,
+      "154": true
     }
   },
   "wrongAnswers": {},
@@ -351,12 +353,13 @@
     142,
     143,
     148,
-    152
+    152,
+    154
   ],
-  "totalAnswered": 150,
+  "totalAnswered": 151,
   "totalCorrect": 104,
   "notes": {},
   "currentMode": "sequence",
   "selectedChapter": "全部题目",
-  "currentIndex": 153
+  "currentIndex": 154
 }
