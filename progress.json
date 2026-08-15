@@ -153,7 +153,8 @@
       "152": "CDE",
       "153": "B",
       "154": "ABD",
-      "155": "BC"
+      "155": "BC",
+      "156": "ABCD"
     }
   },
   "modeSubmitted": {
@@ -310,7 +311,8 @@
       "152": true,
       "153": true,
       "154": true,
-      "155": true
+      "155": true,
+      "156": true
     }
   },
   "wrongAnswers": {},
@@ -359,10 +361,10 @@
     154,
     155
   ],
-  "totalAnswered": 152,
-  "totalCorrect": 104,
+  "totalAnswered": 153,
+  "totalCorrect": 105,
   "notes": {},
   "currentMode": "sequence",
   "selectedChapter": "全部题目",
-  "currentIndex": 155
+  "currentIndex": 156
 }
