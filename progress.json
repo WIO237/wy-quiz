@@ -150,7 +150,8 @@
       "149": "A",
       "150": "C",
       "151": "B",
-      "152": "CDE"
+      "152": "CDE",
+      "153": "B"
     }
   },
   "modeSubmitted": {
@@ -304,7 +305,8 @@
       "149": true,
       "150": true,
       "151": true,
-      "152": true
+      "152": true,
+      "153": true
     }
   },
   "wrongAnswers": {},
@@ -351,10 +353,10 @@
     148,
     152
   ],
-  "totalAnswered": 149,
-  "totalCorrect": 103,
+  "totalAnswered": 150,
+  "totalCorrect": 104,
   "notes": {},
   "currentMode": "sequence",
   "selectedChapter": "全部题目",
-  "currentIndex": 152
+  "currentIndex": 153
 }
