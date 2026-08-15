@@ -149,7 +149,8 @@
       "148": "ACE",
       "149": "A",
       "150": "C",
-      "151": "B"
+      "151": "B",
+      "152": "CDE"
     }
   },
   "modeSubmitted": {
@@ -302,7 +303,8 @@
       "148": true,
       "149": true,
       "150": true,
-      "151": true
+      "151": true,
+      "152": true
     }
   },
   "wrongAnswers": {},
@@ -346,12 +348,13 @@
     135,
     142,
     143,
-    148
+    148,
+    152
   ],
-  "totalAnswered": 148,
+  "totalAnswered": 149,
   "totalCorrect": 103,
   "notes": {},
   "currentMode": "sequence",
   "selectedChapter": "全部题目",
-  "currentIndex": 151
+  "currentIndex": 152
 }
