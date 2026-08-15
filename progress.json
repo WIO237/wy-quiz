@@ -147,7 +147,8 @@
       "146": "B",
       "147": "AC",
       "148": "ACE",
-      "149": "A"
+      "149": "A",
+      "150": "C"
     }
   },
   "modeSubmitted": {
@@ -298,7 +299,8 @@
       "146": true,
       "147": true,
       "148": true,
-      "149": true
+      "149": true,
+      "150": true
     }
   },
   "wrongAnswers": {},
@@ -344,10 +346,10 @@
     143,
     148
   ],
-  "totalAnswered": 146,
-  "totalCorrect": 101,
+  "totalAnswered": 147,
+  "totalCorrect": 102,
   "notes": {},
   "currentMode": "sequence",
   "selectedChapter": "全部题目",
-  "currentIndex": 149
+  "currentIndex": 150
 }
