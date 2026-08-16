@@ -167,7 +167,8 @@
       "166": "B",
       "167": "B",
       "168": "B",
-      "169": "ABC"
+      "169": "ABC",
+      "170": "C"
     }
   },
   "modeSubmitted": {
@@ -338,7 +339,8 @@
       "166": true,
       "167": true,
       "168": true,
-      "169": true
+      "169": true,
+      "170": true
     }
   },
   "wrongAnswers": {},
@@ -388,10 +390,10 @@
     155,
     157
   ],
-  "totalAnswered": 166,
-  "totalCorrect": 117,
+  "totalAnswered": 167,
+  "totalCorrect": 118,
   "notes": {},
   "currentMode": "sequence",
   "selectedChapter": "全部题目",
-  "currentIndex": 169
+  "currentIndex": 170
 }
