@@ -185,7 +185,8 @@
       "184": "BCE",
       "185": "A",
       "186": "B",
-      "187": "ABD"
+      "187": "ABD",
+      "188": "AC"
     }
   },
   "modeSubmitted": {
@@ -374,7 +375,8 @@
       "184": true,
       "185": true,
       "186": true,
-      "187": true
+      "187": true,
+      "188": true
     }
   },
   "wrongAnswers": {},
@@ -432,10 +434,10 @@
     182,
     184
   ],
-  "totalAnswered": 184,
-  "totalCorrect": 127,
+  "totalAnswered": 185,
+  "totalCorrect": 128,
   "notes": {},
   "currentMode": "sequence",
   "selectedChapter": "全部题目",
-  "currentIndex": 187
+  "currentIndex": 188
 }
