@@ -173,7 +173,8 @@
       "172": "B",
       "173": "ABC",
       "174": "D",
-      "175": "AD"
+      "175": "AD",
+      "176": "B"
     }
   },
   "modeSubmitted": {
@@ -350,7 +351,8 @@
       "172": true,
       "173": true,
       "174": true,
-      "175": true
+      "175": true,
+      "176": true
     }
   },
   "wrongAnswers": {},
@@ -403,10 +405,10 @@
     173,
     175
   ],
-  "totalAnswered": 172,
-  "totalCorrect": 120,
+  "totalAnswered": 173,
+  "totalCorrect": 121,
   "notes": {},
   "currentMode": "sequence",
   "selectedChapter": "全部题目",
-  "currentIndex": 175
+  "currentIndex": 176
 }
