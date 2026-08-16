@@ -158,7 +158,8 @@
       "157": "ABE",
       "158": "C",
       "159": "C",
-      "160": "ABCE"
+      "160": "ABCE",
+      "161": "D"
     }
   },
   "modeSubmitted": {
@@ -320,7 +321,8 @@
       "157": true,
       "158": true,
       "159": true,
-      "160": true
+      "160": true,
+      "161": true
     }
   },
   "wrongAnswers": {},
@@ -370,10 +372,10 @@
     155,
     157
   ],
-  "totalAnswered": 157,
-  "totalCorrect": 108,
+  "totalAnswered": 158,
+  "totalCorrect": 109,
   "notes": {},
   "currentMode": "sequence",
   "selectedChapter": "全部题目",
-  "currentIndex": 160
+  "currentIndex": 161
 }
