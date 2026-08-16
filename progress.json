@@ -175,7 +175,8 @@
       "174": "D",
       "175": "AD",
       "176": "B",
-      "177": "CE"
+      "177": "CE",
+      "178": "ABD"
     }
   },
   "modeSubmitted": {
@@ -354,7 +355,8 @@
       "174": true,
       "175": true,
       "176": true,
-      "177": true
+      "177": true,
+      "178": true
     }
   },
   "wrongAnswers": {},
@@ -408,10 +410,10 @@
     175,
     177
   ],
-  "totalAnswered": 174,
-  "totalCorrect": 121,
+  "totalAnswered": 175,
+  "totalCorrect": 122,
   "notes": {},
   "currentMode": "sequence",
   "selectedChapter": "全部题目",
-  "currentIndex": 177
+  "currentIndex": 178
 }
