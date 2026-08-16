@@ -174,7 +174,8 @@
       "173": "ABC",
       "174": "D",
       "175": "AD",
-      "176": "B"
+      "176": "B",
+      "177": "CE"
     }
   },
   "modeSubmitted": {
@@ -352,7 +353,8 @@
       "173": true,
       "174": true,
       "175": true,
-      "176": true
+      "176": true,
+      "177": true
     }
   },
   "wrongAnswers": {},
@@ -403,9 +405,10 @@
     157,
     172,
     173,
-    175
+    175,
+    177
   ],
-  "totalAnswered": 173,
+  "totalAnswered": 174,
   "totalCorrect": 121,
   "notes": {},
   "currentMode": "sequence",
