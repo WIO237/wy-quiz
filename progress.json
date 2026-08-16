@@ -180,7 +180,8 @@
       "179": "ACE",
       "180": "B",
       "181": "A",
-      "182": "ABD"
+      "182": "ABD",
+      "183": "B"
     }
   },
   "modeSubmitted": {
@@ -364,7 +365,8 @@
       "179": true,
       "180": true,
       "181": true,
-      "182": true
+      "182": true,
+      "183": true
     }
   },
   "wrongAnswers": {},
@@ -421,10 +423,10 @@
     181,
     182
   ],
-  "totalAnswered": 179,
-  "totalCorrect": 123,
+  "totalAnswered": 180,
+  "totalCorrect": 124,
   "notes": {},
   "currentMode": "sequence",
   "selectedChapter": "全部题目",
-  "currentIndex": 182
+  "currentIndex": 183
 }
