@@ -2292,6 +2292,36 @@ E. 衬垫
 
 答案：ABCD
 
+解析：
+<table border="1" style="border-collapse: collapse; width: 100%; text-align: center; font-size: 14px; line-height: 1.4; vertical-align: middle;">
+    <tbody>
+        <tr>
+            <td style="border: 1px solid #000; padding: 6px 10px; color: red; font-weight: bold; width: 35%;">工程应用</td>
+            <td style="border: 1px solid #000; padding: 6px 10px; color: red; font-weight: bold;">目的</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #000; padding: 6px 10px;">路堤加筋</td>
+            <td style="border: 1px solid #000; padding: 6px 10px;">提高路堤的稳定性</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #000; padding: 6px 10px;">台背路基填土加筋</td>
+            <td style="border: 1px solid #000; padding: 6px 10px;">减少路基与构造物之间的不均匀沉降</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #000; padding: 6px 10px;">过滤与排水</td>
+            <td style="border: 1px solid #000; padding: 6px 10px; text-align: left;">作为过滤体和排水体可用于暗沟、渗沟及坡面防护等道路工程结构中。</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #000; padding: 6px 10px;">路基防护</td>
+            <td style="border: 1px solid #000; padding: 6px 10px;">坡面防护和冲刷防护</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #000; padding: 6px 10px;">路面裂缝防护</td>
+            <td style="border: 1px solid #000; padding: 6px 10px;">减少或延缓反射裂缝</td>
+        </tr>
+    </tbody>
+</table>
+
 
 90. 关于台背路基填土加筋的说法，正确的是（ ）。
 
