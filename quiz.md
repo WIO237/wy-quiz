@@ -407,6 +407,27 @@ D. 抗冻性是耐久性的重要指标之一
 
 水泥混凝土面层要求不透水，透水性并非其性能要求，故 C 错误。
 
+<table border="1" style="border-collapse: collapse; width: 100%; text-align: left; font-size: 14px; line-height: 1.6; vertical-align: middle;">
+    <tbody>
+        <tr>
+            <td style="padding: 12px; border: 1px solid #000; text-align: center;">面层</td>
+            <td style="padding: 12px; border: 1px solid #000;">承载能力、平整度、温度稳定性、透水性、水稳定性、抗滑能力、噪声量</td>
+        </tr>
+        <tr>
+            <td style="padding: 12px; border: 1px solid #000; text-align: center;">基层</td>
+            <td style="padding: 12px; border: 1px solid #000;">强度、扩散荷载、水稳性、抗冻性、不透水性</td>
+        </tr>
+        <tr>
+            <td style="padding: 12px; border: 1px solid #000; text-align: center;">垫层</td>
+            <td style="padding: 12px; border: 1px solid #000;">强度、扩散荷载、水稳性</td>
+        </tr>
+        <tr>
+            <td style="padding: 12px; border: 1px solid #000; text-align: center;">路基</td>
+            <td style="padding: 12px; border: 1px solid #000;">整体稳定性、变形量控制</td>
+        </tr>
+    </tbody>
+</table>
+
 
 17. 沥青混合料面层的使用指标不包括（ ）。
 
