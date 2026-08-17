@@ -1763,25 +1763,6 @@ E. 挖方段不得超挖，应留有 200-300mm人工开挖到设计标高
 答案：AB
 
 解析：
-<div style="font-size: 14px; line-height: 1.8; margin-bottom: 6px;">2）挖土路基</div>
-<div style="font-size: 14px; line-height: 1.8; margin-bottom: 6px;">
-    （3）挖土时应<span style="color: red;">自上而下</span>分层开挖，<span style="color: red;">严禁掏洞</span>开挖。机械开挖时，必须避开构筑物、管线，在<span style="color: red;">管道边 1m</span>范围内应采用人工开挖；在距<span style="color: red;">直埋缆线 2m</span>范围内必须采用<span style="color: red;">人工开挖</span>。挖方段<span style="color: red;">不得超挖</span>，应<span style="color: red;">留有</span>碾压到设计标高的<span style="color: red;">压实量</span>。
-</div>
-<div style="font-size: 14px; line-height: 1.8; margin-bottom: 6px;">
-    （4）压路机<span style="color: red;">不小于 12t 级</span>，碾压应<span style="color: red;">自路两边向路中心</span>进行，直至表面无明显轮迹为止。
-</div>
-<div style="font-size: 14px; line-height: 1.8; margin-bottom: 6px;">
-    （5）碾压时，应视土的干湿程度而采取<span style="color: red;">洒水或换土、晾晒</span>等措施。
-</div>
-<div style="font-size: 14px; line-height: 1.8; margin-bottom: 6px;">
-    （6）过街雨水支管沟槽及检查井周围应用<span style="color: red;">石灰土或石灰粉煤灰砂砾</span>实。
-</div>
-<div style="font-size: 14px; line-height: 1.8; margin-bottom: 4px;">
-    <span style="color: red;">补充解释：</span>有效抵抗车辆荷载及土侧压力，避免雨水渗入导致土体软化。
-</div>
-<div style="font-size: 14px; line-height: 1.8;">
-    石灰土：由石灰与黏土混合而成，具有高强度、抗变形能力和水稳定性，能有效防止不均匀沉降，其胶凝作用可增强土体密实度，且成本较低。石灰粉煤灰砂砾：结合了粉煤灰的胶凝性和砂砾的透水性，适用于需兼顾排水与稳定的场景。
-</div>
 
 
 77. 城市快速路，最小填料强度(CBR)值错误的是（ ）。
