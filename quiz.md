@@ -2174,6 +2174,41 @@ D. 被禁止用于高等级路面的基层
     <span style="color: red;">补充解释：</span>只是一个养护层，可以是单独的沥青或者其他封层剂，也可以是沥青与集料组成的混合料。
 </div>
 
+<table border="1" style="border-collapse: collapse; width: 100%; text-align: left; font-size: 14px; line-height: 1.6; vertical-align: middle;">
+    <tbody>
+        <tr>
+            <td colspan="2" style="border: 1px solid #000; padding: 10px; text-align: center; color: red; text-decoration: underline; font-weight: bold; font-size: 15px;">石灰粉煤灰稳定砂砾（碎石）基层</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #000; padding: 10px; text-align: center; width: 15%;">运输</td>
+            <td style="border: 1px solid #000; padding: 10px;">①运送混合料应覆盖，防止水分蒸发和遗撒、扬尘。</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #000; padding: 10px; text-align: center;">摊铺</td>
+            <td style="border: 1px solid #000; padding: 10px;">
+                ①施工期的日最低气温应在 5℃以上。<br>
+                ②根据试验确定的松铺系数控制虚铺厚度。
+            </td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #000; padding: 10px; text-align: center;">压实</td>
+            <td style="border: 1px solid #000; padding: 10px;">
+                ①每层最大压实厚度为 200mm，且不宜小于 100mm。<br>
+                ②碾压时采用先轻型、后重型压路机碾压，宜在当天碾压成型。<br>
+                ③禁止用薄层贴补的方法进行找平。
+            </td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #000; padding: 10px; text-align: center;">养护</td>
+            <td style="border: 1px solid #000; padding: 10px;">
+                ①混合料的养护采用湿养，始终保持表面潮湿，<br>
+                ②也可采用沥青乳液和沥青下封层进行养护，<br>
+                ③养护期视季节而定，常温下不宜小于 7d。
+            </td>
+        </tr>
+    </tbody>
+</table>
+
 
 86. 水泥稳定土类基层施工，错误的是（ ）。
 
