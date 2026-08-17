@@ -1342,6 +1342,13 @@ E. 雨水口和地下设施的检查井周围
 
 答案：ACDE
 
+解析：
+<div style="font-size: 14px; line-height: 1.8;">
+    <span style="color: black;">④对于特重及重交通等级的混凝土路面，横向胀缝、缩缝均设置传力杆。</span>
+    <span style="color: red;">在自由边处，承受繁重交通的胀缝、施工缝，小于 90° 的面层角隅，下穿市政管线路段，以及雨水口和地下设施的检查井周围，</span>
+    <span style="color: red;">应配筋补强。</span>
+</div>
+
 
 56. 为提高砌块路面抗滑性能，加工材料可采用下列（ ）方法。
 
