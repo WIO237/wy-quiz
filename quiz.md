@@ -3963,6 +3963,17 @@ D. 箍筋弯钩的弯曲直径应大于被箍主钢筋的直径
 
 答案：C
 
+解析：
+<div style="font-size: 14px; line-height: 1.5; padding-bottom: 6px;">
+    3）钢筋加工<br>
+    （1）钢筋弯制前应先调直，钢筋宜优先选用<span style="color: red;">机械方法调直</span>，且<span style="color: red;">不得使用卷扬机调直</span>。<br>
+    （2）钢筋下料前，应核对钢筋品种、规格、等级及加工数量，并应根据<span style="color: red;">设计要求</span>和<span style="color: red;">钢筋长度配料</span>；下料后应按种类和使用部位分别挂牌标明。<br>
+    （4）箍筋末端弯钩形式应符合设计要求或规范规定。箍筋弯钩的弯曲直径应大于被箍主钢筋的直径。且 HPB300 不得小于箍筋直径的 2.5 倍，HRB400 不得小于箍筋直径的 5 倍，且末端弯钩的弯折角度不应小于 135°；<span style="color: red;">弯钩平直部分的长度</span>，一般结构<span style="color: red;">不宜小于箍筋直径的 5 倍</span>，有抗震要求的结构不得小于箍筋直径的 10 倍。<br>
+    （5）钢筋宜在<span style="color: red;">常温状态下弯制</span>，<span style="color: red;">不宜加热</span>。钢筋宜从<span style="color: red;">中部开始逐步向两端弯制</span>，弯钩应<span style="color: red;">一次弯成</span>。<br>
+    （6）钢筋加工过程中，应采取防止油渍、泥浆等物污染和防止受损伤的措施。<br>
+    （7）在钢筋加工时<span style="color: red;">采用 BIM 建模技术</span>，可在整体工程建模后，生成钢筋翻样料单，用于钢筋加工，提高加工效率和准确性。
+</div>
+
 
 197. 关于钢筋连接，下列说法错误的是（ ）。
 
