@@ -476,6 +476,48 @@ E. 路堤
 
 答案：ABE
 
+解析：
+<table border="1" style="border-collapse: collapse; width: 100%; text-align: center; font-size: 14px; line-height: 1.6; vertical-align: middle;">
+    <caption style="font-weight: bold; font-size: 15px; color: #2b7bb9; padding-bottom: 12px; text-align: center;">表 1.2-2 路基填料强度（CBR）的最小值要求</caption>
+    <thead>
+        <tr style="background-color: #e6f2ff;">
+            <th rowspan="2" style="padding: 12px; border: 1px solid #000;">填方类型</th>
+            <th rowspan="2" style="padding: 12px; border: 1px solid #000;">路床顶面以下深度（cm）</th>
+            <th colspan="2" style="padding: 12px; border: 1px solid #000;">最小强度（%）</th>
+        </tr>
+        <tr style="background-color: #e6f2ff;">
+            <th style="padding: 12px; border: 1px solid #000;">城市快速路、主干路</th>
+            <th style="padding: 12px; border: 1px solid #000;">其他等级道路</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="padding: 12px; border: 1px solid #000;">路床</td>
+            <td style="padding: 12px; border: 1px solid #000;">0~30</td>
+            <td style="padding: 12px; border: 1px solid #000;">8.0</td>
+            <td style="padding: 12px; border: 1px solid #000;">6.0</td>
+        </tr>
+        <tr>
+            <td style="padding: 12px; border: 1px solid #000;">路基</td>
+            <td style="padding: 12px; border: 1px solid #000;">30~80</td>
+            <td style="padding: 12px; border: 1px solid #000;">5.0</td>
+            <td style="padding: 12px; border: 1px solid #000;">4.0</td>
+        </tr>
+        <tr>
+            <td style="padding: 12px; border: 1px solid #000;">路基</td>
+            <td style="padding: 12px; border: 1px solid #000;">80~150</td>
+            <td style="padding: 12px; border: 1px solid #000;">4.0</td>
+            <td style="padding: 12px; border: 1px solid #000;">3.0</td>
+        </tr>
+        <tr>
+            <td style="padding: 12px; border: 1px solid #000;">路基</td>
+            <td style="padding: 12px; border: 1px solid #000;">> 150</td>
+            <td style="padding: 12px; border: 1px solid #000;">3.0</td>
+            <td style="padding: 12px; border: 1px solid #000;">2.0</td>
+        </tr>
+    </tbody>
+</table>
+
 
 19. 路床是路基的一部分，指路面结构层以下（ ）范围内的部分。
 
