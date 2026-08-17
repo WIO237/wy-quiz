@@ -989,6 +989,35 @@ D. 轻交通道路宜选择石灰粉煤灰稳定粒料或级配粒料
 
 答案：C
 
+解析：
+<table border="1" style="border-collapse: collapse; width: 100%; text-align: center; font-size: 14px; line-height: 1.8; vertical-align: middle;">
+    <tbody>
+        <tr>
+            <td style="padding: 12px; border: 1px solid #000;">材料</td>
+            <td style="padding: 12px; border: 1px solid #000;">特重交通</td>
+            <td style="padding: 12px; border: 1px solid #000;">重交通</td>
+            <td style="padding: 12px; border: 1px solid #000;">中、轻交通</td>
+        </tr>
+        <tr>
+            <td style="padding: 12px; border: 1px solid #000;">&nbsp;</td>
+            <td style="padding: 12px; border: 1px solid #000;">
+                贫<span style="color: red;">混凝土</span><br>
+                碾压混凝土<br>
+                沥青混凝土
+            </td>
+            <td style="padding: 12px; border: 1px solid #000;">
+                水泥稳定粒料<br>
+                沥青稳定碎石
+            </td>
+            <td style="padding: 12px; border: 1px solid #000;">
+                水泥稳定粒料<br>
+                石灰稳定<span style="color: red;">粒料</span><br>
+                级配粒料
+            </td>
+        </tr>
+    </tbody>
+</table>
+
 
 42. 基层施工时，在湿润和多雨地区宜采用（ ）。
 
