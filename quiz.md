@@ -1879,6 +1879,24 @@ E. 碾压不到的部位应采用小型夯压机夯实，防止漏夯，要求�
 
 答案：ABDE
 
+解析：
+<div style="font-size: 14px; line-height: 1.5;">
+    2）路基压实施工要点<br>
+    （1）试验段<br>
+    ①在正式进行<span style="color: red;">路基压实前</span>，有条件时应<span style="color: red;">做试验段</span>，以便取得路基施工相关的技术参数。<br>
+    ②试验目的主要有：<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;a. 确定路基<span style="color: red;">预沉量值</span>。<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;b. 合理选用<span style="color: red;">压实机具</span>；选用机具考虑道路不同等级、工程量大小、地质条件、作业环境、工期要求等。<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;c. 按压实度要求，确定<span style="color: red;">压实遍数</span>。<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;d. 确定路基宽度内每层<span style="color: red;">虚铺厚度</span>。<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;e. 根据土的类型、湿度、设备及场地条件，选择<span style="color: red;">压实方式</span>。<br>
+    （3）路基压实<br>
+    ①压实方法（式）：<span style="color: red;">重力压实</span>（静压）和<span style="color: red;">振动压实</span>两种。<br>
+    ②土质路基压实应遵循的原则：<span style="color: red;">"先轻后重、先静后振、先低后高、先慢后快，轮迹重叠。"</span>压路机最快速度不宜超过 4km/h。<br>
+    ③碾压<span style="color: red;">应从路基边缘向中心进行，压路机轮外缘距路基边应保持安全距离。</span><br>
+    ④<span style="color: red;">碾压不到的部位应采用小型夯压机夯实</span>，防止漏夯，要求夯击面积重叠 1/4～1/3。
+</div>
+
 
 80. 下列关于无机结合料稳定基层特点的描述中，错误的是（ ）。
 
