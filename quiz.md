@@ -1028,6 +1028,54 @@ D. 底基层
 
 答案：A
 
+解析：
+<table border="1" style="border-collapse: collapse; width: 100%; text-align: center; font-size: 14px; line-height: 1.6; vertical-align: middle;">
+    <tbody>
+        <!-- 顶部红色大标题 -->
+        <tr>
+            <td colspan="3" style="padding: 12px; border: 1px solid #000; font-weight: bold; font-size: 15px;">
+                <span style="color: red;">排水垫层和排水基层区别</span>
+            </td>
+        </tr>
+        <!-- 表头行 -->
+        <tr>
+            <td style="padding: 10px; border: 1px solid #000;">&nbsp;</td>
+            <td style="padding: 10px; border: 1px solid #000;">排水垫层</td>
+            <td style="padding: 10px; border: 1px solid #000;">排水基层</td>
+        </tr>
+        <!-- 第1行 -->
+        <tr>
+            <td style="padding: 10px; border: 1px solid #000;">水方向</td>
+            <td style="padding: 10px; border: 1px solid #000;">向上</td>
+            <td style="padding: 10px; border: 1px solid #000;">向下</td>
+        </tr>
+        <!-- 第2行 -->
+        <tr>
+            <td style="padding: 10px; border: 1px solid #000;">适用</td>
+            <td style="padding: 10px; border: 1px solid #000;">水文不良、路基土湿度大</td>
+            <td style="padding: 10px; border: 1px solid #000;">湿润多雨、繁重交通</td>
+        </tr>
+        <!-- 第3行 -->
+        <tr>
+            <td style="padding: 10px; border: 1px solid #000;">材料</td>
+            <td style="padding: 10px; border: 1px solid #000;">砂、砂砾</td>
+            <td style="padding: 10px; border: 1px solid #000;">水泥处治开级配碎石</td>
+        </tr>
+        <!-- 第4行 -->
+        <tr>
+            <td style="padding: 10px; border: 1px solid #000;">作用</td>
+            <td style="padding: 10px; border: 1px solid #000;">隔水、排水、防冻，保护基层</td>
+            <td style="padding: 10px; border: 1px solid #000;">排水、保护路基</td>
+        </tr>
+        <!-- 第5行 -->
+        <tr>
+            <td style="padding: 10px; border: 1px solid #000;">宽度</td>
+            <td style="padding: 10px; border: 1px solid #000;">=不小于基层底面的宽度</td>
+            <td style="padding: 10px; border: 1px solid #000;">=面层+（不同机具）×2</td>
+        </tr>
+    </tbody>
+</table>
+
 
 43. 在温度和湿度状况不良的环境下，城市水泥混凝土道路应设置垫层，以改善路面结构的使用性能。以下关于垫层说法错误的是（ ）。
 
