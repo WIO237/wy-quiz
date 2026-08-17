@@ -1936,6 +1936,53 @@ D. 通常采用水泥、石灰及工业废渣等稳定材料
     </tbody>
 </table>
 
+<table style="width: 100%; border-collapse: collapse; border: 1px solid #000; text-align: center; font-size: 14px; line-height: 1.4;">
+    <tbody>
+        <tr>
+            <td style="border: 1px solid #000; padding: 6px 4px;">&nbsp;</td>
+            <td style="border: 1px solid #000; padding: 6px 4px; color: red; text-decoration: underline;">水泥稳定土</td>
+            <td style="border: 1px solid #000; padding: 6px 4px; color: red; text-decoration: underline;">石灰稳定土</td>
+            <td style="border: 1px solid #000; padding: 6px 4px; color: red; text-decoration: underline;">二灰稳定土</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #000; padding: 6px 4px;">板体性</td>
+            <td style="border: 1px solid #000; padding: 6px 4px;">良好</td>
+            <td style="border: 1px solid #000; padding: 6px 4px;">良好</td>
+            <td style="border: 1px solid #000; padding: 6px 4px;">良好</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #000; padding: 6px 4px;">水稳性</td>
+            <td style="border: 1px solid #000; padding: 6px 4px;">最好</td>
+            <td style="border: 1px solid #000; padding: 6px 4px;">&nbsp;</td>
+            <td style="border: 1px solid #000; padding: 6px 4px;">&nbsp;</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #000; padding: 6px 4px;">抗冻</td>
+            <td style="border: 1px solid #000; padding: 6px 4px;">高于石灰土</td>
+            <td style="border: 1px solid #000; padding: 6px 4px;">最低</td>
+            <td style="border: 1px solid #000; padding: 6px 4px;">高于石灰土</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #000; padding: 6px 4px;">早期强度</td>
+            <td style="border: 1px solid #000; padding: 6px 4px;">高</td>
+            <td style="border: 1px solid #000; padding: 6px 4px;">中&lt;5℃强度不增长</td>
+            <td style="border: 1px solid #000; padding: 6px 4px;">低&lt;4℃强度不增长</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #000; padding: 6px 4px;">干缩性/温缩性</td>
+            <td style="border: 1px solid #000; padding: 6px 4px;">&nbsp;</td>
+            <td style="border: 1px solid #000; padding: 6px 4px;">&nbsp;</td>
+            <td style="border: 1px solid #000; padding: 6px 4px;">最小</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #000; padding: 6px 4px;">抵抗开裂</td>
+            <td style="border: 1px solid #000; padding: 6px 4px;">&nbsp;</td>
+            <td style="border: 1px solid #000; padding: 6px 4px;">&nbsp;</td>
+            <td style="border: 1px solid #000; padding: 6px 4px;">稳定碎石<br>稳定砂砾<br>稳定土</td>
+        </tr>
+    </tbody>
+</table>
+
 
 81. 二灰稳定土的（ ）优于石灰稳定土。
 
