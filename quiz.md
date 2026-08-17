@@ -1866,6 +1866,8 @@ E. 每层虚铺厚度
     ④<span style="color: red;">碾压不到的部位应采用小型夯压机夯实</span>，防止漏夯，要求夯击面积重叠 1/4～1/3。
 </div>
 
+![图片](https://cdn.jsdelivr.net/gh/WIO237/wy-quiz@main/2026一级建造师习题班汇总.assets/img_1786932616668_bm5o5u.png)
+
 
 79. 路基压实，说法正确的是（ ）。
 
