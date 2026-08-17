@@ -1501,8 +1501,7 @@ E. 计算液性指数需要用到土的塑限和液限指标
 解析：
 
 C错误，软塑状态应为 0.5≤I<1.0；E错误，计算需要塑限和塑性指数；其他选项均正确。
-
-![图片](https://cdn.jsdelivr.net/gh/WIO237/wy-quiz@main/2026一级建造师习题班汇总.assets/img_1786930985808_bny3ed.png)
+<img src="https://cdn.jsdelivr.net/gh/WIO237/wy-quiz@main/2026一级建造师习题班汇总.assets/img_1786930985808_bny3ed.png" alt="图片" style="max-width:100%;height:auto;" referrerpolicy="no-referrer">
 
 
 65. 不良土质路基按路基处理的作用机理，大致分为（ ）。
@@ -1516,12 +1515,13 @@ E. 土的补强
 答案：ABE
 
 解析：
+
 <div style="font-size: 14px; line-height: 1.8; margin-bottom: 6px;">3. 不良土质路基处理</div>
 <div style="font-size: 14px; line-height: 1.8; margin-bottom: 8px;">1）不良土质路基处理的分类</div>
 <div style="font-size: 14px; line-height: 1.8; padding-left: 6px;">
-    ① <span style="color: red;">土质改良</span>：用机械（力学）、化学、电、热等手段增加密度；<br>
-    ② <span style="color: red;">土的置换</span>：换填；<br>
-    ③ <span style="color: red;">土的补强</span>：采用薄膜、绳网、板桩等约束，或放入抗拉强度高的补强材料形成复合路基以加强和改善路基土的剪切特性。
+① <span style="color: red;">土质改良</span>：用机械（力学）、化学、电、热等手段增加密度；<br>
+② <span style="color: red;">土的置换</span>：换填；<br>
+③ <span style="color: red;">土的补强</span>：采用薄膜、绳网、板桩等约束，或放入抗拉强度高的补强材料形成复合路基以加强和改善路基土的剪切特性。
 </div>
 
 
@@ -1541,6 +1541,49 @@ E. CFG桩
 口诀：振、灰、砂、砂、碎、石、爆、强
 振冲置换及拌入包括：振冲置换、深层搅拌、高压喷射注浆、石灰桩、CFG 桩。
 口诀：深、圳、石、膏、C
+
+<table style="width: 100%; text-align: left; font-size: 14px; line-height: 1.4; border-collapse: collapse; border: 1px solid #000;">
+    <thead>
+        <tr style="border-bottom: 1px solid #000; background-color: #f8f8f8;">
+            <th style="padding: 8px 6px; text-align: center; border: 1px solid #000; width: 16%;">分类</th>
+            <th style="padding: 8px 6px; text-align: center; border: 1px solid #000; width: 40%;">处理方法</th>
+            <th style="padding: 8px 6px; text-align: center; border: 1px solid #000; width: 44%;">适用范围</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="padding: 8px 6px; border: 1px solid #000; text-align: center; vertical-align: middle;">碾压及夯实</td>
+            <td style="padding: 8px 6px; border: 1px solid #000; vertical-align: middle;">重锤夯实、机械碾压、振动压实、强夯（动力固结）</td>
+            <td style="padding: 8px 6px; border: 1px solid #000; vertical-align: middle;">碎石土、砂土、粉土、低饱和度的黏性土，杂填土等，<span style="color: red; text-decoration: underline;">饱和黏性土</span>慎重对待</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px 6px; border: 1px solid #000; text-align: center; vertical-align: middle;">换土垫层</td>
+            <td style="padding: 8px 6px; border: 1px solid #000; vertical-align: middle;">砂石，素土，灰土，矿渣垫层</td>
+            <td style="padding: 8px 6px; border: 1px solid #000; vertical-align: middle;">暗沟、暗塘等软弱土的<span style="color: red; text-decoration: underline;">浅层处理</span></td>
+        </tr>
+        <tr>
+            <td style="padding: 8px 6px; border: 1px solid #000; text-align: center; vertical-align: middle;">排水固结</td>
+            <td style="padding: 8px 6px; border: 1px solid #000; vertical-align: middle;">天然地基预压，砂井预压，塑料排水板预压，真空预压，降水预压</td>
+            <td style="padding: 8px 6px; border: 1px solid #000; vertical-align: middle;">处理饱和软弱土层；<span style="color: red; text-decoration: underline;">对渗透性极低的泥炭土</span>，必须慎重对待</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px 6px; border: 1px solid #000; text-align: center; vertical-align: middle;">振冲挤密</td>
+            <td style="padding: 8px 6px; border: 1px solid #000; vertical-align: middle;">振冲挤密，灰土挤密桩，砂桩，砂砾桩，碎石桩，石灰桩，爆破挤密，强夯置换</td>
+            <td style="padding: 8px 6px; border: 1px solid #000; vertical-align: middle;">处理<span style="color: red; text-decoration: underline;">松砂、粉土、杂填土及湿陷性黄土</span></td>
+        </tr>
+        <tr>
+            <td style="padding: 8px 6px; border: 1px solid #000; text-align: center; vertical-align: middle;">振冲置换及拌入</td>
+            <td style="padding: 8px 6px; border: 1px solid #000; vertical-align: middle;">振冲置换，深层搅拌，高压喷射注浆，石灰桩，CFG桩等</td>
+            <td style="padding: 8px 6px; border: 1px solid #000; vertical-align: middle;">黏性土、冲填土、粉砂、细砂等；振冲置换法在不排水剪切强度&lt;20kPa时<span style="color: red; text-decoration: underline;">慎用</span></td>
+        </tr>
+        <tr>
+            <td style="padding: 8px 6px; border: 1px solid #000; text-align: center; vertical-align: middle;">加筋</td>
+            <td style="padding: 8px 6px; border: 1px solid #000; vertical-align: middle;">土工聚合物加筋，锚固，树根桩，加筋土</td>
+            <td style="padding: 8px 6px; border: 1px solid #000; vertical-align: middle;">软弱土地基、填土及陡坡填土、砂土</td>
+        </tr>
+    </tbody>
+</table>
+
 
 67. 下列地基处理方法中，属于振冲置换及拌入类的有（ ）。
 
