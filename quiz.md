@@ -2159,6 +2159,21 @@ D. 被禁止用于高等级路面的基层
 
 答案：D
 
+解析：
+<div style="font-size: 14px; line-height: 1.5;">
+    2）石灰粉煤灰稳定砂砾（碎石）基层（也可称二灰混合料）<br>
+    （1）运输与摊铺：<br>
+    ①运送混合料应<span style="color: red;">覆盖</span>，防止水分蒸发和遗撒、扬尘。<br>
+    ②施工期的<span style="color: red;">日最低气温应在 5℃以上</span>。<br>
+    ③根据<span style="color: red;">试验确定的松铺系数</span>控制虚铺厚度。<br>
+    （2）压实与养护：<br>
+    ①每层<span style="color: red;">最大压实厚度为 200mm，且不宜小于 100mm</span>。<br>
+    ②碾压时采用<span style="color: red;">先轻型、后重型</span>压路机碾压，宜在<span style="color: red;">当天碾压成型</span>。<br>
+    ③<span style="color: red;">禁止用薄层贴</span>补的方法进行找平。<br>
+    ④混合料的养护采用<span style="color: red;">湿养</span>，始终保持表面潮湿，也可采用<span style="color: red;">沥青乳液和沥青下封层进行养护</span>，养护期视季节而定，<span style="color: red;">常温下不宜小于 7d</span>。<br>
+    <span style="color: red;">补充解释：</span>只是一个养护层，可以是单独的沥青或者其他封层剂，也可以是沥青与集料组成的混合料。
+</div>
+
 
 86. 水泥稳定土类基层施工，错误的是（ ）。
 
