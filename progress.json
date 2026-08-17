@@ -70,6 +70,7 @@
       "65": "ADE",
       "66": "ABDE",
       "67": "ABCD",
+      "68": "ABCE",
       "69": "ABE",
       "70": "ABCE",
       "71": "CDE",
@@ -265,6 +266,7 @@
       "65": true,
       "66": true,
       "67": true,
+      "68": true,
       "69": true,
       "70": true,
       "71": true,
@@ -446,10 +448,10 @@
     65,
     67
   ],
-  "totalAnswered": 190,
-  "totalCorrect": 131,
+  "totalAnswered": 191,
+  "totalCorrect": 132,
   "notes": {},
   "currentMode": "sequence",
   "selectedChapter": "全部题目",
-  "currentIndex": 67
+  "currentIndex": 68
 }
