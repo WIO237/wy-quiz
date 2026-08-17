@@ -1192,60 +1192,60 @@ D. 伸缩杆
 答案：B
 
 解析：
-<table border="1" style="border-collapse: collapse; width: 100%; text-align: center; font-size: 14px; line-height: 1.8; vertical-align: middle;">
+<table border="1" style="border-collapse: collapse; width: 100%; text-align: center; font-size: 14px; line-height: 1.4; vertical-align: middle;">
     <tbody>
         <!-- 标题行 -->
         <tr>
-            <td style="padding: 12px; border: 1px solid #000;">&nbsp;</td>
-            <td style="padding: 12px; border: 1px solid #000; font-weight: bold; color: red;">横缝</td>
-            <td style="padding: 12px; border: 1px solid #000; font-weight: bold; color: red;">纵缝</td>
+            <td style="padding: 8px; border: 1px solid #000;">&nbsp;</td>
+            <td style="padding: 8px; border: 1px solid #000; font-weight: bold; color: red;">横缝</td>
+            <td style="padding: 8px; border: 1px solid #000; font-weight: bold; color: red;">纵缝</td>
         </tr>
         <!-- 胀缝行 -->
         <tr>
-            <td style="padding: 12px; border: 1px solid #000;">
+            <td style="padding: 8px; border: 1px solid #000;">
                 胀缝<br>
                 （满足膨胀变形）
             </td>
-            <td style="padding: 12px; border: 1px solid #000;">
+            <td style="padding: 8px; border: 1px solid #000;">
                 真<br>
                 150~200m 一道<br>
                 缝宽 2.0~2.5cm<br>
                 必安传力杆<br>
                 （光圆钢筋，一端固定、一端滑动）
             </td>
-            <td style="padding: 12px; border: 1px solid #000;">&nbsp;</td>
+            <td style="padding: 8px; border: 1px solid #000;">&nbsp;</td>
         </tr>
         <!-- 缩缝行 -->
         <tr>
-            <td style="padding: 12px; border: 1px solid #000;">
+            <td style="padding: 8px; border: 1px solid #000;">
                 缩缝<br>
                 （满足收缩变形）
             </td>
-            <td style="padding: 12px; border: 1px solid #000;">
+            <td style="padding: 8px; border: 1px solid #000;">
                 假<br>
                 3~5m 一道<br>
                 缝宽 4~6mm，<br>
                 快、主必安传力杆；<br>
                 次、支可不安传力杆
             </td>
-            <td style="padding: 12px; border: 1px solid #000;">
+            <td style="padding: 8px; border: 1px solid #000;">
                 假，必安拉杆<br>
                 （螺纹钢筋，两端固定）
             </td>
         </tr>
         <!-- 施工缝行 -->
         <tr>
-            <td style="padding: 12px; border: 1px solid #000;">
+            <td style="padding: 8px; border: 1px solid #000;">
                 施工缝
             </td>
-            <td style="padding: 12px; border: 1px solid #000;">
+            <td style="padding: 8px; border: 1px solid #000;">
                 真<br>
                 留在胀缝，同胀缝一样<br>
                 留在缩缝，做成真缝，虽是真缝<br>
                 （缝宽却是 4~6mm）<br>
                 必安传力杆
             </td>
-            <td style="padding: 12px; border: 1px solid #000;">
+            <td style="padding: 8px; border: 1px solid #000;">
                 真，必安拉杆<br>
                 （螺纹钢筋，两端固定）
             </td>
