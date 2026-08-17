@@ -371,6 +371,28 @@ E. 压实度
 
 答案：BCD
 
+解析：
+<table border="1" style="border-collapse: collapse; width: 100%; text-align: left; font-size: 14px; line-height: 1.6; vertical-align: middle;">
+    <tbody>
+        <tr>
+            <td style="padding: 12px; border: 1px solid #000; text-align: center;">面层</td>
+            <td style="padding: 12px; border: 1px solid #000;">承载能力、平整度、温度稳定性、透水性、水稳定性、抗滑能力、噪声量</td>
+        </tr>
+        <tr>
+            <td style="padding: 12px; border: 1px solid #000; text-align: center;">基层</td>
+            <td style="padding: 12px; border: 1px solid #000;">强度、扩散荷载、水稳性、抗冻性、不透水性</td>
+        </tr>
+        <tr>
+            <td style="padding: 12px; border: 1px solid #000; text-align: center;">垫层</td>
+            <td style="padding: 12px; border: 1px solid #000;">强度、扩散荷载、水稳性</td>
+        </tr>
+        <tr>
+            <td style="padding: 12px; border: 1px solid #000; text-align: center;">路基</td>
+            <td style="padding: 12px; border: 1px solid #000;">整体稳定性、变形量控制</td>
+        </tr>
+    </tbody>
+</table>
+
 
 16. 水泥混凝土面层的性能，以下说法错误的是（ ）。
 
@@ -2256,33 +2278,32 @@ D 级 400kN：等级：D 级。试验荷载：400 千牛（约 40 吨）。
 C 级 250kN：等级：C 级。试验荷载：250 千牛（约 25 吨）。
 应用场景：允许用于街巷（如胡同、里弄、小区内部道路）。这些地方主要通行小型车辆（轿车、SUV），偶尔有轻型货车，车流量和车速相对较低，荷载要求也相应降低。
 材料要求：可以使用钢纤维混凝土井盖。这种材料通过加入钢纤维增强了混凝土的抗拉、抗裂和抗冲击性能，成本通常低于铸铁，在荷载要求不极端的情况下是一种经济耐用的选择。
-
 <table border="1" style="border-collapse: collapse; width: 100%; text-align: left; font-size: 14px; line-height: 1.8; vertical-align: middle;">
-    <tbody>
-        <tr>
-            <td style="padding: 12px; border: 1px solid #000; min-width: 160px; font-weight: bold;">雨水口用料要求</td>
-            <td style="padding: 12px; border: 1px solid #000;">
-                ①快速路、主次干道、支路上的雨水口应使用承载能力 D 级 400kN 及以上等级铸铁水算盖，街巷雨水口可使用承载能力 C 级 250kN 及以上等级钢纤维混凝土水算盖。<br>
-                ② 机动车道及非机动车道雨水口宜采用现浇混凝土雨水口、预制成品雨水口。其他部位可采用砖砌式雨水口。
-            </td>
-        </tr>
-        <tr>
-            <td style="padding: 12px; border: 1px solid #000; font-weight: bold;">补充解释：D 级 400kN</td>
-            <td style="padding: 12px; border: 1px solid #000;">
-                等级：D 级。试验荷载：400 千牛（约 40 吨）。<br>
-                应用场景：用于快速路、主次干道、支路。这些道路通行的大型、重型车辆多，车流量大，车速较快，对井盖的冲击和压力非常大，因此要求最高的 D 级承载能力。<br>
-                材料要求：必须使用铸铁井盖。铸铁（尤其是球墨铸铁）具有强度高、韧性好、耐冲击、寿命长的特点，能满足严苛的工况。
-            </td>
-        </tr>
-        <tr>
-            <td style="padding: 12px; border: 1px solid #000; font-weight: bold;">补充解释：C 级 250kN</td>
-            <td style="padding: 12px; border: 1px solid #000;">
-                等级：C 级。试验荷载：250 千牛（约 25 吨）。<br>
-                应用场景：允许用于街巷（如胡同、里弄、小区内部道路）。这些地方主要通行小型车辆（轿车、SUV），偶尔有轻型货车，车流量和车速相对较低，荷载要求也相应降低。<br>
-                材料要求：可以使用钢纤维混凝土井盖。这种材料通过加入钢纤维增强了混凝土的抗拉、抗裂和抗冲击性能，成本通常低于铸铁，在荷载要求不极端的情况下是一种经济耐用的选择。
-            </td>
-        </tr>
-    </tbody>
+<tbody>
+<tr>
+<td style="padding: 12px; border: 1px solid 000; min-width: 160px; font-weight: bold;">雨水口用料要求</td>
+<td style="padding: 12px; border: 1px solid 000;">
+①快速路、主次干道、支路上的雨水口应使用承载能力 D 级 400kN 及以上等级铸铁水算盖，街巷雨水口可使用承载能力 C 级 250kN 及以上等级钢纤维混凝土水算盖。<br>
+② 机动车道及非机动车道雨水口宜采用现浇混凝土雨水口、预制成品雨水口。其他部位可采用砖砌式雨水口。
+</td>
+</tr>
+<tr>
+<td style="padding: 12px; border: 1px solid 000; font-weight: bold;">补充解释：D 级 400kN</td>
+<td style="padding: 12px; border: 1px solid 000;">
+等级：D 级。试验荷载：400 千牛（约 40 吨）。<br>
+应用场景：用于快速路、主次干道、支路。这些道路通行的大型、重型车辆多，车流量大，车速较快，对井盖的冲击和压力非常大，因此要求最高的 D 级承载能力。<br>
+材料要求：必须使用铸铁井盖。铸铁（尤其是球墨铸铁）具有强度高、韧性好、耐冲击、寿命长的特点，能满足严苛的工况。
+</td>
+</tr>
+<tr>
+<td style="padding: 12px; border: 1px solid 000; font-weight: bold;">补充解释：C 级 250kN</td>
+<td style="padding: 12px; border: 1px solid 000;">
+等级：C 级。试验荷载：250 千牛（约 25 吨）。<br>
+应用场景：允许用于街巷（如胡同、里弄、小区内部道路）。这些地方主要通行小型车辆（轿车、SUV），偶尔有轻型货车，车流量和车速相对较低，荷载要求也相应降低。<br>
+材料要求：可以使用钢纤维混凝土井盖。这种材料通过加入钢纤维增强了混凝土的抗拉、抗裂和抗冲击性能，成本通常低于铸铁，在荷载要求不极端的情况下是一种经济耐用的选择。
+</td>
+</tr>
+</tbody>
 </table>
 
 
