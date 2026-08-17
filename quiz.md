@@ -1515,6 +1515,15 @@ E. 土的补强
 
 答案：ABE
 
+解析：
+<div style="font-size: 14px; line-height: 1.8; margin-bottom: 6px;">3. 不良土质路基处理</div>
+<div style="font-size: 14px; line-height: 1.8; margin-bottom: 8px;">1）不良土质路基处理的分类</div>
+<div style="font-size: 14px; line-height: 1.8; padding-left: 6px;">
+    ① <span style="color: red;">土质改良</span>：用机械（力学）、化学、电、热等手段增加密度；<br>
+    ② <span style="color: red;">土的置换</span>：换填；<br>
+    ③ <span style="color: red;">土的补强</span>：采用薄膜、绳网、板桩等约束，或放入抗拉强度高的补强材料形成复合路基以加强和改善路基土的剪切特性。
+</div>
+
 
 66. 路基采用振冲、挤密的处理方法包括（ ）。
 
