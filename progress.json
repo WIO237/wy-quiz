@@ -192,7 +192,8 @@
       "187": "ABD",
       "188": "AC",
       "189": "B",
-      "190": "C"
+      "190": "C",
+      "191": "B"
     }
   },
   "modeSubmitted": {
@@ -388,7 +389,8 @@
       "187": true,
       "188": true,
       "189": true,
-      "190": true
+      "190": true,
+      "191": true
     }
   },
   "wrongAnswers": {},
@@ -448,10 +450,10 @@
     65,
     67
   ],
-  "totalAnswered": 191,
-  "totalCorrect": 132,
+  "totalAnswered": 192,
+  "totalCorrect": 133,
   "notes": {},
   "currentMode": "sequence",
   "selectedChapter": "全部题目",
-  "currentIndex": 144
+  "currentIndex": 191
 }
