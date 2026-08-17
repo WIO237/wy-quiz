@@ -1192,76 +1192,74 @@ D. 伸缩杆
 答案：B
 
 解析：
+
 <table border="1" style="border-collapse: collapse; width: 100%; text-align: center; font-size: 14px; line-height: 1.4; vertical-align: middle;">
-    <tbody>
-        <!-- 标题行 -->
-        <tr>
-            <td style="padding: 8px; border: 1px solid #000;">&nbsp;</td>
-            <td style="padding: 8px; border: 1px solid #000; font-weight: bold; color: red;">横缝</td>
-            <td style="padding: 8px; border: 1px solid #000; font-weight: bold; color: red;">纵缝</td>
-        </tr>
-        <!-- 胀缝行 -->
-        <tr>
-            <td style="padding: 8px; border: 1px solid #000;">
-                胀缝<br>
-                （满足膨胀变形）
-            </td>
-            <td style="padding: 8px; border: 1px solid #000;">
-                真<br>
-                150~200m 一道<br>
-                缝宽 2.0~2.5cm<br>
-                必安传力杆<br>
-                （光圆钢筋，一端固定、一端滑动）
-            </td>
-            <td style="padding: 8px; border: 1px solid #000;">&nbsp;</td>
-        </tr>
-        <!-- 缩缝行 -->
-        <tr>
-            <td style="padding: 8px; border: 1px solid #000;">
-                缩缝<br>
-                （满足收缩变形）
-            </td>
-            <td style="padding: 8px; border: 1px solid #000;">
-                假<br>
-                3~5m 一道<br>
-                缝宽 4~6mm，<br>
-                快、主必安传力杆；<br>
-                次、支可不安传力杆
-            </td>
-            <td style="padding: 8px; border: 1px solid #000;">
-                假，必安拉杆<br>
-                （螺纹钢筋，两端固定）
-            </td>
-        </tr>
-        <!-- 施工缝行 -->
-        <tr>
-            <td style="padding: 8px; border: 1px solid #000;">
-                施工缝
-            </td>
-            <td style="padding: 8px; border: 1px solid #000;">
-                真<br>
-                留在胀缝，同胀缝一样<br>
-                留在缩缝，做成真缝，虽是真缝<br>
-                （缝宽却是 4~6mm）<br>
-                必安传力杆
-            </td>
-            <td style="padding: 8px; border: 1px solid #000;">
-                真，必安拉杆<br>
-                （螺纹钢筋，两端固定）
-            </td>
-        </tr>
-    </tbody>
+<tbody>
+<!-- 标题行 -->
+<tr>
+<td style="padding: 8px; border: 1px solid 000;">&nbsp;</td>
+<td style="padding: 8px; border: 1px solid 000; font-weight: bold; color: red;">横缝</td>
+<td style="padding: 8px; border: 1px solid 000; font-weight: bold; color: red;">纵缝</td>
+</tr>
+<!-- 胀缝行 -->
+<tr>
+<td style="padding: 8px; border: 1px solid 000;">
+胀缝<br>
+（满足膨胀变形）
+</td>
+<td style="padding: 8px; border: 1px solid 000;">
+真<br>
+150~200m 一道<br>
+缝宽 2.0~2.5cm<br>
+必安传力杆<br>
+（光圆钢筋，一端固定、一端滑动）
+</td>
+<td style="padding: 8px; border: 1px solid 000;">&nbsp;</td>
+</tr>
+<!-- 缩缝行 -->
+<tr>
+<td style="padding: 8px; border: 1px solid 000;">
+缩缝<br>
+（满足收缩变形）
+</td>
+<td style="padding: 8px; border: 1px solid 000;">
+假<br>
+3~5m 一道<br>
+缝宽 4~6mm，<br>
+快、主必安传力杆；<br>
+次、支可不安传力杆
+</td>
+<td style="padding: 8px; border: 1px solid 000;">
+假，必安拉杆<br>
+（螺纹钢筋，两端固定）
+</td>
+</tr>
+<!-- 施工缝行 -->
+<tr>
+<td style="padding: 8px; border: 1px solid 000;">
+施工缝
+</td>
+<td style="padding: 8px; border: 1px solid 000;">
+真<br>
+留在胀缝，同胀缝一样<br>
+留在缩缝，做成真缝，虽是真缝<br>
+（缝宽却是 4~6mm）<br>
+必安传力杆
+</td>
+<td style="padding: 8px; border: 1px solid 000;">
+真，必安拉杆<br>
+（螺纹钢筋，两端固定）
+</td>
+</tr>
+</tbody>
 </table>
-
 <div style="font-size: 14px; line-height: 1.6; margin-bottom: 10px;">
-    (6) 胀缝板宜用<span style="color: red;">厚 20mm</span>，水稳定性好，具有一定柔性的板材制作，且应经防腐处理。填缝材料宜用<span style="color: red; border: 1px solid red; padding: 0 3px;">硅</span>酮类、<span style="color: red; border: 1px solid red; padding: 0 3px;">聚</span>氨酯类、<span style="color: red; border: 1px solid red; padding: 0 3px;">树</span>脂类、<span style="color: red; border: 1px solid red; padding: 0 3px;">橡</span>胶沥青类、聚<span style="color: red; border: 1px solid red; padding: 0 3px;">氯</span>乙烯胶泥类、<span style="color: red; border: 1px solid red; padding: 0 3px;">改</span>性沥青类填缝材料，并宜加入耐老化剂。
+(6) 胀缝板宜用<span style="color: red;">厚 20mm</span>，水稳定性好，具有一定柔性的板材制作，且应经防腐处理。填缝材料宜用<span style="color: red; border: 1px solid red; padding: 0 3px;">硅</span>酮类、<span style="color: red; border: 1px solid red; padding: 0 3px;">聚</span>氨酯类、<span style="color: red; border: 1px solid red; padding: 0 3px;">树</span>脂类、<span style="color: red; border: 1px solid red; padding: 0 3px;">橡</span>胶沥青类、聚<span style="color: red; border: 1px solid red; padding: 0 3px;">氯</span>乙烯胶泥类、<span style="color: red; border: 1px solid red; padding: 0 3px;">改</span>性沥青类填缝材料，并宜加入耐老化剂。
 </div>
-
 <div style="font-size: 14px; line-height: 1.6; border: 1px solid black; display: inline-block; padding: 2px 8px;">
-    （口诀：竖向铝盖挺规矩）
+（口诀：竖向铝盖挺规矩）
 </div>
-
-![图片](https://cdn.jsdelivr.net/gh/WIO237/wy-quiz@main/2026一级建造师习题班汇总.assets/img_1786929732698_4woivs.png)
+<img src="https://cdn.jsdelivr.net/gh/WIO237/wy-quiz@main/2026一级建造师习题班汇总.assets/img_1786929732698_4woivs.png" alt="图片" style="max-width:100%;height:auto;" referrerpolicy="no-referrer">
 
 
 50. 水泥混凝土路面的纵向接缝是根据（ ）设置的。
@@ -1343,10 +1341,11 @@ E. 雨水口和地下设施的检查井周围
 答案：ACDE
 
 解析：
+
 <div style="font-size: 14px; line-height: 1.8;">
-    <span style="color: black;">④对于特重及重交通等级的混凝土路面，横向胀缝、缩缝均设置传力杆。</span>
-    <span style="color: red;">在自由边处，承受繁重交通的胀缝、施工缝，小于 90° 的面层角隅，下穿市政管线路段，以及雨水口和地下设施的检查井周围，</span>
-    <span style="color: red;">应配筋补强。</span>
+<span style="color: black;">④对于特重及重交通等级的混凝土路面，横向胀缝、缩缝均设置传力杆。</span>
+<span style="color: red;">在自由边处，承受繁重交通的胀缝、施工缝，小于 90° 的面层角隅，下穿市政管线路段，以及雨水口和地下设施的检查井周围，</span>
+<span style="color: red;">应配筋补强。</span>
 </div>
 
 
@@ -1418,11 +1417,12 @@ E. 翻浆
 答案：ABCE
 
 解析：
+
 <div style="font-size: 14px; line-height: 1.8; margin-bottom: 8px;">
-    2）水土作用
+2）水土作用
 </div>
 <div style="font-size: 14px; line-height: 1.8;">
-    （1）工程实践表明：在对道路路基施工、运行与维护造成危害的诸多因素中，影响最大、最持久的是地下水。水与土体相互作用，可以使土体的强度和稳定性降低，<span style="color: red;">导致路基或地下构筑物周围土体软化，并可能产生滑坡、沉陷、潜蚀、管涌、冻胀、翻浆等危害。（花钱沉管冻翻）</span>
+（1）工程实践表明：在对道路路基施工、运行与维护造成危害的诸多因素中，影响最大、最持久的是地下水。水与土体相互作用，可以使土体的强度和稳定性降低，<span style="color: red;">导致路基或地下构筑物周围土体软化，并可能产生滑坡、沉陷、潜蚀、管涌、冻胀、翻浆等危害。（花钱沉管冻翻）</span>
 </div>
 
 
@@ -1452,8 +1452,7 @@ D. 1.0～1.5
 3)三类土，坚土；坚实系数为 0.8～1.0。
 4)四类土，砂砾坚土；1.0～1.5。
 五类土是软石，六类土是次坚石，七类土是坚石，八类土是特坚石。
-
-![图片](https://cdn.jsdelivr.net/gh/WIO237/wy-quiz@main/2026一级建造师习题班汇总.assets/img_1786930792297_qmb0lc.png)
+<img src="https://cdn.jsdelivr.net/gh/WIO237/wy-quiz@main/2026一级建造师习题班汇总.assets/img_1786930792297_qmb0lc.png" alt="图片" style="max-width:100%;height:auto;" referrerpolicy="no-referrer">
 
 
 62. 土中水的质量与干土粒质量之比，称为（ ）。
@@ -1486,8 +1485,7 @@ D. 当 I<0时，土体处于流塑状态
 
 A 错误，0.5≤I<1.0 为软塑状态；C 错误，I≥1.0 为流塑状态；D 错误，I<0 为坚硬、半坚硬状态。B 选项正确表述了液性指数计算公式。2．常用路基土的主要性能参数1）含水率 ω；2）天然密度 p3）孔隙比 e；4）孔隙率 n5）塑限 ωp：土由可塑状态转为半固体状态时的界限含水量为塑性下限，称为塑性界限，简称塑限。6）液限 ωl：土由可塑状态转为流体状态时的界限含水量为液性上限，称为液性界限，简称液限。7）塑性指数：土的液限与塑限之差值，Ip= ωl - ωp
 8）液性指数 Il：土的天然含水率与塑限之差值对塑性指数之比值，Il=（ω- ωp ）/Ip，Il可用以判别土的软硬程度；Il＜0 坚硬、半坚硬状态，0≤Il＜0.5 硬塑状态，
-
-![图片](https://cdn.jsdelivr.net/gh/WIO237/wy-quiz@main/2026一级建造师习题班汇总.assets/img_1786930840128_y5o8zb.png)
+<img src="https://cdn.jsdelivr.net/gh/WIO237/wy-quiz@main/2026一级建造师习题班汇总.assets/img_1786930840128_y5o8zb.png" alt="图片" style="max-width:100%;height:auto;" referrerpolicy="no-referrer">
 
 
 64. 关于土的液性指数 I及其工程意义，正确的有（ ）。
@@ -1501,7 +1499,11 @@ E. 计算液性指数需要用到土的塑限和液限指标
 答案：ABD
 
 解析：
+
 C错误，软塑状态应为 0.5≤I<1.0；E错误，计算需要塑限和塑性指数；其他选项均正确。
+
+![图片](https://cdn.jsdelivr.net/gh/WIO237/wy-quiz@main/2026一级建造师习题班汇总.assets/img_1786930985808_bny3ed.png)
+
 
 65. 不良土质路基按路基处理的作用机理，大致分为（ ）。
 
