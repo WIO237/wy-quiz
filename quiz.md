@@ -3933,6 +3933,11 @@ E. 重量偏差
 
 答案：ACDE
 
+解析：
+<div style="font-size: 14px; line-height: 1.6;">
+    （4）钢筋进场应按现行国家相关标准的规定，抽取试件作<span style="color: red;">屈服强度、抗拉强度、伸长率、弯曲</span>性能和<span style="color: red;">重量</span>偏差检验，检验结果应符合相应标准的规定。
+</div>
+
 
 195. 钢筋下料后应按（ ）分别挂牌标明。
 
