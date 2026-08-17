@@ -1186,7 +1186,7 @@ D. 伸缩杆
 
 解析：
 
-<img src="https://cdn.jsdelivr.net/gh/WIO237/wy-quiz@main/2026一级建造师习题班汇总.assets/img_1785986760061_c6noje.png" alt="图片" style="max-width:100%;height:auto;" referrerpolicy="no-referrer">
+
 
 
 50. 水泥混凝土路面的纵向接缝是根据（ ）设置的。
