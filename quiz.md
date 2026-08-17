@@ -1261,6 +1261,8 @@ D. 伸缩杆
     （口诀：竖向铝盖挺规矩）
 </div>
 
+![图片](https://cdn.jsdelivr.net/gh/WIO237/wy-quiz@main/2026一级建造师习题班汇总.assets/img_1786929732698_4woivs.png)
+
 
 50. 水泥混凝土路面的纵向接缝是根据（ ）设置的。
 
