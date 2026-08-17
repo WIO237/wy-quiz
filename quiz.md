@@ -2219,6 +2219,47 @@ D. 运输中应采取防止水分蒸发和防扬尘措施
 
 答案：B
 
+解析：
+<table border="1" style="border-collapse: collapse; width: 100%; text-align: left; font-size: 14px; line-height: 1.6; vertical-align: middle;">
+    <tbody>
+        <tr>
+            <td colspan="2" style="border: 1px solid #000; padding: 10px; text-align: center; color: red; text-decoration: underline; font-weight: bold; font-size: 15px;">石灰稳定土、水泥稳定土</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #000; padding: 10px; text-align: center; width: 15%;">运输</td>
+            <td style="border: 1px solid #000; padding: 10px;">
+                ①及时运送到铺筑现场。<br>
+                ②水泥稳定土材料自搅拌至摊铺碾压成型，不应超过 3h。<br>
+                ③运输中应采取防止水分蒸发和防扬尘措施。
+            </td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #000; padding: 10px; text-align: center;">摊铺</td>
+            <td style="border: 1px solid #000; padding: 10px;">
+                ①宜在春末和气温较高季节施工，施工气温应不低于 5℃。<br>
+                ②厂拌石灰土类混合料摊铺时路床应湿润，但应避免在雨天施工。
+            </td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #000; padding: 10px; text-align: center;">压实</td>
+            <td style="border: 1px solid #000; padding: 10px;">
+                ①压实系数应经试验确定。<br>
+                ②摊铺好的石灰稳定土应当天碾压成型，碾压时的含水率宜在最佳含水率的允许偏差范围内。<br>
+                ③水泥稳定土宜在水泥初凝前碾压成型。<br>
+                ④直线和不设超高的平曲线段，应由两侧向中心碾压；设超高的平曲线段，应由内侧向外侧碾压。纵、横接缝（槎）均应设直槎。<br>
+                ⑤纵向接缝宜设在路中线处，横向接缝尽量减少。
+            </td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #000; padding: 10px; text-align: center;">养护</td>
+            <td style="border: 1px solid #000; padding: 10px;">
+                ①压实成型后应立即洒水（或覆盖）养护，保持湿润，直至上部结构施工为止。<br>
+                ②养护期应封闭交通。
+            </td>
+        </tr>
+    </tbody>
+</table>
+
 
 87. 在常温状态下，二灰混合料基层的养护时间至少应为（ ）。
 
