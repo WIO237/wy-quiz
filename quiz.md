@@ -3707,6 +3707,55 @@ D. 施工机具荷载
 
 答案：C
 
+解析：
+<div style="font-size: 14px; line-height: 1.5; padding-bottom: 6px;">
+    1）模板、支架和拱架的设计与验算<br>
+    （1）模板、支架和拱架应结构简单、制造与装拆方便，应具有足够的<span style="color: red;">承载能力、刚度和稳定性</span>，并应满足施工过程中的各种工况要求。其结构形式、跨径、荷载、地基类别应按相关规范、标准进行施工设计。<br>
+    （2）设计模板、支架和拱架时应按表 2.1-2 进行荷载组合。<br>
+    表 2.1-2 设计模板、支架和拱架的荷载组合表
+</div>
+
+<table border="1" style="border-collapse: collapse; width: 100%; text-align: center; font-size: 14px; line-height: 1.4;">
+    <thead>
+        <tr style="border-bottom: 1px solid #000;">
+            <th rowspan="2" style="border: 1px solid #000; padding: 8px 4px; width: 50%;">模板构件名称</th>
+            <th colspan="2" style="border: 1px solid #000; padding: 8px 4px;">荷载组合</th>
+        </tr>
+        <tr style="border-bottom: 1px solid #000;">
+            <th style="border: 1px solid #000; padding: 8px 4px;">计算强度用</th>
+            <th style="border: 1px solid #000; padding: 8px 4px;">验算刚度用</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="border: 1px solid #000; padding: 8px 4px; text-align: left;">梁、板和拱的底模及支承板、拱架、支架等</td>
+            <td style="border: 1px solid #000; padding: 8px 4px;">①+②+③+④+⑦+⑧</td>
+            <td style="border: 1px solid #000; padding: 8px 4px;">①+②+⑦+⑧</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #000; padding: 8px 4px; text-align: left;">缘石、人行道、栏杆、柱、梁板、拱等的侧模板</td>
+            <td style="border: 1px solid #000; padding: 8px 4px;">④+⑤</td>
+            <td style="border: 1px solid #000; padding: 8px 4px;">⑤</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #000; padding: 8px 4px; text-align: left;">基础、墩台等厚大结构物的侧模板</td>
+            <td style="border: 1px solid #000; padding: 8px 4px;">⑤+⑥</td>
+            <td style="border: 1px solid #000; padding: 8px 4px;">⑤</td>
+        </tr>
+    </tbody>
+</table>
+
+<div style="font-size: 14px; line-height: 1.5; margin-top: 6px;">
+    ①模板、拱架和支架自重；↓<br>
+    ②新浇筑混凝土、钢筋混凝土或圬工、砌体的自重力；↓<br>
+    ③施工人员及施工材料机具等行走运输或堆放的荷载；↓<br>
+    ④振捣混凝土时的荷载；↓ ←→<br>
+    ⑤新浇筑混凝土对侧面模板的压力；←→<br>
+    ⑥倾倒混凝土时产生的水平向冲击荷载；←→<br>
+    ⑦设于水中的支架所承受的水流压力、波浪力、流冰压力、船只及其他漂浮物的撞击力；↓<br>
+    ⑧其他可能产生的荷载，如风雪荷载、冬期施工保温设施荷载等。↓
+</div>
+
 
 183. 设于水中的支架所承受的力包括（ ）。
 
