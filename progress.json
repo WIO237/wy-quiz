@@ -197,7 +197,8 @@
       "192": "ABDE",
       "193": "ACDE",
       "194": "ABCE",
-      "195": "B"
+      "195": "B",
+      "196": "AC"
     }
   },
   "modeSubmitted": {
@@ -398,7 +399,8 @@
       "192": true,
       "193": true,
       "194": true,
-      "195": true
+      "195": true,
+      "196": true
     }
   },
   "wrongAnswers": {},
@@ -458,12 +460,13 @@
     65,
     67,
     194,
-    195
+    195,
+    196
   ],
-  "totalAnswered": 196,
+  "totalAnswered": 197,
   "totalCorrect": 135,
   "notes": {},
   "currentMode": "sequence",
   "selectedChapter": "全部题目",
-  "currentIndex": 195
+  "currentIndex": 196
 }
