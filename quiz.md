@@ -1542,6 +1542,48 @@ E. CFG桩
 振冲置换及拌入包括：振冲置换、深层搅拌、高压喷射注浆、石灰桩、CFG 桩。
 口诀：深、圳、石、膏、C
 
+<table style="width: 100%; text-align: left; font-size: 14px; line-height: 1.4; border: none; border-collapse: collapse;">
+    <thead>
+        <tr style="border-bottom: 1px solid #ccc;">
+            <th style="padding: 6px 4px; text-align: center; border: none; width: 15%;">分类</th>
+            <th style="padding: 6px 4px; text-align: center; border: none; width: 40%;">处理方法</th>
+            <th style="padding: 6px 4px; text-align: center; border: none; width: 45%;">适用范围</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="padding: 6px 4px; border: none; text-align: center; vertical-align: top;">碾压及夯实</td>
+            <td style="padding: 6px 4px; border: none; vertical-align: top;">重锤夯实、机械碾压、振动压实、强夯（动力固结）</td>
+            <td style="padding: 6px 4px; border: none; vertical-align: top;">碎石土、砂土、粉土、低饱和度的黏性土，杂填土等，<span style="color: red; text-decoration: underline;">饱和黏性土</span>慎重对待</td>
+        </tr>
+        <tr>
+            <td style="padding: 6px 4px; border: none; text-align: center; vertical-align: top;">换土垫层</td>
+            <td style="padding: 6px 4px; border: none; vertical-align: top;">砂石，素土，灰土，矿渣垫层</td>
+            <td style="padding: 6px 4px; border: none; vertical-align: top;">暗沟、暗塘等软弱土的<span style="color: red; text-decoration: underline;">浅层处理</span></td>
+        </tr>
+        <tr>
+            <td style="padding: 6px 4px; border: none; text-align: center; vertical-align: top;">排水固结</td>
+            <td style="padding: 6px 4px; border: none; vertical-align: top;">天然地基预压，砂井预压，塑料排水板预压，真空预压，降水预压</td>
+            <td style="padding: 6px 4px; border: none; vertical-align: top;">处理饱和软弱土层；<span style="color: red; text-decoration: underline;">对渗透性极低的泥炭土</span>，必须慎重对待</td>
+        </tr>
+        <tr>
+            <td style="padding: 6px 4px; border: none; text-align: center; vertical-align: top;">振冲挤密</td>
+            <td style="padding: 6px 4px; border: none; vertical-align: top;">振冲挤密，灰土挤密桩，砂桩，砂砾桩，碎石桩，石灰桩，爆破挤密，强夯置换</td>
+            <td style="padding: 6px 4px; border: none; vertical-align: top;">处理<span style="color: red; text-decoration: underline;">松砂、粉土、杂填土及湿陷性黄土</span></td>
+        </tr>
+        <tr>
+            <td style="padding: 6px 4px; border: none; text-align: center; vertical-align: top;">振冲置换及拌入</td>
+            <td style="padding: 6px 4px; border: none; vertical-align: top;">振冲置换，深层搅拌，高压喷射注浆，石灰桩，CFG桩等</td>
+            <td style="padding: 6px 4px; border: none; vertical-align: top;">黏性土、冲填土、粉砂、细砂等；振冲置换法在不排水剪切强度&lt;20kPa时<span style="color: red; text-decoration: underline;">慎用</span></td>
+        </tr>
+        <tr>
+            <td style="padding: 6px 4px; border: none; text-align: center; vertical-align: top;">加筋</td>
+            <td style="padding: 6px 4px; border: none; vertical-align: top;">土工聚合物加筋，锚固，树根桩，加筋土</td>
+            <td style="padding: 6px 4px; border: none; vertical-align: top;">软弱土地基、填土及陡坡填土、砂土</td>
+        </tr>
+    </tbody>
+</table>
+
 
 67. 下列地基处理方法中，属于振冲置换及拌入类的有（ ）。
 
