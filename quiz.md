@@ -1253,6 +1253,14 @@ D. 伸缩杆
     </tbody>
 </table>
 
+<div style="font-size: 14px; line-height: 1.6; margin-bottom: 10px;">
+    (6) 胀缝板宜用<span style="color: red;">厚 20mm</span>，水稳定性好，具有一定柔性的板材制作，且应经防腐处理。填缝材料宜用<span style="color: red; border: 1px solid red; padding: 0 3px;">硅</span>酮类、<span style="color: red; border: 1px solid red; padding: 0 3px;">聚</span>氨酯类、<span style="color: red; border: 1px solid red; padding: 0 3px;">树</span>脂类、<span style="color: red; border: 1px solid red; padding: 0 3px;">橡</span>胶沥青类、聚<span style="color: red; border: 1px solid red; padding: 0 3px;">氯</span>乙烯胶泥类、<span style="color: red; border: 1px solid red; padding: 0 3px;">改</span>性沥青类填缝材料，并宜加入耐老化剂。
+</div>
+
+<div style="font-size: 14px; line-height: 1.6; border: 1px solid black; display: inline-block; padding: 2px 8px;">
+    （口诀：竖向铝盖挺规矩）
+</div>
+
 
 50. 水泥混凝土路面的纵向接缝是根据（ ）设置的。
 
