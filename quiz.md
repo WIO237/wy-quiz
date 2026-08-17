@@ -1907,6 +1907,35 @@ D. 通常采用水泥、石灰及工业废渣等稳定材料
 
 答案：B
 
+解析：
+<table style="width: 100%; border-collapse: collapse; border: 1px solid #000; text-align: center; font-size: 14px; line-height: 1.4;">
+    <tbody>
+        <tr>
+            <td colspan="3" style="border: 1px solid #000; padding: 8px 4px; color: red; text-decoration: underline; font-weight: bold;">半刚性基层：无机结合料稳定粒料</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #000; padding: 6px 4px;">无机结合料</td>
+            <td style="border: 1px solid #000; padding: 6px 4px;">稳定</td>
+            <td style="border: 1px solid #000; padding: 6px 4px;">粒料</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #000; padding: 6px 4px;">水泥</td>
+            <td style="border: 1px solid #000; padding: 6px 4px;">&nbsp;</td>
+            <td style="border: 1px solid #000; padding: 6px 4px;">土</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #000; padding: 6px 4px;">石灰</td>
+            <td style="border: 1px solid #000; padding: 6px 4px;">&nbsp;</td>
+            <td style="border: 1px solid #000; padding: 6px 4px;">砂砾</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #000; padding: 6px 4px;">石灰粉煤灰（二灰）</td>
+            <td style="border: 1px solid #000; padding: 6px 4px;">&nbsp;</td>
+            <td style="border: 1px solid #000; padding: 6px 4px;">碎石、砾石</td>
+        </tr>
+    </tbody>
+</table>
+
 
 81. 二灰稳定土的（ ）优于石灰稳定土。
 
