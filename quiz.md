@@ -372,25 +372,26 @@ E. 压实度
 答案：BCD
 
 解析：
+
 <table border="1" style="border-collapse: collapse; width: 100%; text-align: left; font-size: 14px; line-height: 1.6; vertical-align: middle;">
-    <tbody>
-        <tr>
-            <td style="padding: 12px; border: 1px solid #000; text-align: center;">面层</td>
-            <td style="padding: 12px; border: 1px solid #000;">承载能力、平整度、温度稳定性、透水性、水稳定性、抗滑能力、噪声量</td>
-        </tr>
-        <tr>
-            <td style="padding: 12px; border: 1px solid #000; text-align: center;">基层</td>
-            <td style="padding: 12px; border: 1px solid #000;">强度、扩散荷载、水稳性、抗冻性、不透水性</td>
-        </tr>
-        <tr>
-            <td style="padding: 12px; border: 1px solid #000; text-align: center;">垫层</td>
-            <td style="padding: 12px; border: 1px solid #000;">强度、扩散荷载、水稳性</td>
-        </tr>
-        <tr>
-            <td style="padding: 12px; border: 1px solid #000; text-align: center;">路基</td>
-            <td style="padding: 12px; border: 1px solid #000;">整体稳定性、变形量控制</td>
-        </tr>
-    </tbody>
+<tbody>
+<tr>
+<td style="padding: 12px; border: 1px solid 000; text-align: center;">面层</td>
+<td style="padding: 12px; border: 1px solid 000;">承载能力、平整度、温度稳定性、透水性、水稳定性、抗滑能力、噪声量</td>
+</tr>
+<tr>
+<td style="padding: 12px; border: 1px solid 000; text-align: center;">基层</td>
+<td style="padding: 12px; border: 1px solid 000;">强度、扩散荷载、水稳性、抗冻性、不透水性</td>
+</tr>
+<tr>
+<td style="padding: 12px; border: 1px solid 000; text-align: center;">垫层</td>
+<td style="padding: 12px; border: 1px solid 000;">强度、扩散荷载、水稳性</td>
+</tr>
+<tr>
+<td style="padding: 12px; border: 1px solid 000; text-align: center;">路基</td>
+<td style="padding: 12px; border: 1px solid 000;">整体稳定性、变形量控制</td>
+</tr>
+</tbody>
 </table>
 
 
@@ -406,26 +407,25 @@ D. 抗冻性是耐久性的重要指标之一
 解析：
 
 水泥混凝土面层要求不透水，透水性并非其性能要求，故 C 错误。
-
 <table border="1" style="border-collapse: collapse; width: 100%; text-align: left; font-size: 14px; line-height: 1.6; vertical-align: middle;">
-    <tbody>
-        <tr>
-            <td style="padding: 12px; border: 1px solid #000; text-align: center;">面层</td>
-            <td style="padding: 12px; border: 1px solid #000;">承载能力、平整度、温度稳定性、透水性、水稳定性、抗滑能力、噪声量</td>
-        </tr>
-        <tr>
-            <td style="padding: 12px; border: 1px solid #000; text-align: center;">基层</td>
-            <td style="padding: 12px; border: 1px solid #000;">强度、扩散荷载、水稳性、抗冻性、不透水性</td>
-        </tr>
-        <tr>
-            <td style="padding: 12px; border: 1px solid #000; text-align: center;">垫层</td>
-            <td style="padding: 12px; border: 1px solid #000;">强度、扩散荷载、水稳性</td>
-        </tr>
-        <tr>
-            <td style="padding: 12px; border: 1px solid #000; text-align: center;">路基</td>
-            <td style="padding: 12px; border: 1px solid #000;">整体稳定性、变形量控制</td>
-        </tr>
-    </tbody>
+<tbody>
+<tr>
+<td style="padding: 12px; border: 1px solid 000; text-align: center;">面层</td>
+<td style="padding: 12px; border: 1px solid 000;">承载能力、平整度、温度稳定性、透水性、水稳定性、抗滑能力、噪声量</td>
+</tr>
+<tr>
+<td style="padding: 12px; border: 1px solid 000; text-align: center;">基层</td>
+<td style="padding: 12px; border: 1px solid 000;">强度、扩散荷载、水稳性、抗冻性、不透水性</td>
+</tr>
+<tr>
+<td style="padding: 12px; border: 1px solid 000; text-align: center;">垫层</td>
+<td style="padding: 12px; border: 1px solid 000;">强度、扩散荷载、水稳性</td>
+</tr>
+<tr>
+<td style="padding: 12px; border: 1px solid 000; text-align: center;">路基</td>
+<td style="padding: 12px; border: 1px solid 000;">整体稳定性、变形量控制</td>
+</tr>
+</tbody>
 </table>
 
 
@@ -477,45 +477,46 @@ E. 路堤
 答案：ABE
 
 解析：
+
 <table border="1" style="border-collapse: collapse; width: 100%; text-align: center; font-size: 14px; line-height: 1.6; vertical-align: middle;">
-    <caption style="font-weight: bold; font-size: 15px; color: #2b7bb9; padding-bottom: 12px; text-align: center;">表 1.2-2 路基填料强度（CBR）的最小值要求</caption>
-    <thead>
-        <tr style="background-color: #e6f2ff;">
-            <th rowspan="2" style="padding: 12px; border: 1px solid #000;">填方类型</th>
-            <th rowspan="2" style="padding: 12px; border: 1px solid #000;">路床顶面以下深度（cm）</th>
-            <th colspan="2" style="padding: 12px; border: 1px solid #000;">最小强度（%）</th>
-        </tr>
-        <tr style="background-color: #e6f2ff;">
-            <th style="padding: 12px; border: 1px solid #000;">城市快速路、主干路</th>
-            <th style="padding: 12px; border: 1px solid #000;">其他等级道路</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td style="padding: 12px; border: 1px solid #000;">路床</td>
-            <td style="padding: 12px; border: 1px solid #000;">0~30</td>
-            <td style="padding: 12px; border: 1px solid #000;">8.0</td>
-            <td style="padding: 12px; border: 1px solid #000;">6.0</td>
-        </tr>
-        <tr>
-            <td style="padding: 12px; border: 1px solid #000;">路基</td>
-            <td style="padding: 12px; border: 1px solid #000;">30~80</td>
-            <td style="padding: 12px; border: 1px solid #000;">5.0</td>
-            <td style="padding: 12px; border: 1px solid #000;">4.0</td>
-        </tr>
-        <tr>
-            <td style="padding: 12px; border: 1px solid #000;">路基</td>
-            <td style="padding: 12px; border: 1px solid #000;">80~150</td>
-            <td style="padding: 12px; border: 1px solid #000;">4.0</td>
-            <td style="padding: 12px; border: 1px solid #000;">3.0</td>
-        </tr>
-        <tr>
-            <td style="padding: 12px; border: 1px solid #000;">路基</td>
-            <td style="padding: 12px; border: 1px solid #000;">> 150</td>
-            <td style="padding: 12px; border: 1px solid #000;">3.0</td>
-            <td style="padding: 12px; border: 1px solid #000;">2.0</td>
-        </tr>
-    </tbody>
+<caption style="font-weight: bold; font-size: 15px; color: 2b7bb9; padding-bottom: 12px; text-align: center;">表 1.2-2 路基填料强度（CBR）的最小值要求</caption>
+<thead>
+<tr style="background-color: e6f2ff;">
+<th rowspan="2" style="padding: 12px; border: 1px solid 000;">填方类型</th>
+<th rowspan="2" style="padding: 12px; border: 1px solid 000;">路床顶面以下深度（cm）</th>
+<th colspan="2" style="padding: 12px; border: 1px solid 000;">最小强度（%）</th>
+</tr>
+<tr style="background-color: e6f2ff;">
+<th style="padding: 12px; border: 1px solid 000;">城市快速路、主干路</th>
+<th style="padding: 12px; border: 1px solid 000;">其他等级道路</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="padding: 12px; border: 1px solid 000;">路床</td>
+<td style="padding: 12px; border: 1px solid 000;">0~30</td>
+<td style="padding: 12px; border: 1px solid 000;">8.0</td>
+<td style="padding: 12px; border: 1px solid 000;">6.0</td>
+</tr>
+<tr>
+<td style="padding: 12px; border: 1px solid 000;">路基</td>
+<td style="padding: 12px; border: 1px solid 000;">30~80</td>
+<td style="padding: 12px; border: 1px solid 000;">5.0</td>
+<td style="padding: 12px; border: 1px solid 000;">4.0</td>
+</tr>
+<tr>
+<td style="padding: 12px; border: 1px solid 000;">路基</td>
+<td style="padding: 12px; border: 1px solid 000;">80~150</td>
+<td style="padding: 12px; border: 1px solid 000;">4.0</td>
+<td style="padding: 12px; border: 1px solid 000;">3.0</td>
+</tr>
+<tr>
+<td style="padding: 12px; border: 1px solid 000;">路基</td>
+<td style="padding: 12px; border: 1px solid 000;">> 150</td>
+<td style="padding: 12px; border: 1px solid 000;">3.0</td>
+<td style="padding: 12px; border: 1px solid 000;">2.0</td>
+</tr>
+</tbody>
 </table>
 
 
@@ -543,45 +544,46 @@ D. 80～150cm
 答案：D
 
 解析：
+
 <table border="1" style="border-collapse: collapse; width: 100%; text-align: center; font-size: 14px; line-height: 1.6; vertical-align: middle;">
-    <caption style="font-weight: bold; font-size: 15px; color: #2b7bb9; padding-bottom: 12px; text-align: center;">表 1.2-2 路基填料强度（CBR）的最小值要求</caption>
-    <thead>
-        <tr style="background-color: #e6f2ff;">
-            <th rowspan="2" style="padding: 12px; border: 1px solid #000;">填方类型</th>
-            <th rowspan="2" style="padding: 12px; border: 1px solid #000;">路床顶面以下深度（cm）</th>
-            <th colspan="2" style="padding: 12px; border: 1px solid #000;">最小强度（%）</th>
-        </tr>
-        <tr style="background-color: #e6f2ff;">
-            <th style="padding: 12px; border: 1px solid #000;">城市快速路、主干路</th>
-            <th style="padding: 12px; border: 1px solid #000;">其他等级道路</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td style="padding: 12px; border: 1px solid #000;">路床</td>
-            <td style="padding: 12px; border: 1px solid #000;">0~30</td>
-            <td style="padding: 12px; border: 1px solid #000;">8.0</td>
-            <td style="padding: 12px; border: 1px solid #000;">6.0</td>
-        </tr>
-        <tr>
-            <td style="padding: 12px; border: 1px solid #000;">路基</td>
-            <td style="padding: 12px; border: 1px solid #000;">30~80</td>
-            <td style="padding: 12px; border: 1px solid #000;">5.0</td>
-            <td style="padding: 12px; border: 1px solid #000;">4.0</td>
-        </tr>
-        <tr>
-            <td style="padding: 12px; border: 1px solid #000;">路基</td>
-            <td style="padding: 12px; border: 1px solid #000;">80~150</td>
-            <td style="padding: 12px; border: 1px solid #000;">4.0</td>
-            <td style="padding: 12px; border: 1px solid #000;">3.0</td>
-        </tr>
-        <tr>
-            <td style="padding: 12px; border: 1px solid #000;">路基</td>
-            <td style="padding: 12px; border: 1px solid #000;">> 150</td>
-            <td style="padding: 12px; border: 1px solid #000;">3.0</td>
-            <td style="padding: 12px; border: 1px solid #000;">2.0</td>
-        </tr>
-    </tbody>
+<caption style="font-weight: bold; font-size: 15px; color: 2b7bb9; padding-bottom: 12px; text-align: center;">表 1.2-2 路基填料强度（CBR）的最小值要求</caption>
+<thead>
+<tr style="background-color: e6f2ff;">
+<th rowspan="2" style="padding: 12px; border: 1px solid 000;">填方类型</th>
+<th rowspan="2" style="padding: 12px; border: 1px solid 000;">路床顶面以下深度（cm）</th>
+<th colspan="2" style="padding: 12px; border: 1px solid 000;">最小强度（%）</th>
+</tr>
+<tr style="background-color: e6f2ff;">
+<th style="padding: 12px; border: 1px solid 000;">城市快速路、主干路</th>
+<th style="padding: 12px; border: 1px solid 000;">其他等级道路</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="padding: 12px; border: 1px solid 000;">路床</td>
+<td style="padding: 12px; border: 1px solid 000;">0~30</td>
+<td style="padding: 12px; border: 1px solid 000;">8.0</td>
+<td style="padding: 12px; border: 1px solid 000;">6.0</td>
+</tr>
+<tr>
+<td style="padding: 12px; border: 1px solid 000;">路基</td>
+<td style="padding: 12px; border: 1px solid 000;">30~80</td>
+<td style="padding: 12px; border: 1px solid 000;">5.0</td>
+<td style="padding: 12px; border: 1px solid 000;">4.0</td>
+</tr>
+<tr>
+<td style="padding: 12px; border: 1px solid 000;">路基</td>
+<td style="padding: 12px; border: 1px solid 000;">80~150</td>
+<td style="padding: 12px; border: 1px solid 000;">4.0</td>
+<td style="padding: 12px; border: 1px solid 000;">3.0</td>
+</tr>
+<tr>
+<td style="padding: 12px; border: 1px solid 000;">路基</td>
+<td style="padding: 12px; border: 1px solid 000;">> 150</td>
+<td style="padding: 12px; border: 1px solid 000;">3.0</td>
+<td style="padding: 12px; border: 1px solid 000;">2.0</td>
+</tr>
+</tbody>
 </table>
 
 
@@ -595,6 +597,7 @@ D. 仅能用于填筑路基底层
 答案：B
 
 解析：
+
 高液限黏土、高液限粉土及含有机质的细粒土，不适于做路基填料。因条件限制而必须采用上述土做填料时，应掺加石灰或水泥等结合料进行改善。
 
 
@@ -640,25 +643,26 @@ E. 压实度
 答案：BDE
 
 解析：
+
 <table border="1" style="border-collapse: collapse; width: 100%; text-align: left; font-size: 14px; line-height: 1.6; vertical-align: middle;">
-    <tbody>
-        <tr>
-            <td style="padding: 12px; border: 1px solid #000; text-align: center;">面层</td>
-            <td style="padding: 12px; border: 1px solid #000;">承载能力、平整度、温度稳定性、透水性、水稳定性、抗滑能力、噪声量</td>
-        </tr>
-        <tr>
-            <td style="padding: 12px; border: 1px solid #000; text-align: center;">基层</td>
-            <td style="padding: 12px; border: 1px solid #000;">强度、扩散荷载、水稳性、抗冻性、不透水性</td>
-        </tr>
-        <tr>
-            <td style="padding: 12px; border: 1px solid #000; text-align: center;">垫层</td>
-            <td style="padding: 12px; border: 1px solid #000;">强度、扩散荷载、水稳性</td>
-        </tr>
-        <tr>
-            <td style="padding: 12px; border: 1px solid #000; text-align: center;">路基</td>
-            <td style="padding: 12px; border: 1px solid #000;">整体稳定性、变形量控制</td>
-        </tr>
-    </tbody>
+<tbody>
+<tr>
+<td style="padding: 12px; border: 1px solid 000; text-align: center;">面层</td>
+<td style="padding: 12px; border: 1px solid 000;">承载能力、平整度、温度稳定性、透水性、水稳定性、抗滑能力、噪声量</td>
+</tr>
+<tr>
+<td style="padding: 12px; border: 1px solid 000; text-align: center;">基层</td>
+<td style="padding: 12px; border: 1px solid 000;">强度、扩散荷载、水稳性、抗冻性、不透水性</td>
+</tr>
+<tr>
+<td style="padding: 12px; border: 1px solid 000; text-align: center;">垫层</td>
+<td style="padding: 12px; border: 1px solid 000;">强度、扩散荷载、水稳性</td>
+</tr>
+<tr>
+<td style="padding: 12px; border: 1px solid 000; text-align: center;">路基</td>
+<td style="padding: 12px; border: 1px solid 000;">整体稳定性、变形量控制</td>
+</tr>
+</tbody>
 </table>
 
 
@@ -863,25 +867,26 @@ E. 温度稳定性
 答案：ACDE
 
 解析：
+
 <table border="1" style="border-collapse: collapse; width: 100%; text-align: left; font-size: 14px; line-height: 1.6; vertical-align: middle;">
-    <tbody>
-        <tr>
-            <td style="padding: 12px; border: 1px solid #000; text-align: center;">面层</td>
-            <td style="padding: 12px; border: 1px solid #000;">承载能力、平整度、温度稳定性、透水性、水稳定性、抗滑能力、噪声量</td>
-        </tr>
-        <tr>
-            <td style="padding: 12px; border: 1px solid #000; text-align: center;">基层</td>
-            <td style="padding: 12px; border: 1px solid #000;">强度、扩散荷载、水稳性、抗冻性、不透水性</td>
-        </tr>
-        <tr>
-            <td style="padding: 12px; border: 1px solid #000; text-align: center;">垫层</td>
-            <td style="padding: 12px; border: 1px solid #000;">强度、扩散荷载、水稳性</td>
-        </tr>
-        <tr>
-            <td style="padding: 12px; border: 1px solid #000; text-align: center;">路基</td>
-            <td style="padding: 12px; border: 1px solid #000;">整体稳定性、变形量控制</td>
-        </tr>
-    </tbody>
+<tbody>
+<tr>
+<td style="padding: 12px; border: 1px solid 000; text-align: center;">面层</td>
+<td style="padding: 12px; border: 1px solid 000;">承载能力、平整度、温度稳定性、透水性、水稳定性、抗滑能力、噪声量</td>
+</tr>
+<tr>
+<td style="padding: 12px; border: 1px solid 000; text-align: center;">基层</td>
+<td style="padding: 12px; border: 1px solid 000;">强度、扩散荷载、水稳性、抗冻性、不透水性</td>
+</tr>
+<tr>
+<td style="padding: 12px; border: 1px solid 000; text-align: center;">垫层</td>
+<td style="padding: 12px; border: 1px solid 000;">强度、扩散荷载、水稳性</td>
+</tr>
+<tr>
+<td style="padding: 12px; border: 1px solid 000; text-align: center;">路基</td>
+<td style="padding: 12px; border: 1px solid 000;">整体稳定性、变形量控制</td>
+</tr>
+</tbody>
 </table>
 
 
@@ -990,32 +995,33 @@ D. 轻交通道路宜选择石灰粉煤灰稳定粒料或级配粒料
 答案：C
 
 解析：
+
 <table border="1" style="border-collapse: collapse; width: 100%; text-align: center; font-size: 14px; line-height: 1.8; vertical-align: middle;">
-    <tbody>
-        <tr>
-            <td style="padding: 12px; border: 1px solid #000;">材料</td>
-            <td style="padding: 12px; border: 1px solid #000;">特重交通</td>
-            <td style="padding: 12px; border: 1px solid #000;">重交通</td>
-            <td style="padding: 12px; border: 1px solid #000;">中、轻交通</td>
-        </tr>
-        <tr>
-            <td style="padding: 12px; border: 1px solid #000;">&nbsp;</td>
-            <td style="padding: 12px; border: 1px solid #000;">
-                贫<span style="color: red;">混凝土</span><br>
-                碾压混凝土<br>
-                沥青混凝土
-            </td>
-            <td style="padding: 12px; border: 1px solid #000;">
-                水泥稳定粒料<br>
-                沥青稳定碎石
-            </td>
-            <td style="padding: 12px; border: 1px solid #000;">
-                水泥稳定粒料<br>
-                石灰稳定<span style="color: red;">粒料</span><br>
-                级配粒料
-            </td>
-        </tr>
-    </tbody>
+<tbody>
+<tr>
+<td style="padding: 12px; border: 1px solid 000;">材料</td>
+<td style="padding: 12px; border: 1px solid 000;">特重交通</td>
+<td style="padding: 12px; border: 1px solid 000;">重交通</td>
+<td style="padding: 12px; border: 1px solid 000;">中、轻交通</td>
+</tr>
+<tr>
+<td style="padding: 12px; border: 1px solid 000;">&nbsp;</td>
+<td style="padding: 12px; border: 1px solid 000;">
+贫<span style="color: red;">混凝土</span><br>
+碾压混凝土<br>
+沥青混凝土
+</td>
+<td style="padding: 12px; border: 1px solid 000;">
+水泥稳定粒料<br>
+沥青稳定碎石
+</td>
+<td style="padding: 12px; border: 1px solid 000;">
+水泥稳定粒料<br>
+石灰稳定<span style="color: red;">粒料</span><br>
+级配粒料
+</td>
+</tr>
+</tbody>
 </table>
 
 
@@ -1029,53 +1035,53 @@ D. 底基层
 答案：A
 
 解析：
-<table border="1" style="border-collapse: collapse; width: 100%; text-align: center; font-size: 14px; line-height: 1.6; vertical-align: middle;">
-    <tbody>
-        <!-- 顶部红色大标题 -->
-        <tr>
-            <td colspan="3" style="padding: 12px; border: 1px solid #000; font-weight: bold; font-size: 15px;">
-                <span style="color: red;">排水垫层和排水基层区别</span>
-            </td>
-        </tr>
-        <!-- 表头行 -->
-        <tr>
-            <td style="padding: 10px; border: 1px solid #000;">&nbsp;</td>
-            <td style="padding: 10px; border: 1px solid #000;">排水垫层</td>
-            <td style="padding: 10px; border: 1px solid #000;">排水基层</td>
-        </tr>
-        <!-- 第1行 -->
-        <tr>
-            <td style="padding: 10px; border: 1px solid #000;">水方向</td>
-            <td style="padding: 10px; border: 1px solid #000;">向上</td>
-            <td style="padding: 10px; border: 1px solid #000;">向下</td>
-        </tr>
-        <!-- 第2行 -->
-        <tr>
-            <td style="padding: 10px; border: 1px solid #000;">适用</td>
-            <td style="padding: 10px; border: 1px solid #000;">水文不良、路基土湿度大</td>
-            <td style="padding: 10px; border: 1px solid #000;">湿润多雨、繁重交通</td>
-        </tr>
-        <!-- 第3行 -->
-        <tr>
-            <td style="padding: 10px; border: 1px solid #000;">材料</td>
-            <td style="padding: 10px; border: 1px solid #000;">砂、砂砾</td>
-            <td style="padding: 10px; border: 1px solid #000;">水泥处治开级配碎石</td>
-        </tr>
-        <!-- 第4行 -->
-        <tr>
-            <td style="padding: 10px; border: 1px solid #000;">作用</td>
-            <td style="padding: 10px; border: 1px solid #000;">隔水、排水、防冻，保护基层</td>
-            <td style="padding: 10px; border: 1px solid #000;">排水、保护路基</td>
-        </tr>
-        <!-- 第5行 -->
-        <tr>
-            <td style="padding: 10px; border: 1px solid #000;">宽度</td>
-            <td style="padding: 10px; border: 1px solid #000;">=不小于基层底面的宽度</td>
-            <td style="padding: 10px; border: 1px solid #000;">=面层+（不同机具）×2</td>
-        </tr>
-    </tbody>
-</table>
 
+<table border="1" style="border-collapse: collapse; width: 100%; text-align: center; font-size: 14px; line-height: 1.6; vertical-align: middle;">
+<tbody>
+<!-- 顶部红色大标题 -->
+<tr>
+<td colspan="3" style="padding: 12px; border: 1px solid 000; font-weight: bold; font-size: 15px;">
+<span style="color: red;">排水垫层和排水基层区别</span>
+</td>
+</tr>
+<!-- 表头行 -->
+<tr>
+<td style="padding: 10px; border: 1px solid 000;">&nbsp;</td>
+<td style="padding: 10px; border: 1px solid 000;">排水垫层</td>
+<td style="padding: 10px; border: 1px solid 000;">排水基层</td>
+</tr>
+<!-- 第1行 -->
+<tr>
+<td style="padding: 10px; border: 1px solid 000;">水方向</td>
+<td style="padding: 10px; border: 1px solid 000;">向上</td>
+<td style="padding: 10px; border: 1px solid 000;">向下</td>
+</tr>
+<!-- 第2行 -->
+<tr>
+<td style="padding: 10px; border: 1px solid 000;">适用</td>
+<td style="padding: 10px; border: 1px solid 000;">水文不良、路基土湿度大</td>
+<td style="padding: 10px; border: 1px solid 000;">湿润多雨、繁重交通</td>
+</tr>
+<!-- 第3行 -->
+<tr>
+<td style="padding: 10px; border: 1px solid 000;">材料</td>
+<td style="padding: 10px; border: 1px solid 000;">砂、砂砾</td>
+<td style="padding: 10px; border: 1px solid 000;">水泥处治开级配碎石</td>
+</tr>
+<!-- 第4行 -->
+<tr>
+<td style="padding: 10px; border: 1px solid 000;">作用</td>
+<td style="padding: 10px; border: 1px solid 000;">隔水、排水、防冻，保护基层</td>
+<td style="padding: 10px; border: 1px solid 000;">排水、保护路基</td>
+</tr>
+<!-- 第5行 -->
+<tr>
+<td style="padding: 10px; border: 1px solid 000;">宽度</td>
+<td style="padding: 10px; border: 1px solid 000;">=不小于基层底面的宽度</td>
+<td style="padding: 10px; border: 1px solid 000;">=面层+（不同机具）×2</td>
+</tr>
+</tbody>
+</table>
 不同机具分为：
 基层的宽度应根据混凝土面层施工方式的不同，比混凝土面层每侧至少宽出：
 300mm（小型机具施工时）
@@ -1093,13 +1099,14 @@ D. 半刚性垫层宜采用无机结合料稳定粒料
 答案：C
 
 解析：
+
 （1）垫层
-  垫层是介于基层和路基之间的层位，主要设置在温度和湿度状况不良的路段上，以改善路面结构的使用性能。在季节性冰冻地区路面结构厚度小于最小防冻厚度要求时，设置防冻垫层可以使路面结构免除或减轻冻胀和翻浆病害。以下路段按设计要求设置垫层：
-  ①季节性冰冻地区的中湿或潮湿路段。
-  ②地下水位高、排水不良，路基处于潮湿或过湿状态的路段。
-  ③水文地质条件不良的土质路堑，路床土处于潮湿或过湿状态的路段。
-  垫层宜采用砂、砂砾等颗粒材料，小于0.075mm 的颗粒含量不大于5%。
-  补充解释：这是为了保证材料的粒度分布合理，避免过大或过小的颗粒对垫层性能产生不利影响。这样的规定确保了垫层的均匀性和稳定性，从而提高了路面的耐久性和安全性。
+垫层是介于基层和路基之间的层位，主要设置在温度和湿度状况不良的路段上，以改善路面结构的使用性能。在季节性冰冻地区路面结构厚度小于最小防冻厚度要求时，设置防冻垫层可以使路面结构免除或减轻冻胀和翻浆病害。以下路段按设计要求设置垫层：
+①季节性冰冻地区的中湿或潮湿路段。
+②地下水位高、排水不良，路基处于潮湿或过湿状态的路段。
+③水文地质条件不良的土质路堑，路床土处于潮湿或过湿状态的路段。
+垫层宜采用砂、砂砾等颗粒材料，小于0.075mm 的颗粒含量不大于5%。
+补充解释：这是为了保证材料的粒度分布合理，避免过大或过小的颗粒对垫层性能产生不利影响。这样的规定确保了垫层的均匀性和稳定性，从而提高了路面的耐久性和安全性。
 
 
 44. 关于水泥混凝土道路基层的作用，下列说法正确的是（ ）。
@@ -1138,11 +1145,11 @@ E. 底基层应采用开级配大孔隙沥青混合料
 答案：ABCD
 
 解析：
+
 （1）基层性能主要指标
 ①应满足结构强度、扩散荷载的能力以及水稳性和抗冻性的要求。
 ②不透水性好。底基层顶面宜铺设沥青封层或防水土工织物；为防止地下渗水影响路基，排水基层下应设置由水泥稳定粒料或密级配粒料组成的不透水底基层。
-
-![图片](https://cdn.jsdelivr.net/gh/WIO237/wy-quiz@main/2026一级建造师习题班汇总.assets/img_1786929137989_y83okh.png)
+<img src="https://cdn.jsdelivr.net/gh/WIO237/wy-quiz@main/2026一级建造师习题班汇总.assets/img_1786929137989_y83okh.png" alt="图片" style="max-width:100%;height:auto;" referrerpolicy="no-referrer">
 
 
 47. 面层混凝土板常分为普通（素）混凝土板、（ ）和钢筋混凝土板等。
@@ -1185,8 +1192,66 @@ D. 伸缩杆
 答案：B
 
 解析：
-
-
+<table border="1" style="border-collapse: collapse; width: 100%; text-align: center; font-size: 14px; line-height: 1.8; vertical-align: middle;">
+    <tbody>
+        <!-- 标题行 -->
+        <tr>
+            <td style="padding: 12px; border: 1px solid #000;">&nbsp;</td>
+            <td style="padding: 12px; border: 1px solid #000; font-weight: bold; color: red;">横缝</td>
+            <td style="padding: 12px; border: 1px solid #000; font-weight: bold; color: red;">纵缝</td>
+        </tr>
+        <!-- 胀缝行 -->
+        <tr>
+            <td style="padding: 12px; border: 1px solid #000;">
+                胀缝<br>
+                （满足膨胀变形）
+            </td>
+            <td style="padding: 12px; border: 1px solid #000;">
+                真<br>
+                150~200m 一道<br>
+                缝宽 2.0~2.5cm<br>
+                必安传力杆<br>
+                （光圆钢筋，一端固定、一端滑动）
+            </td>
+            <td style="padding: 12px; border: 1px solid #000;">&nbsp;</td>
+        </tr>
+        <!-- 缩缝行 -->
+        <tr>
+            <td style="padding: 12px; border: 1px solid #000;">
+                缩缝<br>
+                （满足收缩变形）
+            </td>
+            <td style="padding: 12px; border: 1px solid #000;">
+                假<br>
+                3~5m 一道<br>
+                缝宽 4~6mm，<br>
+                快、主必安传力杆；<br>
+                次、支可不安传力杆
+            </td>
+            <td style="padding: 12px; border: 1px solid #000;">
+                假，必安拉杆<br>
+                （螺纹钢筋，两端固定）
+            </td>
+        </tr>
+        <!-- 施工缝行 -->
+        <tr>
+            <td style="padding: 12px; border: 1px solid #000;">
+                施工缝
+            </td>
+            <td style="padding: 12px; border: 1px solid #000;">
+                真<br>
+                留在胀缝，同胀缝一样<br>
+                留在缩缝，做成真缝，虽是真缝<br>
+                （缝宽却是 4~6mm）<br>
+                必安传力杆
+            </td>
+            <td style="padding: 12px; border: 1px solid #000;">
+                真，必安拉杆<br>
+                （螺纹钢筋，两端固定）
+            </td>
+        </tr>
+    </tbody>
+</table>
 
 
 50. 水泥混凝土路面的纵向接缝是根据（ ）设置的。
