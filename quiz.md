@@ -1541,47 +1541,46 @@ E. CFG桩
 口诀：振、灰、砂、砂、碎、石、爆、强
 振冲置换及拌入包括：振冲置换、深层搅拌、高压喷射注浆、石灰桩、CFG 桩。
 口诀：深、圳、石、膏、C
-
-<table style="width: 100%; text-align: left; font-size: 14px; line-height: 1.4; border-collapse: collapse; border: 1px solid #000;">
-    <thead>
-        <tr style="border-bottom: 1px solid #000; background-color: #f8f8f8;">
-            <th style="padding: 8px 6px; text-align: center; border: 1px solid #000; width: 16%;">分类</th>
-            <th style="padding: 8px 6px; text-align: center; border: 1px solid #000; width: 40%;">处理方法</th>
-            <th style="padding: 8px 6px; text-align: center; border: 1px solid #000; width: 44%;">适用范围</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td style="padding: 8px 6px; border: 1px solid #000; text-align: center; vertical-align: middle;">碾压及夯实</td>
-            <td style="padding: 8px 6px; border: 1px solid #000; vertical-align: middle;">重锤夯实、机械碾压、振动压实、强夯（动力固结）</td>
-            <td style="padding: 8px 6px; border: 1px solid #000; vertical-align: middle;">碎石土、砂土、粉土、低饱和度的黏性土，杂填土等，<span style="color: red; text-decoration: underline;">饱和黏性土</span>慎重对待</td>
-        </tr>
-        <tr>
-            <td style="padding: 8px 6px; border: 1px solid #000; text-align: center; vertical-align: middle;">换土垫层</td>
-            <td style="padding: 8px 6px; border: 1px solid #000; vertical-align: middle;">砂石，素土，灰土，矿渣垫层</td>
-            <td style="padding: 8px 6px; border: 1px solid #000; vertical-align: middle;">暗沟、暗塘等软弱土的<span style="color: red; text-decoration: underline;">浅层处理</span></td>
-        </tr>
-        <tr>
-            <td style="padding: 8px 6px; border: 1px solid #000; text-align: center; vertical-align: middle;">排水固结</td>
-            <td style="padding: 8px 6px; border: 1px solid #000; vertical-align: middle;">天然地基预压，砂井预压，塑料排水板预压，真空预压，降水预压</td>
-            <td style="padding: 8px 6px; border: 1px solid #000; vertical-align: middle;">处理饱和软弱土层；<span style="color: red; text-decoration: underline;">对渗透性极低的泥炭土</span>，必须慎重对待</td>
-        </tr>
-        <tr>
-            <td style="padding: 8px 6px; border: 1px solid #000; text-align: center; vertical-align: middle;">振冲挤密</td>
-            <td style="padding: 8px 6px; border: 1px solid #000; vertical-align: middle;">振冲挤密，灰土挤密桩，砂桩，砂砾桩，碎石桩，石灰桩，爆破挤密，强夯置换</td>
-            <td style="padding: 8px 6px; border: 1px solid #000; vertical-align: middle;">处理<span style="color: red; text-decoration: underline;">松砂、粉土、杂填土及湿陷性黄土</span></td>
-        </tr>
-        <tr>
-            <td style="padding: 8px 6px; border: 1px solid #000; text-align: center; vertical-align: middle;">振冲置换及拌入</td>
-            <td style="padding: 8px 6px; border: 1px solid #000; vertical-align: middle;">振冲置换，深层搅拌，高压喷射注浆，石灰桩，CFG桩等</td>
-            <td style="padding: 8px 6px; border: 1px solid #000; vertical-align: middle;">黏性土、冲填土、粉砂、细砂等；振冲置换法在不排水剪切强度&lt;20kPa时<span style="color: red; text-decoration: underline;">慎用</span></td>
-        </tr>
-        <tr>
-            <td style="padding: 8px 6px; border: 1px solid #000; text-align: center; vertical-align: middle;">加筋</td>
-            <td style="padding: 8px 6px; border: 1px solid #000; vertical-align: middle;">土工聚合物加筋，锚固，树根桩，加筋土</td>
-            <td style="padding: 8px 6px; border: 1px solid #000; vertical-align: middle;">软弱土地基、填土及陡坡填土、砂土</td>
-        </tr>
-    </tbody>
+<table style="width: 100%; text-align: left; font-size: 14px; line-height: 1.4; border-collapse: collapse; border: 1px solid 000;">
+<thead>
+<tr style="border-bottom: 1px solid 000; background-color: f8f8f8;">
+<th style="padding: 8px 6px; text-align: center; border: 1px solid 000; width: 16%;">分类</th>
+<th style="padding: 8px 6px; text-align: center; border: 1px solid 000; width: 40%;">处理方法</th>
+<th style="padding: 8px 6px; text-align: center; border: 1px solid 000; width: 44%;">适用范围</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="padding: 8px 6px; border: 1px solid 000; text-align: center; vertical-align: middle;">碾压及夯实</td>
+<td style="padding: 8px 6px; border: 1px solid 000; vertical-align: middle;">重锤夯实、机械碾压、振动压实、强夯（动力固结）</td>
+<td style="padding: 8px 6px; border: 1px solid 000; vertical-align: middle;">碎石土、砂土、粉土、低饱和度的黏性土，杂填土等，<span style="color: red; text-decoration: underline;">饱和黏性土</span>慎重对待</td>
+</tr>
+<tr>
+<td style="padding: 8px 6px; border: 1px solid 000; text-align: center; vertical-align: middle;">换土垫层</td>
+<td style="padding: 8px 6px; border: 1px solid 000; vertical-align: middle;">砂石，素土，灰土，矿渣垫层</td>
+<td style="padding: 8px 6px; border: 1px solid 000; vertical-align: middle;">暗沟、暗塘等软弱土的<span style="color: red; text-decoration: underline;">浅层处理</span></td>
+</tr>
+<tr>
+<td style="padding: 8px 6px; border: 1px solid 000; text-align: center; vertical-align: middle;">排水固结</td>
+<td style="padding: 8px 6px; border: 1px solid 000; vertical-align: middle;">天然地基预压，砂井预压，塑料排水板预压，真空预压，降水预压</td>
+<td style="padding: 8px 6px; border: 1px solid 000; vertical-align: middle;">处理饱和软弱土层；<span style="color: red; text-decoration: underline;">对渗透性极低的泥炭土</span>，必须慎重对待</td>
+</tr>
+<tr>
+<td style="padding: 8px 6px; border: 1px solid 000; text-align: center; vertical-align: middle;">振冲挤密</td>
+<td style="padding: 8px 6px; border: 1px solid 000; vertical-align: middle;">振冲挤密，灰土挤密桩，砂桩，砂砾桩，碎石桩，石灰桩，爆破挤密，强夯置换</td>
+<td style="padding: 8px 6px; border: 1px solid 000; vertical-align: middle;">处理<span style="color: red; text-decoration: underline;">松砂、粉土、杂填土及湿陷性黄土</span></td>
+</tr>
+<tr>
+<td style="padding: 8px 6px; border: 1px solid 000; text-align: center; vertical-align: middle;">振冲置换及拌入</td>
+<td style="padding: 8px 6px; border: 1px solid 000; vertical-align: middle;">振冲置换，深层搅拌，高压喷射注浆，石灰桩，CFG桩等</td>
+<td style="padding: 8px 6px; border: 1px solid 000; vertical-align: middle;">黏性土、冲填土、粉砂、细砂等；振冲置换法在不排水剪切强度&lt;20kPa时<span style="color: red; text-decoration: underline;">慎用</span></td>
+</tr>
+<tr>
+<td style="padding: 8px 6px; border: 1px solid 000; text-align: center; vertical-align: middle;">加筋</td>
+<td style="padding: 8px 6px; border: 1px solid 000; vertical-align: middle;">土工聚合物加筋，锚固，树根桩，加筋土</td>
+<td style="padding: 8px 6px; border: 1px solid 000; vertical-align: middle;">软弱土地基、填土及陡坡填土、砂土</td>
+</tr>
+</tbody>
 </table>
 
 
@@ -1596,46 +1595,47 @@ E. CFG桩
 答案：ABDE
 
 解析：
-<table style="width: 100%; text-align: left; font-size: 14px; line-height: 1.4; border-collapse: collapse; border: 1px solid #000;">
-    <thead>
-        <tr style="border-bottom: 1px solid #000; background-color: #f8f8f8;">
-            <th style="padding: 8px 6px; text-align: center; border: 1px solid #000; width: 16%;">分类</th>
-            <th style="padding: 8px 6px; text-align: center; border: 1px solid #000; width: 40%;">处理方法</th>
-            <th style="padding: 8px 6px; text-align: center; border: 1px solid #000; width: 44%;">适用范围</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td style="padding: 8px 6px; border: 1px solid #000; text-align: center; vertical-align: middle;">碾压及夯实</td>
-            <td style="padding: 8px 6px; border: 1px solid #000; vertical-align: middle;">重锤夯实、机械碾压、振动压实、强夯（动力固结）</td>
-            <td style="padding: 8px 6px; border: 1px solid #000; vertical-align: middle;">碎石土、砂土、粉土、低饱和度的黏性土，杂填土等，<span style="color: red; text-decoration: underline;">饱和黏性土</span>慎重对待</td>
-        </tr>
-        <tr>
-            <td style="padding: 8px 6px; border: 1px solid #000; text-align: center; vertical-align: middle;">换土垫层</td>
-            <td style="padding: 8px 6px; border: 1px solid #000; vertical-align: middle;">砂石，素土，灰土，矿渣垫层</td>
-            <td style="padding: 8px 6px; border: 1px solid #000; vertical-align: middle;">暗沟、暗塘等软弱土的<span style="color: red; text-decoration: underline;">浅层处理</span></td>
-        </tr>
-        <tr>
-            <td style="padding: 8px 6px; border: 1px solid #000; text-align: center; vertical-align: middle;">排水固结</td>
-            <td style="padding: 8px 6px; border: 1px solid #000; vertical-align: middle;">天然地基预压，砂井预压，塑料排水板预压，真空预压，降水预压</td>
-            <td style="padding: 8px 6px; border: 1px solid #000; vertical-align: middle;">处理饱和软弱土层；<span style="color: red; text-decoration: underline;">对渗透性极低的泥炭土</span>，必须慎重对待</td>
-        </tr>
-        <tr>
-            <td style="padding: 8px 6px; border: 1px solid #000; text-align: center; vertical-align: middle;">振冲挤密</td>
-            <td style="padding: 8px 6px; border: 1px solid #000; vertical-align: middle;">振冲挤密，灰土挤密桩，砂桩，砂砾桩，碎石桩，石灰桩，爆破挤密，强夯置换</td>
-            <td style="padding: 8px 6px; border: 1px solid #000; vertical-align: middle;">处理<span style="color: red; text-decoration: underline;">松砂、粉土、杂填土及湿陷性黄土</span></td>
-        </tr>
-        <tr>
-            <td style="padding: 8px 6px; border: 1px solid #000; text-align: center; vertical-align: middle;">振冲置换及拌入</td>
-            <td style="padding: 8px 6px; border: 1px solid #000; vertical-align: middle;">振冲置换，深层搅拌，高压喷射注浆，石灰桩，CFG桩等</td>
-            <td style="padding: 8px 6px; border: 1px solid #000; vertical-align: middle;">黏性土、冲填土、粉砂、细砂等；振冲置换法在不排水剪切强度&lt;20kPa时<span style="color: red; text-decoration: underline;">慎用</span></td>
-        </tr>
-        <tr>
-            <td style="padding: 8px 6px; border: 1px solid #000; text-align: center; vertical-align: middle;">加筋</td>
-            <td style="padding: 8px 6px; border: 1px solid #000; vertical-align: middle;">土工聚合物加筋，锚固，树根桩，加筋土</td>
-            <td style="padding: 8px 6px; border: 1px solid #000; vertical-align: middle;">软弱土地基、填土及陡坡填土、砂土</td>
-        </tr>
-    </tbody>
+
+<table style="width: 100%; text-align: left; font-size: 14px; line-height: 1.4; border-collapse: collapse; border: 1px solid 000;">
+<thead>
+<tr style="border-bottom: 1px solid 000; background-color: f8f8f8;">
+<th style="padding: 8px 6px; text-align: center; border: 1px solid 000; width: 16%;">分类</th>
+<th style="padding: 8px 6px; text-align: center; border: 1px solid 000; width: 40%;">处理方法</th>
+<th style="padding: 8px 6px; text-align: center; border: 1px solid 000; width: 44%;">适用范围</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="padding: 8px 6px; border: 1px solid 000; text-align: center; vertical-align: middle;">碾压及夯实</td>
+<td style="padding: 8px 6px; border: 1px solid 000; vertical-align: middle;">重锤夯实、机械碾压、振动压实、强夯（动力固结）</td>
+<td style="padding: 8px 6px; border: 1px solid 000; vertical-align: middle;">碎石土、砂土、粉土、低饱和度的黏性土，杂填土等，<span style="color: red; text-decoration: underline;">饱和黏性土</span>慎重对待</td>
+</tr>
+<tr>
+<td style="padding: 8px 6px; border: 1px solid 000; text-align: center; vertical-align: middle;">换土垫层</td>
+<td style="padding: 8px 6px; border: 1px solid 000; vertical-align: middle;">砂石，素土，灰土，矿渣垫层</td>
+<td style="padding: 8px 6px; border: 1px solid 000; vertical-align: middle;">暗沟、暗塘等软弱土的<span style="color: red; text-decoration: underline;">浅层处理</span></td>
+</tr>
+<tr>
+<td style="padding: 8px 6px; border: 1px solid 000; text-align: center; vertical-align: middle;">排水固结</td>
+<td style="padding: 8px 6px; border: 1px solid 000; vertical-align: middle;">天然地基预压，砂井预压，塑料排水板预压，真空预压，降水预压</td>
+<td style="padding: 8px 6px; border: 1px solid 000; vertical-align: middle;">处理饱和软弱土层；<span style="color: red; text-decoration: underline;">对渗透性极低的泥炭土</span>，必须慎重对待</td>
+</tr>
+<tr>
+<td style="padding: 8px 6px; border: 1px solid 000; text-align: center; vertical-align: middle;">振冲挤密</td>
+<td style="padding: 8px 6px; border: 1px solid 000; vertical-align: middle;">振冲挤密，灰土挤密桩，砂桩，砂砾桩，碎石桩，石灰桩，爆破挤密，强夯置换</td>
+<td style="padding: 8px 6px; border: 1px solid 000; vertical-align: middle;">处理<span style="color: red; text-decoration: underline;">松砂、粉土、杂填土及湿陷性黄土</span></td>
+</tr>
+<tr>
+<td style="padding: 8px 6px; border: 1px solid 000; text-align: center; vertical-align: middle;">振冲置换及拌入</td>
+<td style="padding: 8px 6px; border: 1px solid 000; vertical-align: middle;">振冲置换，深层搅拌，高压喷射注浆，石灰桩，CFG桩等</td>
+<td style="padding: 8px 6px; border: 1px solid 000; vertical-align: middle;">黏性土、冲填土、粉砂、细砂等；振冲置换法在不排水剪切强度&lt;20kPa时<span style="color: red; text-decoration: underline;">慎用</span></td>
+</tr>
+<tr>
+<td style="padding: 8px 6px; border: 1px solid 000; text-align: center; vertical-align: middle;">加筋</td>
+<td style="padding: 8px 6px; border: 1px solid 000; vertical-align: middle;">土工聚合物加筋，锚固，树根桩，加筋土</td>
+<td style="padding: 8px 6px; border: 1px solid 000; vertical-align: middle;">软弱土地基、填土及陡坡填土、砂土</td>
+</tr>
+</tbody>
 </table>
 
 
@@ -1764,6 +1764,26 @@ E. 挖方段不得超挖，应留有 200-300mm人工开挖到设计标高
 
 解析：
 
+<div style="font-size: 14px; line-height: 1.8; margin-bottom: 6px;">2）挖土路基</div>
+<div style="font-size: 14px; line-height: 1.8; margin-bottom: 6px;">
+（3）挖土时应<span style="color: red;">自上而下</span>分层开挖，<span style="color: red;">严禁掏洞</span>开挖。机械开挖时，必须避开构筑物、管线，在<span style="color: red;">管道边 1m</span>范围内应采用人工开挖；在距<span style="color: red;">直埋缆线 2m</span>范围内必须采用<span style="color: red;">人工开挖</span>。挖方段<span style="color: red;">不得超挖</span>，应<span style="color: red;">留有</span>碾压到设计标高的<span style="color: red;">压实量</span>。
+</div>
+<div style="font-size: 14px; line-height: 1.8; margin-bottom: 6px;">
+（4）压路机<span style="color: red;">不小于 12t 级</span>，碾压应<span style="color: red;">自路两边向路中心</span>进行，直至表面无明显轮迹为止。
+</div>
+<div style="font-size: 14px; line-height: 1.8; margin-bottom: 6px;">
+（5）碾压时，应视土的干湿程度而采取<span style="color: red;">洒水或换土、晾晒</span>等措施。
+</div>
+<div style="font-size: 14px; line-height: 1.8; margin-bottom: 6px;">
+（6）过街雨水支管沟槽及检查井周围应用<span style="color: red;">石灰土或石灰粉煤灰砂砾</span>实。
+</div>
+<div style="font-size: 14px; line-height: 1.8; margin-bottom: 4px;">
+<span style="color: red;">补充解释：</span>有效抵抗车辆荷载及土侧压力，避免雨水渗入导致土体软化。
+</div>
+<div style="font-size: 14px; line-height: 1.8;">
+石灰土：由石灰与黏土混合而成，具有高强度、抗变形能力和水稳定性，能有效防止不均匀沉降，其胶凝作用可增强土体密实度，且成本较低。石灰粉煤灰砂砾：结合了粉煤灰的胶凝性和砂砾的透水性，适用于需兼顾排水与稳定的场景。
+</div>
+
 
 77. 城市快速路，最小填料强度(CBR)值错误的是（ ）。
 
@@ -1827,6 +1847,24 @@ D. 路基预沉量值
 E. 每层虚铺厚度
 
 答案：ABDE
+
+解析：
+<div style="font-size: 14px; line-height: 1.5;">
+    2）路基压实施工要点<br>
+    （1）试验段<br>
+    ①在正式进行<span style="color: red;">路基压实前</span>，有条件时应<span style="color: red;">做试验段</span>，以便取得路基施工相关的技术参数。<br>
+    ②试验目的主要有：<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;a. 确定路基<span style="color: red;">预沉量值</span>。<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;b. 合理选用<span style="color: red;">压实机具</span>；选用机具考虑道路不同等级、工程量大小、地质条件、作业环境、工期要求等。<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;c. 按压实度要求，确定<span style="color: red;">压实遍数</span>。<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;d. 确定路基宽度内每层<span style="color: red;">虚铺厚度</span>。<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;e. 根据土的类型、湿度、设备及场地条件，选择<span style="color: red;">压实方式</span>。<br>
+    （3）路基压实<br>
+    ①压实方法（式）：<span style="color: red;">重力压实</span>（静压）和<span style="color: red;">振动压实</span>两种。<br>
+    ②土质路基压实应遵循的原则：<span style="color: red;">"先轻后重、先静后振、先低后高、先慢后快，轮迹重叠。"</span>压路机最快速度不宜超过 4km/h。<br>
+    ③碾压<span style="color: red;">应从路基边缘向中心进行，压路机轮外缘距路基边应保持安全距离。</span><br>
+    ④<span style="color: red;">碾压不到的部位应采用小型夯压机夯实</span>，防止漏夯，要求夯击面积重叠 1/4～1/3。
+</div>
 
 
 79. 路基压实，说法正确的是（ ）。
