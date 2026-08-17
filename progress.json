@@ -199,7 +199,8 @@
       "194": "ABCE",
       "195": "B",
       "196": "AC",
-      "197": "C"
+      "197": "C",
+      "198": "ABC"
     }
   },
   "modeSubmitted": {
@@ -402,7 +403,8 @@
       "194": true,
       "195": true,
       "196": true,
-      "197": true
+      "197": true,
+      "198": true
     }
   },
   "wrongAnswers": {},
@@ -464,12 +466,13 @@
     194,
     195,
     196,
-    197
+    197,
+    198
   ],
-  "totalAnswered": 198,
+  "totalAnswered": 199,
   "totalCorrect": 135,
   "notes": {},
   "currentMode": "sequence",
   "selectedChapter": "全部题目",
-  "currentIndex": 197
+  "currentIndex": 198
 }
