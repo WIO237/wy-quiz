@@ -9,16 +9,7 @@
   <meta name="theme-color" content="#0052d9">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: system-ui, -apple-system, sans-serif;
-      background: #f5f7fa;
-      display: flex;
-      flex-direction: column;
-      height: 100vh;
-      overflow: hidden;
-      font-size: 15px;
-      padding-bottom: calc(env(safe-area-inset-bottom, 10px) + 15px);
-    }
+    body { font-family: system-ui, -apple-system, sans-serif; background: #f5f7fa; display: flex; flex-direction: column; height: 100vh; overflow: hidden; font-size: 15px; padding-bottom: calc(env(safe-area-inset-bottom, 10px) + 15px); }
     #importPage, #quizPage { flex: 1; display: flex; flex-direction: column; overflow-y: auto; padding: 12px; }
     .hidden { display: none !important; }
     .token-row { display: flex; gap: 5px; margin: 10px 0; }
@@ -51,21 +42,33 @@
     .option-wrong { border-color: #d54941; background: #fdecec; } .option-wrong .option-key { background: #d54941; color: white; }
     .result-box { margin-top: 12px; padding: 10px; background: #fafafa; border-radius: 8px; word-wrap: break-word; }
     .result-box img { max-width: 100%; height: auto; border: none; }
-    .bottom-bar {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      padding: 12px 0;
-      position: sticky;
-      bottom: 0;
-      background: #f5f7fa;
-      padding-bottom: calc(20px + env(safe-area-inset-bottom, 0px));
-      margin-bottom: calc(env(safe-area-inset-bottom, 0px) + 14px);
-      z-index: 10;
-    }
+    .bottom-bar { display: flex; justify-content: center; gap: 10px; padding: 12px 0; position: sticky; bottom: 0; background: #f5f7fa; padding-bottom: calc(20px + env(safe-area-inset-bottom, 0px)); margin-bottom: calc(env(safe-area-inset-bottom, 0px) + 14px); z-index: 10; }
     .note-panel { background: #fafafa; border: 1px solid #e0e0e0; border-radius: 6px; padding: 10px; margin: 8px 0; }
     textarea { width: 100%; padding: 8px; border-radius: 6px; border: 1px solid #ccc; font-size: 14px; }
     #loadingStatus { text-align: center; color: #666; margin: 20px 0; }
+
+    /* 统计面板样式 */
+    #statsOverlay {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.5); z-index: 100;
+      display: flex; justify-content: center; align-items: center;
+    }
+    #statsPanel {
+      background: white; width: 90%; max-height: 80%; overflow-y: auto;
+      border-radius: 12px; padding: 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    }
+    #statsPanel h3 { margin-bottom: 15px; text-align: center; color: #0052d9; }
+    #statsContent { font-size: 14px; line-height: 1.6; }
+    #statsContent ul { list-style: none; padding: 0; }
+    #statsContent li {
+      display: flex; justify-content: space-between; padding: 8px 0;
+      border-bottom: 1px solid #eee;
+    }
+    #statsContent li:last-child { border-bottom: none; }
+    #closeStatsBtn {
+      display: block; margin: 15px auto 0; padding: 8px 20px;
+      background: #0052d9; color: white; border: none; border-radius: 6px; cursor: pointer;
+    }
   </style>
 </head>
 <body>
@@ -97,6 +100,7 @@
       <span class="sync-time" id="syncTime">未同步</span>
       <button class="action-btn" id="clearRecordBtn">清空记录</button>
       <button class="action-btn danger-btn" id="clearCacheBtn">清除缓存</button>
+      <button class="action-btn" id="statsBtn">📊 错题统计</button>
     </div>
     <div class="jump-row">
       <select id="chapterSelect" style="width:100px;"></select>
@@ -126,6 +130,15 @@
       <button class="btn-full" id="submitBtn" style="flex:1;">提交答案</button>
       <button class="btn-full" id="nextBtn" style="flex:1; display:none;">下一题 →</button>
       <button class="action-btn" id="toggleNoteBtn">笔记</button>
+    </div>
+  </div>
+
+  <!-- 统计遮罩 -->
+  <div id="statsOverlay" class="hidden">
+    <div id="statsPanel">
+      <h3>📊 章节错题统计</h3>
+      <div id="statsContent"></div>
+      <button id="closeStatsBtn">关闭</button>
     </div>
   </div>
 
@@ -482,6 +495,36 @@
     function switchMode(mode) { if(currentMode!==mode){ currentMode=mode; currentIndex=0; thumbPage=0; saveState(); updateModeButtons(); renderQuestion(); } }
     function updateModeButtons() { document.querySelectorAll('.mode-btn').forEach(b=>b.classList.toggle('active',b.dataset.mode===currentMode)); }
 
+    // 新增：显示章节错题统计
+    function showStats() {
+      const chapterStats = {};
+      // 初始化所有章节（从题目中动态获取）
+      const allChapters = new Set(allQuestions.map(q => q.chapter));
+      allChapters.forEach(ch => {
+        chapterStats[ch] = { total: 0, wrong: 0 };
+      });
+      allQuestions.forEach(q => {
+        const ch = q.chapter;
+        chapterStats[ch].total++;
+        if (wrongSet.has(q.originalIndex)) {
+          chapterStats[ch].wrong++;
+        }
+      });
+      // 生成 HTML
+      let html = '<ul>';
+      for (const [ch, data] of Object.entries(chapterStats)) {
+        const rate = data.total > 0 ? ((data.wrong / data.total) * 100).toFixed(1) : '0.0';
+        html += `<li><span>${ch}</span><span>${data.wrong}/${data.total} (${rate}%)</span></li>`;
+      }
+      html += '</ul>';
+      document.getElementById('statsContent').innerHTML = html;
+      document.getElementById('statsOverlay').classList.remove('hidden');
+    }
+
+    function closeStats() {
+      document.getElementById('statsOverlay').classList.add('hidden');
+    }
+
     async function clearCurrentModeRecords() {
       if(currentMode==='wrong'){ wrongAnswers = {}; wrongSubmitted = {}; }
       else {
@@ -626,6 +669,8 @@
     document.getElementById('chapterSelect').addEventListener('change',(e)=>{ selectedChapter=e.target.value; currentIndex=0; thumbPage=0; saveState(); renderQuestion(); });
     document.getElementById('prevGroupBtn').addEventListener('click',()=>{ if(thumbPage>0) thumbPage--; renderThumbnails(getCurrentQuestions()); });
     document.getElementById('nextGroupBtn').addEventListener('click',()=>{ thumbPage++; renderThumbnails(getCurrentQuestions()); });
+    document.getElementById('statsBtn').addEventListener('click', showStats);
+    document.getElementById('closeStatsBtn').addEventListener('click', closeStats);
 
     updateSyncTimeDisplay();
   </script>
