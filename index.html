@@ -47,7 +47,6 @@
     textarea { width: 100%; padding: 8px; border-radius: 6px; border: 1px solid #ccc; font-size: 14px; }
     #loadingStatus { text-align: center; color: #666; margin: 20px 0; }
 
-    /* 统计面板样式 */
     #statsOverlay {
       position: fixed; top: 0; left: 0; width: 100%; height: 100%;
       background: rgba(0,0,0,0.5); z-index: 100;
@@ -133,7 +132,6 @@
     </div>
   </div>
 
-  <!-- 统计遮罩 -->
   <div id="statsOverlay" class="hidden">
     <div id="statsPanel">
       <h3>📊 章节错题统计</h3>
@@ -428,7 +426,9 @@
         document.getElementById('resultContainer').classList.add('hidden');
         document.getElementById('submitBtn').style.display='inline-block';
         document.getElementById('nextBtn').style.display='none';
-        updateStats(questions); renderThumbnails(questions); return;
+        updateStats(questions);
+        renderThumbnails(questions, true);
+        return;
       }
       if (currentIndex>=questions.length) currentIndex=questions.length-1;
       if (currentIndex<0) currentIndex=0;
@@ -459,7 +459,8 @@
         document.getElementById('submitBtn').style.display='inline-block';
         document.getElementById('nextBtn').style.display='none';
       }
-      updateStats(questions); renderThumbnails(questions);
+      updateStats(questions);
+      renderThumbnails(questions, true);
     }
 
     function selectOption(q,key) { if(isSubmitted(q))return; let ans=getEffectiveAnswer(q); if(q.isMulti) ans=ans.includes(key)?ans.replace(key,''):(ans+key).split('').sort().join(''); else ans=key; setAnswer(q,ans); renderQuestion(); }
@@ -495,22 +496,15 @@
     function switchMode(mode) { if(currentMode!==mode){ currentMode=mode; currentIndex=0; thumbPage=0; saveState(); updateModeButtons(); renderQuestion(); } }
     function updateModeButtons() { document.querySelectorAll('.mode-btn').forEach(b=>b.classList.toggle('active',b.dataset.mode===currentMode)); }
 
-    // 新增：显示章节错题统计
     function showStats() {
       const chapterStats = {};
-      // 初始化所有章节（从题目中动态获取）
       const allChapters = new Set(allQuestions.map(q => q.chapter));
-      allChapters.forEach(ch => {
-        chapterStats[ch] = { total: 0, wrong: 0 };
-      });
+      allChapters.forEach(ch => { chapterStats[ch] = { total: 0, wrong: 0 }; });
       allQuestions.forEach(q => {
         const ch = q.chapter;
         chapterStats[ch].total++;
-        if (wrongSet.has(q.originalIndex)) {
-          chapterStats[ch].wrong++;
-        }
+        if (wrongSet.has(q.originalIndex)) chapterStats[ch].wrong++;
       });
-      // 生成 HTML
       let html = '<ul>';
       for (const [ch, data] of Object.entries(chapterStats)) {
         const rate = data.total > 0 ? ((data.wrong / data.total) * 100).toFixed(1) : '0.0';
@@ -554,16 +548,45 @@
       }
     }
 
-    function renderThumbnails(questions) {
-      const container=document.getElementById('thumbContainer'); container.innerHTML=''; if(!questions.length)return;
-      const cw=container.clientWidth||300; thumbItemsPerPage=Math.max(1,Math.floor((cw+3)/33));
-      const totalPages=Math.ceil(questions.length/thumbItemsPerPage); if(thumbPage>=totalPages) thumbPage=totalPages-1; if(thumbPage<0) thumbPage=0;
-      const start=thumbPage*thumbItemsPerPage, end=Math.min(start+thumbItemsPerPage,questions.length);
-      for(let i=start;i<end;i++) {
-        const q=questions[i]; const cell=document.createElement('div'); cell.className='thumb-cell'; cell.innerText=i+1;
-        if(i===currentIndex) cell.classList.add('current');
-        const sub=isSubmitted(q); if(sub){ const ans=getEffectiveAnswer(q); cell.classList.add(ans===q.answer?'correct':'wrong'); }
-        cell.addEventListener('click',()=>{ currentIndex=i; saveState(); renderQuestion(); });
+    // 关键修改：缩略图自动跟随当前题
+    function renderThumbnails(questions, followCurrent = false) {
+      const container = document.getElementById('thumbContainer');
+      container.innerHTML = '';
+      if (!questions.length) return;
+
+      const cw = container.clientWidth || 300;
+      thumbItemsPerPage = Math.max(1, Math.floor((cw + 3) / 33));
+      const totalPages = Math.ceil(questions.length / thumbItemsPerPage);
+
+      if (followCurrent) {
+        const targetPage = Math.floor(currentIndex / thumbItemsPerPage);
+        if (targetPage >= 0 && targetPage < totalPages) {
+          thumbPage = targetPage;
+        }
+      }
+
+      if (thumbPage >= totalPages) thumbPage = totalPages - 1;
+      if (thumbPage < 0) thumbPage = 0;
+
+      const start = thumbPage * thumbItemsPerPage;
+      const end = Math.min(start + thumbItemsPerPage, questions.length);
+
+      for (let i = start; i < end; i++) {
+        const q = questions[i];
+        const cell = document.createElement('div');
+        cell.className = 'thumb-cell';
+        cell.innerText = i + 1;
+        if (i === currentIndex) cell.classList.add('current');
+        const sub = isSubmitted(q);
+        if (sub) {
+          const ans = getEffectiveAnswer(q);
+          cell.classList.add(ans === q.answer ? 'correct' : 'wrong');
+        }
+        cell.addEventListener('click', () => {
+          currentIndex = i;
+          saveState();
+          renderQuestion();
+        });
         container.appendChild(cell);
       }
     }
