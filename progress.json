@@ -1,11 +1,15 @@
 {
   "modeAnswers": {
     "random": {},
-    "sequence": {}
+    "sequence": {
+      "0": "B"
+    }
   },
   "modeSubmitted": {
     "random": {},
-    "sequence": {}
+    "sequence": {
+      "0": true
+    }
   },
   "wrongAnswers": {},
   "wrongSubmitted": {},
@@ -70,8 +74,8 @@
     198,
     200
   ],
-  "totalAnswered": 0,
-  "totalCorrect": 0,
+  "totalAnswered": 1,
+  "totalCorrect": 1,
   "notes": {},
   "currentMode": "sequence",
   "selectedChapter": "全部题目",
