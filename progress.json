@@ -203,7 +203,8 @@
       "198": "ABC",
       "199": "D",
       "200": "ABC",
-      "234": "AC"
+      "234": "AC",
+      "331": "ACDE"
     }
   },
   "modeSubmitted": {
@@ -410,7 +411,8 @@
       "198": true,
       "199": true,
       "200": true,
-      "234": true
+      "234": true,
+      "331": true
     }
   },
   "wrongAnswers": {},
@@ -477,10 +479,10 @@
     200,
     234
   ],
-  "totalAnswered": 202,
-  "totalCorrect": 136,
+  "totalAnswered": 203,
+  "totalCorrect": 137,
   "notes": {},
   "currentMode": "sequence",
-  "selectedChapter": "全部题目",
-  "currentIndex": 234
+  "selectedChapter": "第三章 城市隧道工程与城市轨道交通工程",
+  "currentIndex": 0
 }
