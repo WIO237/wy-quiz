@@ -4,7 +4,8 @@
     "sequence": {
       "0": "B",
       "1": "C",
-      "2": "BC"
+      "2": "BC",
+      "3": "D"
     }
   },
   "modeSubmitted": {
@@ -12,7 +13,8 @@
     "sequence": {
       "0": true,
       "1": true,
-      "2": true
+      "2": true,
+      "3": true
     }
   },
   "wrongAnswers": {},
@@ -78,10 +80,10 @@
     198,
     200
   ],
-  "totalAnswered": 3,
-  "totalCorrect": 3,
+  "totalAnswered": 4,
+  "totalCorrect": 4,
   "notes": {},
   "currentMode": "sequence",
   "selectedChapter": "全部题目",
-  "currentIndex": 2
+  "currentIndex": 3
 }
