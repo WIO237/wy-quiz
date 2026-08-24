@@ -286,6 +286,7 @@
       "281": "D",
       "282": "C",
       "283": "C",
+      "284": "AC",
       "331": "ACDE",
       "332": "B",
       "333": "ACDE"
@@ -578,6 +579,7 @@
       "281": true,
       "282": true,
       "283": true,
+      "284": true,
       "331": true,
       "332": true,
       "333": true
@@ -681,10 +683,10 @@
     277,
     283
   ],
-  "totalAnswered": 287,
-  "totalCorrect": 187,
+  "totalAnswered": 288,
+  "totalCorrect": 188,
   "notes": {},
   "currentMode": "sequence",
   "selectedChapter": "全部题目",
-  "currentIndex": 283
+  "currentIndex": 284
 }
