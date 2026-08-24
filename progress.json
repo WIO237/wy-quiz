@@ -228,6 +228,7 @@
       "223": "A",
       "224": "B",
       "225": "B",
+      "226": "D",
       "234": "AC",
       "331": "ACDE",
       "332": "B",
@@ -463,6 +464,7 @@
       "223": true,
       "224": true,
       "225": true,
+      "226": true,
       "234": true,
       "331": true,
       "332": true,
@@ -547,10 +549,10 @@
     221,
     224
   ],
-  "totalAnswered": 230,
-  "totalCorrect": 150,
+  "totalAnswered": 231,
+  "totalCorrect": 151,
   "notes": {},
   "currentMode": "sequence",
   "selectedChapter": "全部题目",
-  "currentIndex": 225
+  "currentIndex": 226
 }
