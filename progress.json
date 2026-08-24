@@ -264,6 +264,7 @@
       "259": "AB",
       "260": "BCD",
       "261": "ABCE",
+      "262": "ABD",
       "331": "ACDE",
       "332": "B",
       "333": "ACDE"
@@ -534,6 +535,7 @@
       "259": true,
       "260": true,
       "261": true,
+      "262": true,
       "331": true,
       "332": true,
       "333": true
@@ -628,10 +630,10 @@
     257,
     261
   ],
-  "totalAnswered": 265,
-  "totalCorrect": 174,
+  "totalAnswered": 266,
+  "totalCorrect": 175,
   "notes": {},
   "currentMode": "sequence",
   "selectedChapter": "全部题目",
-  "currentIndex": 261
+  "currentIndex": 262
 }
