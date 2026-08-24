@@ -251,6 +251,7 @@
       "246": "B",
       "247": "BD",
       "248": "B",
+      "249": "C",
       "331": "ACDE",
       "332": "B",
       "333": "ACDE"
@@ -508,6 +509,7 @@
       "246": true,
       "247": true,
       "248": true,
+      "249": true,
       "331": true,
       "332": true,
       "333": true
@@ -595,12 +597,13 @@
     238,
     240,
     244,
-    247
+    247,
+    249
   ],
-  "totalAnswered": 252,
+  "totalAnswered": 253,
   "totalCorrect": 166,
   "notes": {},
   "currentMode": "sequence",
   "selectedChapter": "全部题目",
-  "currentIndex": 248
+  "currentIndex": 249
 }
