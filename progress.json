@@ -226,6 +226,7 @@
       "221": "BCD",
       "222": "ABD",
       "223": "A",
+      "224": "B",
       "234": "AC",
       "331": "ACDE",
       "332": "B",
@@ -459,6 +460,7 @@
       "221": true,
       "222": true,
       "223": true,
+      "224": true,
       "234": true,
       "331": true,
       "332": true,
@@ -540,12 +542,13 @@
     215,
     218,
     220,
-    221
+    221,
+    224
   ],
-  "totalAnswered": 228,
+  "totalAnswered": 229,
   "totalCorrect": 149,
   "notes": {},
   "currentMode": "sequence",
   "selectedChapter": "全部题目",
-  "currentIndex": 223
+  "currentIndex": 224
 }
