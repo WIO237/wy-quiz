@@ -276,6 +276,7 @@
       "271": "AB",
       "272": "B",
       "273": "ABC",
+      "274": "ABE",
       "331": "ACDE",
       "332": "B",
       "333": "ACDE"
@@ -558,6 +559,7 @@
       "271": true,
       "272": true,
       "273": true,
+      "274": true,
       "331": true,
       "332": true,
       "333": true
@@ -655,12 +657,13 @@
     265,
     267,
     271,
-    273
+    273,
+    274
   ],
-  "totalAnswered": 277,
+  "totalAnswered": 278,
   "totalCorrect": 181,
   "notes": {},
   "currentMode": "sequence",
   "selectedChapter": "全部题目",
-  "currentIndex": 273
+  "currentIndex": 274
 }
