@@ -208,6 +208,7 @@
       "203": "ABCD",
       "204": "C",
       "205": "ABE",
+      "206": "CE",
       "234": "AC",
       "331": "ACDE",
       "332": "B",
@@ -423,6 +424,7 @@
       "203": true,
       "204": true,
       "205": true,
+      "206": true,
       "234": true,
       "331": true,
       "332": true,
@@ -495,12 +497,13 @@
     333,
     201,
     202,
-    204
+    204,
+    206
   ],
-  "totalAnswered": 210,
+  "totalAnswered": 211,
   "totalCorrect": 140,
   "notes": {},
   "currentMode": "sequence",
   "selectedChapter": "全部题目",
-  "currentIndex": 205
+  "currentIndex": 206
 }
