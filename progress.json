@@ -292,6 +292,7 @@
       "287": "D",
       "288": "AE",
       "289": "ABCD",
+      "290": "B",
       "331": "ACDE",
       "332": "B",
       "333": "ACDE"
@@ -590,6 +591,7 @@
       "287": true,
       "288": true,
       "289": true,
+      "290": true,
       "331": true,
       "332": true,
       "333": true
@@ -693,9 +695,10 @@
     277,
     283,
     288,
-    289
+    289,
+    290
   ],
-  "totalAnswered": 293,
+  "totalAnswered": 294,
   "totalCorrect": 191,
   "notes": {},
   "currentMode": "sequence",
