@@ -300,6 +300,7 @@
       "295": "CDE",
       "296": "BCD",
       "297": "ABD",
+      "298": "D",
       "331": "ACDE",
       "332": "B",
       "333": "ACDE"
@@ -606,6 +607,7 @@
       "295": true,
       "296": true,
       "297": true,
+      "298": true,
       "331": true,
       "332": true,
       "333": true
@@ -716,10 +718,10 @@
     296,
     297
   ],
-  "totalAnswered": 301,
-  "totalCorrect": 194,
+  "totalAnswered": 302,
+  "totalCorrect": 195,
   "notes": {},
   "currentMode": "sequence",
   "selectedChapter": "全部题目",
-  "currentIndex": 297
+  "currentIndex": 299
 }
