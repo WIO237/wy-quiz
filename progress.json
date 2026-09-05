@@ -322,6 +322,7 @@
       "317": "C",
       "318": "B",
       "319": "ABC",
+      "320": "C",
       "331": "ACDE",
       "332": "B",
       "333": "ACDE"
@@ -775,5 +776,5 @@
   "notes": {},
   "currentMode": "sequence",
   "selectedChapter": "全部题目",
-  "currentIndex": 319
+  "currentIndex": 320
 }
