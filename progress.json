@@ -306,6 +306,7 @@
       "301": "C",
       "302": "BE",
       "303": "C",
+      "304": "AB",
       "331": "ACDE",
       "332": "B",
       "333": "ACDE"
@@ -618,6 +619,7 @@
       "301": true,
       "302": true,
       "303": true,
+      "304": true,
       "331": true,
       "332": true,
       "333": true
@@ -730,12 +732,13 @@
     299,
     300,
     302,
-    303
+    303,
+    304
   ],
-  "totalAnswered": 307,
+  "totalAnswered": 308,
   "totalCorrect": 196,
   "notes": {},
   "currentMode": "sequence",
   "selectedChapter": "全部题目",
-  "currentIndex": 303
+  "currentIndex": 304
 }
