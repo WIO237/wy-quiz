@@ -323,6 +323,7 @@
       "318": "B",
       "319": "ABC",
       "320": "CE",
+      "321": "B",
       "331": "ACDE",
       "332": "B",
       "333": "ACDE"
@@ -652,6 +653,7 @@
       "318": true,
       "319": true,
       "320": true,
+      "321": true,
       "331": true,
       "332": true,
       "333": true
@@ -771,12 +773,13 @@
     314,
     316,
     319,
-    320
+    320,
+    321
   ],
-  "totalAnswered": 324,
+  "totalAnswered": 325,
   "totalCorrect": 206,
   "notes": {},
   "currentMode": "sequence",
   "selectedChapter": "全部题目",
-  "currentIndex": 320
+  "currentIndex": 321
 }
