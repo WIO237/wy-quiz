@@ -322,7 +322,7 @@
       "317": "C",
       "318": "B",
       "319": "ABC",
-      "320": "C",
+      "320": "CE",
       "331": "ACDE",
       "332": "B",
       "333": "ACDE"
@@ -651,6 +651,7 @@
       "317": true,
       "318": true,
       "319": true,
+      "320": true,
       "331": true,
       "332": true,
       "333": true
@@ -769,9 +770,10 @@
     311,
     314,
     316,
-    319
+    319,
+    320
   ],
-  "totalAnswered": 323,
+  "totalAnswered": 324,
   "totalCorrect": 206,
   "notes": {},
   "currentMode": "sequence",
