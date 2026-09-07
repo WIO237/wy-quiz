@@ -335,7 +335,8 @@
       "330": "ABE",
       "331": "ACDE",
       "332": "B",
-      "333": "ACDE"
+      "333": "ACDE",
+      "334": "CD"
     }
   },
   "modeSubmitted": {
@@ -674,7 +675,8 @@
       "330": true,
       "331": true,
       "332": true,
-      "333": true
+      "333": true,
+      "334": true
     }
   },
   "wrongAnswers": {},
@@ -796,12 +798,13 @@
     322,
     326,
     329,
-    330
+    330,
+    334
   ],
-  "totalAnswered": 334,
+  "totalAnswered": 335,
   "totalCorrect": 211,
   "notes": {},
   "currentMode": "sequence",
   "selectedChapter": "全部题目",
-  "currentIndex": 330
+  "currentIndex": 334
 }
