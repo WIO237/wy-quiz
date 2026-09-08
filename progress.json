@@ -348,7 +348,8 @@
       "343": "AD",
       "344": "C",
       "345": "ABC",
-      "346": "BD"
+      "346": "BD",
+      "347": "ACD"
     }
   },
   "modeSubmitted": {
@@ -700,7 +701,8 @@
       "343": true,
       "344": true,
       "345": true,
-      "346": true
+      "346": true,
+      "347": true
     }
   },
   "wrongAnswers": {},
@@ -826,12 +828,13 @@
     334,
     341,
     343,
-    345
+    345,
+    347
   ],
-  "totalAnswered": 347,
+  "totalAnswered": 348,
   "totalCorrect": 220,
   "notes": {},
   "currentMode": "sequence",
   "selectedChapter": "全部题目",
-  "currentIndex": 346
+  "currentIndex": 347
 }
