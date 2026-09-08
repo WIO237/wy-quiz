@@ -347,7 +347,8 @@
       "342": "C",
       "343": "AD",
       "344": "C",
-      "345": "ABC"
+      "345": "ABC",
+      "346": "BD"
     }
   },
   "modeSubmitted": {
@@ -698,7 +699,8 @@
       "342": true,
       "343": true,
       "344": true,
-      "345": true
+      "345": true,
+      "346": true
     }
   },
   "wrongAnswers": {},
@@ -826,10 +828,10 @@
     343,
     345
   ],
-  "totalAnswered": 346,
-  "totalCorrect": 219,
+  "totalAnswered": 347,
+  "totalCorrect": 220,
   "notes": {},
   "currentMode": "sequence",
   "selectedChapter": "全部题目",
-  "currentIndex": 345
+  "currentIndex": 346
 }
