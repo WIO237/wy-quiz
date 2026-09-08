@@ -372,7 +372,8 @@
       "367": "B",
       "368": "D",
       "369": "DE",
-      "370": "CE"
+      "370": "CE",
+      "371": "BCE"
     }
   },
   "modeSubmitted": {
@@ -748,7 +749,8 @@
       "367": true,
       "368": true,
       "369": true,
-      "370": true
+      "370": true,
+      "371": true
     }
   },
   "wrongAnswers": {},
@@ -888,12 +890,13 @@
     364,
     366,
     367,
-    370
+    370,
+    371
   ],
-  "totalAnswered": 371,
+  "totalAnswered": 372,
   "totalCorrect": 230,
   "notes": {},
   "currentMode": "sequence",
   "selectedChapter": "全部题目",
-  "currentIndex": 370
+  "currentIndex": 371
 }
