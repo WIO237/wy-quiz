@@ -354,7 +354,8 @@
       "349": "B",
       "350": "ABC",
       "351": "ABCD",
-      "352": "AC"
+      "352": "AC",
+      "353": "CDE"
     }
   },
   "modeSubmitted": {
@@ -712,7 +713,8 @@
       "349": true,
       "350": true,
       "351": true,
-      "352": true
+      "352": true,
+      "353": true
     }
   },
   "wrongAnswers": {},
@@ -841,12 +843,13 @@
     345,
     347,
     349,
-    351
+    351,
+    353
   ],
-  "totalAnswered": 353,
+  "totalAnswered": 354,
   "totalCorrect": 223,
   "notes": {},
   "currentMode": "sequence",
   "selectedChapter": "全部题目",
-  "currentIndex": 352
+  "currentIndex": 353
 }
