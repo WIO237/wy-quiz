@@ -363,7 +363,8 @@
       "358": "A",
       "359": "AD",
       "360": "ABDE",
-      "361": "A"
+      "361": "A",
+      "362": "ABC"
     }
   },
   "modeSubmitted": {
@@ -730,7 +731,8 @@
       "358": true,
       "359": true,
       "360": true,
-      "361": true
+      "361": true,
+      "362": true
     }
   },
   "wrongAnswers": {},
@@ -865,9 +867,10 @@
     357,
     358,
     359,
-    361
+    361,
+    362
   ],
-  "totalAnswered": 362,
+  "totalAnswered": 363,
   "totalCorrect": 226,
   "notes": {},
   "currentMode": "sequence",
