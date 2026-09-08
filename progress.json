@@ -345,7 +345,8 @@
       "340": "C",
       "341": "AD",
       "342": "C",
-      "343": "AD"
+      "343": "AD",
+      "344": "C"
     }
   },
   "modeSubmitted": {
@@ -694,7 +695,8 @@
       "340": true,
       "341": true,
       "342": true,
-      "343": true
+      "343": true,
+      "344": true
     }
   },
   "wrongAnswers": {},
@@ -821,10 +823,10 @@
     341,
     343
   ],
-  "totalAnswered": 344,
-  "totalCorrect": 218,
+  "totalAnswered": 345,
+  "totalCorrect": 219,
   "notes": {},
   "currentMode": "sequence",
   "selectedChapter": "全部题目",
-  "currentIndex": 343
+  "currentIndex": 344
 }
