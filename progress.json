@@ -361,7 +361,8 @@
       "356": "CD",
       "357": "ABD",
       "358": "A",
-      "359": "AD"
+      "359": "AD",
+      "360": "ABDE"
     }
   },
   "modeSubmitted": {
@@ -726,7 +727,8 @@
       "356": true,
       "357": true,
       "358": true,
-      "359": true
+      "359": true,
+      "360": true
     }
   },
   "wrongAnswers": {},
@@ -862,10 +864,10 @@
     358,
     359
   ],
-  "totalAnswered": 360,
-  "totalCorrect": 225,
+  "totalAnswered": 361,
+  "totalCorrect": 226,
   "notes": {},
   "currentMode": "sequence",
   "selectedChapter": "全部题目",
-  "currentIndex": 359
+  "currentIndex": 360
 }
