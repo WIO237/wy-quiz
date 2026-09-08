@@ -362,7 +362,8 @@
       "357": "ABD",
       "358": "A",
       "359": "AD",
-      "360": "ABDE"
+      "360": "ABDE",
+      "361": "A"
     }
   },
   "modeSubmitted": {
@@ -728,7 +729,8 @@
       "357": true,
       "358": true,
       "359": true,
-      "360": true
+      "360": true,
+      "361": true
     }
   },
   "wrongAnswers": {},
@@ -862,12 +864,13 @@
     354,
     357,
     358,
-    359
+    359,
+    361
   ],
-  "totalAnswered": 361,
+  "totalAnswered": 362,
   "totalCorrect": 226,
   "notes": {},
   "currentMode": "sequence",
   "selectedChapter": "全部题目",
-  "currentIndex": 360
+  "currentIndex": 362
 }
