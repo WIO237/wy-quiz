@@ -352,7 +352,8 @@
       "347": "ACD",
       "348": "BCE",
       "349": "B",
-      "350": "ABC"
+      "350": "ABC",
+      "351": "ABCD"
     }
   },
   "modeSubmitted": {
@@ -708,7 +709,8 @@
       "347": true,
       "348": true,
       "349": true,
-      "350": true
+      "350": true,
+      "351": true
     }
   },
   "wrongAnswers": {},
@@ -836,12 +838,13 @@
     343,
     345,
     347,
-    349
+    349,
+    351
   ],
-  "totalAnswered": 351,
+  "totalAnswered": 352,
   "totalCorrect": 222,
   "notes": {},
   "currentMode": "sequence",
   "selectedChapter": "全部题目",
-  "currentIndex": 350
+  "currentIndex": 351
 }
