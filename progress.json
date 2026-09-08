@@ -359,7 +359,7 @@
       "354": "BCD",
       "355": "A",
       "356": "CD",
-      "357": "AB"
+      "357": "ABD"
     }
   },
   "modeSubmitted": {
@@ -721,7 +721,8 @@
       "353": true,
       "354": true,
       "355": true,
-      "356": true
+      "356": true,
+      "357": true
     }
   },
   "wrongAnswers": {},
@@ -852,9 +853,10 @@
     349,
     351,
     353,
-    354
+    354,
+    357
   ],
-  "totalAnswered": 357,
+  "totalAnswered": 358,
   "totalCorrect": 225,
   "notes": {},
   "currentMode": "sequence",
