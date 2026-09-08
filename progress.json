@@ -359,7 +359,8 @@
       "354": "BCD",
       "355": "A",
       "356": "CD",
-      "357": "ABD"
+      "357": "ABD",
+      "358": "A"
     }
   },
   "modeSubmitted": {
@@ -722,7 +723,8 @@
       "354": true,
       "355": true,
       "356": true,
-      "357": true
+      "357": true,
+      "358": true
     }
   },
   "wrongAnswers": {},
@@ -854,12 +856,13 @@
     351,
     353,
     354,
-    357
+    357,
+    358
   ],
-  "totalAnswered": 358,
+  "totalAnswered": 359,
   "totalCorrect": 225,
   "notes": {},
   "currentMode": "sequence",
   "selectedChapter": "全部题目",
-  "currentIndex": 357
+  "currentIndex": 358
 }
