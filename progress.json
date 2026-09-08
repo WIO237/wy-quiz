@@ -343,7 +343,8 @@
       "338": "ABC",
       "339": "ACDE",
       "340": "C",
-      "341": "AD"
+      "341": "AD",
+      "342": "C"
     }
   },
   "modeSubmitted": {
@@ -690,7 +691,8 @@
       "338": true,
       "339": true,
       "340": true,
-      "341": true
+      "341": true,
+      "342": true
     }
   },
   "wrongAnswers": {},
@@ -816,10 +818,10 @@
     334,
     341
   ],
-  "totalAnswered": 342,
-  "totalCorrect": 217,
+  "totalAnswered": 343,
+  "totalCorrect": 218,
   "notes": {},
   "currentMode": "sequence",
   "selectedChapter": "全部题目",
-  "currentIndex": 341
+  "currentIndex": 342
 }
