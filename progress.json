@@ -367,7 +367,8 @@
       "362": "ABC",
       "363": "A",
       "364": "D",
-      "365": "BD"
+      "365": "BD",
+      "366": "ABD"
     }
   },
   "modeSubmitted": {
@@ -738,7 +739,8 @@
       "362": true,
       "363": true,
       "364": true,
-      "365": true
+      "365": true,
+      "366": true
     }
   },
   "wrongAnswers": {},
@@ -875,12 +877,13 @@
     359,
     361,
     362,
-    364
+    364,
+    366
   ],
-  "totalAnswered": 366,
+  "totalAnswered": 367,
   "totalCorrect": 228,
   "notes": {},
   "currentMode": "sequence",
   "selectedChapter": "全部题目",
-  "currentIndex": 365
+  "currentIndex": 366
 }
