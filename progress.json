@@ -369,7 +369,8 @@
       "364": "D",
       "365": "BD",
       "366": "ABD",
-      "367": "B"
+      "367": "B",
+      "368": "D"
     }
   },
   "modeSubmitted": {
@@ -742,7 +743,8 @@
       "364": true,
       "365": true,
       "366": true,
-      "367": true
+      "367": true,
+      "368": true
     }
   },
   "wrongAnswers": {},
@@ -883,10 +885,10 @@
     366,
     367
   ],
-  "totalAnswered": 368,
-  "totalCorrect": 228,
+  "totalAnswered": 369,
+  "totalCorrect": 229,
   "notes": {},
   "currentMode": "sequence",
   "selectedChapter": "全部题目",
-  "currentIndex": 367
+  "currentIndex": 368
 }
