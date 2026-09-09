@@ -374,7 +374,8 @@
       "369": "DE",
       "370": "CE",
       "371": "BCE",
-      "372": "D"
+      "372": "D",
+      "373": "C"
     }
   },
   "modeSubmitted": {
@@ -752,7 +753,8 @@
       "369": true,
       "370": true,
       "371": true,
-      "372": true
+      "372": true,
+      "373": true
     }
   },
   "wrongAnswers": {},
@@ -896,10 +898,10 @@
     371,
     372
   ],
-  "totalAnswered": 373,
-  "totalCorrect": 230,
+  "totalAnswered": 374,
+  "totalCorrect": 231,
   "notes": {},
   "currentMode": "sequence",
   "selectedChapter": "全部题目",
-  "currentIndex": 372
+  "currentIndex": 373
 }
