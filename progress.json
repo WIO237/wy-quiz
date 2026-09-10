@@ -399,7 +399,8 @@
       "394": "A",
       "395": "BC",
       "396": "ADE",
-      "397": "D"
+      "397": "D",
+      "398": "AE"
     }
   },
   "modeSubmitted": {
@@ -802,7 +803,8 @@
       "394": true,
       "395": true,
       "396": true,
-      "397": true
+      "397": true,
+      "398": true
     }
   },
   "wrongAnswers": {},
@@ -955,9 +957,10 @@
     384,
     387,
     388,
-    394
+    394,
+    398
   ],
-  "totalAnswered": 398,
+  "totalAnswered": 399,
   "totalCorrect": 244,
   "notes": {},
   "currentMode": "sequence",
