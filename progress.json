@@ -388,7 +388,8 @@
       "383": "B",
       "384": "BC",
       "385": "C",
-      "386": "AB"
+      "386": "AB",
+      "387": "ABCE"
     }
   },
   "modeSubmitted": {
@@ -780,7 +781,8 @@
       "383": true,
       "384": true,
       "385": true,
-      "386": true
+      "386": true,
+      "387": true
     }
   },
   "wrongAnswers": {},
@@ -930,9 +932,10 @@
     378,
     382,
     383,
-    384
+    384,
+    387
   ],
-  "totalAnswered": 387,
+  "totalAnswered": 388,
   "totalCorrect": 236,
   "notes": {},
   "currentMode": "sequence",
