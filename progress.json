@@ -402,7 +402,8 @@
       "397": "D",
       "398": "AE",
       "399": "ABCE",
-      "400": "BD"
+      "400": "BD",
+      "401": "ABCD"
     }
   },
   "modeSubmitted": {
@@ -808,7 +809,8 @@
       "397": true,
       "398": true,
       "399": true,
-      "400": true
+      "400": true,
+      "401": true
     }
   },
   "wrongAnswers": {},
@@ -965,10 +967,10 @@
     398,
     400
   ],
-  "totalAnswered": 401,
-  "totalCorrect": 245,
+  "totalAnswered": 402,
+  "totalCorrect": 246,
   "notes": {},
   "currentMode": "sequence",
   "selectedChapter": "全部题目",
-  "currentIndex": 400
+  "currentIndex": 401
 }
