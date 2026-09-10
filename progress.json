@@ -387,7 +387,8 @@
       "382": "ACDE",
       "383": "B",
       "384": "BC",
-      "385": "C"
+      "385": "C",
+      "386": "AB"
     }
   },
   "modeSubmitted": {
@@ -778,7 +779,8 @@
       "382": true,
       "383": true,
       "384": true,
-      "385": true
+      "385": true,
+      "386": true
     }
   },
   "wrongAnswers": {},
@@ -930,10 +932,10 @@
     383,
     384
   ],
-  "totalAnswered": 386,
-  "totalCorrect": 235,
+  "totalAnswered": 387,
+  "totalCorrect": 236,
   "notes": {},
   "currentMode": "sequence",
   "selectedChapter": "全部题目",
-  "currentIndex": 385
+  "currentIndex": 387
 }
