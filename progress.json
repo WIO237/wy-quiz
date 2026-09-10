@@ -383,7 +383,8 @@
       "378": "BDE",
       "379": "C",
       "380": "ABCD",
-      "381": "ABE"
+      "381": "ABE",
+      "382": "ACDE"
     }
   },
   "modeSubmitted": {
@@ -770,7 +771,8 @@
       "378": true,
       "379": true,
       "380": true,
-      "381": true
+      "381": true,
+      "382": true
     }
   },
   "wrongAnswers": {},
@@ -917,12 +919,13 @@
     375,
     376,
     377,
-    378
+    378,
+    382
   ],
-  "totalAnswered": 382,
+  "totalAnswered": 383,
   "totalCorrect": 234,
   "notes": {},
   "currentMode": "sequence",
   "selectedChapter": "全部题目",
-  "currentIndex": 381
+  "currentIndex": 382
 }
