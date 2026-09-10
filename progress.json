@@ -404,7 +404,8 @@
       "399": "ABCE",
       "400": "BD",
       "401": "ABCD",
-      "402": "CDE"
+      "402": "CDE",
+      "403": "ABCD"
     }
   },
   "modeSubmitted": {
@@ -812,7 +813,8 @@
       "399": true,
       "400": true,
       "401": true,
-      "402": true
+      "402": true,
+      "403": true
     }
   },
   "wrongAnswers": {},
@@ -969,10 +971,10 @@
     398,
     400
   ],
-  "totalAnswered": 403,
-  "totalCorrect": 247,
+  "totalAnswered": 404,
+  "totalCorrect": 248,
   "notes": {},
   "currentMode": "sequence",
   "selectedChapter": "全部题目",
-  "currentIndex": 402
+  "currentIndex": 404
 }
