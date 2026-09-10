@@ -398,7 +398,8 @@
       "393": "B",
       "394": "A",
       "395": "BC",
-      "396": "ADE"
+      "396": "ADE",
+      "397": "D"
     }
   },
   "modeSubmitted": {
@@ -800,7 +801,8 @@
       "393": true,
       "394": true,
       "395": true,
-      "396": true
+      "396": true,
+      "397": true
     }
   },
   "wrongAnswers": {},
@@ -955,10 +957,10 @@
     388,
     394
   ],
-  "totalAnswered": 397,
-  "totalCorrect": 243,
+  "totalAnswered": 398,
+  "totalCorrect": 244,
   "notes": {},
   "currentMode": "sequence",
   "selectedChapter": "全部题目",
-  "currentIndex": 396
+  "currentIndex": 398
 }
