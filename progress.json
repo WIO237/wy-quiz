@@ -411,7 +411,8 @@
       "406": "C",
       "407": "D",
       "408": "A",
-      "409": "D"
+      "409": "D",
+      "410": "ACD"
     }
   },
   "modeSubmitted": {
@@ -826,7 +827,8 @@
       "406": true,
       "407": true,
       "408": true,
-      "409": true
+      "409": true,
+      "410": true
     }
   },
   "wrongAnswers": {},
@@ -984,10 +986,10 @@
     400,
     405
   ],
-  "totalAnswered": 410,
-  "totalCorrect": 253,
+  "totalAnswered": 411,
+  "totalCorrect": 254,
   "notes": {},
   "currentMode": "sequence",
   "selectedChapter": "全部题目",
-  "currentIndex": 409
+  "currentIndex": 410
 }
