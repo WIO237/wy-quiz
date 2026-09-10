@@ -390,7 +390,8 @@
       "385": "C",
       "386": "AB",
       "387": "ABCE",
-      "388": "B"
+      "388": "B",
+      "389": "ACD"
     }
   },
   "modeSubmitted": {
@@ -784,7 +785,8 @@
       "385": true,
       "386": true,
       "387": true,
-      "388": true
+      "388": true,
+      "389": true
     }
   },
   "wrongAnswers": {},
@@ -938,10 +940,10 @@
     387,
     388
   ],
-  "totalAnswered": 389,
-  "totalCorrect": 236,
+  "totalAnswered": 390,
+  "totalCorrect": 237,
   "notes": {},
   "currentMode": "sequence",
   "selectedChapter": "全部题目",
-  "currentIndex": 388
+  "currentIndex": 389
 }
