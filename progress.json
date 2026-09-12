@@ -425,7 +425,8 @@
       "420": "AC",
       "421": "BCE",
       "422": "B",
-      "423": "ACD"
+      "423": "ACD",
+      "424": "DE"
     }
   },
   "modeSubmitted": {
@@ -854,7 +855,8 @@
       "420": true,
       "421": true,
       "422": true,
-      "423": true
+      "423": true,
+      "424": true
     }
   },
   "wrongAnswers": {},
@@ -1017,10 +1019,10 @@
     421,
     423
   ],
-  "totalAnswered": 424,
-  "totalCorrect": 262,
+  "totalAnswered": 425,
+  "totalCorrect": 263,
   "notes": {},
   "currentMode": "sequence",
   "selectedChapter": "全部题目",
-  "currentIndex": 423
+  "currentIndex": 425
 }
