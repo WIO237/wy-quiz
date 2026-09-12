@@ -427,7 +427,8 @@
       "422": "B",
       "423": "ACD",
       "424": "DE",
-      "425": "DE"
+      "425": "DE",
+      "426": "AD"
     }
   },
   "modeSubmitted": {
@@ -858,7 +859,8 @@
       "422": true,
       "423": true,
       "424": true,
-      "425": true
+      "425": true,
+      "426": true
     }
   },
   "wrongAnswers": {},
@@ -1019,12 +1021,13 @@
     418,
     420,
     421,
-    423
+    423,
+    426
   ],
-  "totalAnswered": 426,
+  "totalAnswered": 427,
   "totalCorrect": 264,
   "notes": {},
   "currentMode": "sequence",
   "selectedChapter": "全部题目",
-  "currentIndex": 425
+  "currentIndex": 426
 }
