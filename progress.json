@@ -419,7 +419,8 @@
       "414": "ABCD",
       "415": "A",
       "416": "ACD",
-      "417": "ABCD"
+      "417": "ABCD",
+      "418": "ABDE"
     }
   },
   "modeSubmitted": {
@@ -842,7 +843,8 @@
       "414": true,
       "415": true,
       "416": true,
-      "417": true
+      "417": true,
+      "418": true
     }
   },
   "wrongAnswers": {},
@@ -999,12 +1001,13 @@
     398,
     400,
     405,
-    411
+    411,
+    418
   ],
-  "totalAnswered": 418,
+  "totalAnswered": 419,
   "totalCorrect": 260,
   "notes": {},
   "currentMode": "sequence",
   "selectedChapter": "全部题目",
-  "currentIndex": 417
+  "currentIndex": 418
 }
