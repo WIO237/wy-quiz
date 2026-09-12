@@ -414,7 +414,8 @@
       "409": "D",
       "410": "ACD",
       "411": "ACD",
-      "412": "ABC"
+      "412": "ABC",
+      "413": "C"
     }
   },
   "modeSubmitted": {
@@ -832,7 +833,8 @@
       "409": true,
       "410": true,
       "411": true,
-      "412": true
+      "412": true,
+      "413": true
     }
   },
   "wrongAnswers": {},
@@ -991,10 +993,10 @@
     405,
     411
   ],
-  "totalAnswered": 413,
-  "totalCorrect": 255,
+  "totalAnswered": 414,
+  "totalCorrect": 256,
   "notes": {},
   "currentMode": "sequence",
   "selectedChapter": "全部题目",
-  "currentIndex": 412
+  "currentIndex": 413
 }
