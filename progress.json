@@ -424,7 +424,8 @@
       "419": "D",
       "420": "AC",
       "421": "BCE",
-      "422": "B"
+      "422": "B",
+      "423": "ACD"
     }
   },
   "modeSubmitted": {
@@ -852,7 +853,8 @@
       "419": true,
       "420": true,
       "421": true,
-      "422": true
+      "422": true,
+      "423": true
     }
   },
   "wrongAnswers": {},
@@ -1012,9 +1014,10 @@
     411,
     418,
     420,
-    421
+    421,
+    423
   ],
-  "totalAnswered": 423,
+  "totalAnswered": 424,
   "totalCorrect": 262,
   "notes": {},
   "currentMode": "sequence",
