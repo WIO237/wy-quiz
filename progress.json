@@ -421,7 +421,8 @@
       "416": "ACD",
       "417": "ABCD",
       "418": "ABDE",
-      "419": "D"
+      "419": "D",
+      "420": "AC"
     }
   },
   "modeSubmitted": {
@@ -846,7 +847,8 @@
       "416": true,
       "417": true,
       "418": true,
-      "419": true
+      "419": true,
+      "420": true
     }
   },
   "wrongAnswers": {},
@@ -1004,9 +1006,10 @@
     400,
     405,
     411,
-    418
+    418,
+    420
   ],
-  "totalAnswered": 420,
+  "totalAnswered": 421,
   "totalCorrect": 261,
   "notes": {},
   "currentMode": "sequence",
