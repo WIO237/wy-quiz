@@ -426,7 +426,8 @@
       "421": "BCE",
       "422": "B",
       "423": "ACD",
-      "424": "DE"
+      "424": "DE",
+      "425": "DE"
     }
   },
   "modeSubmitted": {
@@ -856,7 +857,8 @@
       "421": true,
       "422": true,
       "423": true,
-      "424": true
+      "424": true,
+      "425": true
     }
   },
   "wrongAnswers": {},
@@ -1019,8 +1021,8 @@
     421,
     423
   ],
-  "totalAnswered": 425,
-  "totalCorrect": 263,
+  "totalAnswered": 426,
+  "totalCorrect": 264,
   "notes": {},
   "currentMode": "sequence",
   "selectedChapter": "全部题目",
